@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Resume/static/css/main.8f9be621.css",
-    "main.js": "/Resume/static/js/main.fc4c9b28.js",
+    "main.css": "/Resume/static/css/main.5000c4d5.css",
+    "main.js": "/Resume/static/js/main.a45902da.js",
     "static/js/213.922817a0.chunk.js": "/Resume/static/js/213.922817a0.chunk.js",
     "static/js/732.39ac487c.chunk.js": "/Resume/static/js/732.39ac487c.chunk.js",
     "static/media/MathMentor.png": "/Resume/static/media/MathMentor.a3bfc41729df81f4e30f.png",
@@ -13,13 +13,13 @@
     "static/media/udemyLogo.svg": "/Resume/static/media/udemyLogo.47fb35ff56259d570c8232f355fe39df.svg",
     "static/media/openai.svg": "/Resume/static/media/openai.09e696fbc4b140844ed2f83d6bb5d593.svg",
     "index.html": "/Resume/index.html",
-    "main.8f9be621.css.map": "/Resume/static/css/main.8f9be621.css.map",
-    "main.fc4c9b28.js.map": "/Resume/static/js/main.fc4c9b28.js.map",
+    "main.5000c4d5.css.map": "/Resume/static/css/main.5000c4d5.css.map",
+    "main.a45902da.js.map": "/Resume/static/js/main.a45902da.js.map",
     "213.922817a0.chunk.js.map": "/Resume/static/js/213.922817a0.chunk.js.map",
     "732.39ac487c.chunk.js.map": "/Resume/static/js/732.39ac487c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8f9be621.css",
-    "static/js/main.fc4c9b28.js"
+    "static/css/main.5000c4d5.css",
+    "static/js/main.a45902da.js"
   ]
 }
