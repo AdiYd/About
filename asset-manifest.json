@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/Resume/static/css/main.2b9e1826.css",
-    "main.js": "/Resume/static/js/main.55466efb.js",
+    "main.css": "/Resume/static/css/main.ec3d44f7.css",
+    "main.js": "/Resume/static/js/main.cf55fac9.js",
     "static/js/213.922817a0.chunk.js": "/Resume/static/js/213.922817a0.chunk.js",
     "static/js/732.39ac487c.chunk.js": "/Resume/static/js/732.39ac487c.chunk.js",
     "static/media/MathMentor.png": "/Resume/static/media/MathMentor.a3bfc41729df81f4e30f.png",
     "static/media/TAU_Logo.png": "/Resume/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
-    "static/media/AdiY.png": "/Resume/static/media/AdiY.a400c78a7cd659eb1883.png",
+    "static/media/AdiY.png": "/Resume/static/media/AdiY.5dd37912d35339560c9c.png",
     "static/media/TAU_university_logo_ENG.png": "/Resume/static/media/TAU_university_logo_ENG.5ef15378a02fb175a967.png",
     "static/media/sedg.svg": "/Resume/static/media/sedg.db32b605123b724bd40ae6f0bbb62963.svg",
     "static/media/coursera.svg": "/Resume/static/media/coursera.b59b66274dad2f2aa02bcbdc73814032.svg",
     "static/media/udemyLogo.svg": "/Resume/static/media/udemyLogo.47fb35ff56259d570c8232f355fe39df.svg",
     "static/media/openai.svg": "/Resume/static/media/openai.09e696fbc4b140844ed2f83d6bb5d593.svg",
     "index.html": "/Resume/index.html",
-    "main.2b9e1826.css.map": "/Resume/static/css/main.2b9e1826.css.map",
-    "main.55466efb.js.map": "/Resume/static/js/main.55466efb.js.map",
+    "main.ec3d44f7.css.map": "/Resume/static/css/main.ec3d44f7.css.map",
+    "main.cf55fac9.js.map": "/Resume/static/js/main.cf55fac9.js.map",
     "213.922817a0.chunk.js.map": "/Resume/static/js/213.922817a0.chunk.js.map",
     "732.39ac487c.chunk.js.map": "/Resume/static/js/732.39ac487c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2b9e1826.css",
-    "static/js/main.55466efb.js"
+    "static/css/main.ec3d44f7.css",
+    "static/js/main.cf55fac9.js"
   ]
 }
