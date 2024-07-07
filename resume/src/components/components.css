@@ -1,0 +1,507 @@
+div.dataContainer {
+    margin: 1em;
+    padding: 0.2em;
+}
+
+p {
+    line-height: 1.5em;
+}
+
+div.dataWrapper {
+    cursor: default;
+    width: 90vw;
+    padding: 1em;
+    border-radius: 15px;
+    /* border: 1px solid black; */
+    background-color: rgb(221 223 224 / 10%);
+    box-shadow: 0 1px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+span.pdf {
+    cursor: pointer;
+    border-radius: 15px;
+    margin: 0em 2em;
+    padding: 0.5em 1em;
+    /* background-color: #0992ed49; */
+}
+
+span.pdf:hover {
+    opacity: 0.7;
+}
+
+a.moreDetails {
+    padding: 0em 0.3em;
+    cursor: pointer;
+    align-content: center;
+}
+
+
+div.personalPropsContainer {
+    margin: 0.6em 1em;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+div.personalProps {
+    align-items: center;
+}
+
+div.personalProps p {
+    font-size: 0.85em;
+    margin: 0em;
+}
+
+div.pdfContainer {
+    margin-left: 1em;
+    margin-right: 1em;
+}
+
+div.dataContainer h3 {
+    margin-top: 0.2em;
+    margin-bottom: 0.1em;
+    font-size: 1.5em;
+}
+
+.darkBlue {
+    color: rgb(25, 56, 122);
+    color: #0978c2;
+}
+
+.white {
+    color: white;
+}
+
+.black {
+    color: black;
+}
+
+.tStart {
+    text-align: start;
+}
+
+.tCenter {
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+}
+
+.columns {
+    grid-auto-flow: column;
+}
+
+.flex {
+    display: flex;
+}
+
+div.aboutMe p {
+    margin-left: 1em;
+    margin-right: 1em;
+    margin: 0.3em 1em;
+}
+
+div.expContainer,
+div.eduContainer {
+    grid-template-columns: 5fr 1fr;
+}
+
+ul {
+    padding: 0em 0.5em;
+}
+
+li.list {
+    margin: 0.7em 0.7em;
+    align-items: center;
+    list-style: disc;
+}
+
+span.listContainer {
+    display: flex;
+    flex-direction: column;
+    margin: 0em 0.5em;
+    width: fit-content;
+    /* text-align: center; */
+}
+
+div.listHeaderDiv {
+    font-weight: 600;
+    /* font-size: 1.1em; */
+    /* display: flex; */
+    width: max-content;
+}
+
+p.listHeader {
+    font-weight: 600;
+}
+
+div.listHeaderDiv p {
+    margin: 0.2em 0.3em;
+}
+
+div.listTextDiv p {
+    margin: 0.2em 0.5em;
+}
+
+
+.react {
+    color: #61dbfb;
+}
+
+#reactBackground {
+    background-color: rgb(35, 39, 47);
+    color: whitesmoke;
+}
+
+div#reactSkill:hover {
+    /* box-shadow: 0 1px #61dbfb, 0 4px 8px #61dbfb;
+    box-shadow: 0px 1px 3px #ffef2c, 0 2px 2px #fbc761; */
+    /* border: 0.8px solid gold; */
+    background-color: rgb(35, 39, 47);
+    color: whitesmoke;
+}
+
+/* i.list::before {
+    content: "\f3e2";
+} */
+
+div.listTextDiv {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1em;
+    margin: 0em 0.3em;
+    align-content: center;
+}
+
+li.list#arrow {
+    list-style-type: disclosure-closed;
+}
+
+li.list#arrow::marker {
+    color: #023a60;
+    font-size: 0.8em;
+}
+
+div.skills-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+div.skill-box {
+    display: flex;
+    flex-direction: column;
+    width: 3.7em;
+    padding: 0.9em;
+    margin: 0.5em;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+span.skillName {
+    padding-top: 0.6em;
+    font-size: 0.8em;
+}
+
+
+fieldset.skillzFieldSet {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: fit-content;
+    text-align: center;
+    padding: 1em;
+    margin: 0.4em 1em;
+    border-radius: 20px;
+    border: 0.1px solid rgba(158, 159, 158, 0.521);
+    /* box-shadow: 0 1px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.1); */
+}
+
+legend.legend {
+    padding: 0em 1em;
+    background: transparent;
+    border-radius: 20px;
+    /* text-align: center; */
+}
+
+.boxShadow img.tauLogo,
+.boxShadow img.mathMentorLogo {
+    cursor: default;
+    width: 3.5em;
+}
+
+.rotate {
+    animation: rotate 1.5s alternate infinite forwards;
+}
+
+.rotateHover:hover {
+    animation: rotate 0.8s linear infinite forwards;
+}
+
+.shakeHover:hover {
+    animation: shake 0.5s;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    30% {
+        transform: rotate(-40deg);
+    }
+
+    70% {
+        transform: rotate(40deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+svg#pip {
+    fill: #3776AB;
+    margin: 0em;
+    width: 2em;
+    height: 2em;
+    align-self: center;
+}
+
+span.educationImg {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    float: right;
+}
+
+span.educationImg a {
+    padding: 1em;
+    margin: 0em 1em;
+    border-radius: 20px;
+    width: 5em;
+    height: 3em;
+    display: flex;
+    justify-content: center;
+}
+
+span.educationImg img {
+    width: 5em;
+    height: 3em;
+    background: transparent;
+}
+
+span.educationImg img#pdfImg {
+    box-shadow: none;
+}
+
+div#profileImg {
+    float: right;
+    /* padding: 0.2em; */
+    background-color: aliceblue;
+    margin: 1.3em;
+    margin-top: 0em;
+    border-radius: 45px;
+    display: flex;
+    border: 1px solid #00a6ffe8;
+}
+
+div#profileImg img {
+    width: 6em;
+    height: 6em;
+    border-radius: 45px;
+}
+
+.animUp:hover {
+    transform: translateY(-1vh);
+}
+
+.animDown:hover {
+    transform: translateY(1vh);
+}
+
+li.contactList {
+    list-style: none;
+}
+
+a.contactMeLink {
+    width: fit-content;
+    text-decoration: none;
+    color: black;
+}
+
+a.contactMeLink:hover {
+    font-weight: 600;
+}
+
+ul.majorsList li {
+    list-style-type: disc;
+    padding: 0.6em;
+}
+
+i.detailH {
+    font-style: normal;
+    display: inline-block;
+    font-weight: 600;
+    color: #023a60;
+    font-size: 0.95em;
+    letter-spacing: 1px;
+    padding: 0em 0.2em;
+}
+
+i.majors {
+    font-style: normal;
+    font-weight: 600;
+    color: rgb(3, 36, 74);
+}
+
+i.subTitle {
+    display: inline-block;
+    align-self: center;
+    justify-self: center;
+    font-style: normal;
+    letter-spacing: 1px;
+    font-size: 0.8em;
+    color: darkred;
+    margin: auto 1em;
+}
+
+div.floatingContact {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    border-radius: 20px;
+    bottom: 30%;
+    right: 0%;
+    position: fixed;
+    margin: 1.5em;
+    height: max-content;
+    z-index: 10;
+}
+
+a.floatingLinks {
+    cursor: pointer;
+    margin: 0.5em 0em;
+    border-radius: 50px;
+    width: fit-content;
+    padding: 0.4em;
+}
+
+.boxShadow {
+    /* box-shadow: 2px -1px 7px 2px rgb(133 126 126 / 50%); */
+    transition: 0.2s;
+    box-shadow: 0 1px rgba(0, 0, 0, 0.08), 1px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.boxShadow:hover {
+    /* transition: 1s; */
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.955);
+}
+
+@media only screen and (max-width: 1100px) {
+    body {
+        font-size: 15px;
+    }
+
+    div.dataWrapper {
+        /* background-color: #5ac35a48; */
+        width: 90%;
+    }
+
+    div.listHeaderDiv {
+        width: fit-content;
+    }
+
+    /* div.listHeaderDiv {
+      
+    } */
+}
+
+
+@media only screen and (max-width: 900px) {
+    body {
+        font-size: 14px;
+    }
+
+    div.dataWrapper {
+        /* background-color: #5a99c348; */
+        width: 90%;
+    }
+}
+
+
+@media only screen and (max-width: 600px) {
+    body {
+        font-size: 10px;
+    }
+
+    div.dataWrapper {
+        /* background-color: #c3ae5a48; */
+        width: 95%;
+    }
+
+    /* div.listHeaderDiv {
+        width: fit-content !important;
+    } */
+
+    .shakeHover:hover {
+        animation: none;
+    }
+
+    a.boxShadow img.tauLogo,
+    a.boxShadow img.mathMentorLogo {
+        width: 2.5em;
+    }
+
+    span.educationImg a {
+        align-items: center;
+        width: 3.2em;
+        height: 2em;
+        padding: 0.7em;
+        border-radius: 10px;
+    }
+
+    span.educationImg img {
+        width: 3em;
+        height: 2em;
+    }
+
+    span.educationImg {
+        padding: 0em;
+    }
+
+    div.skill-box {
+        width: 3.2em;
+        padding: 0.9em;
+    }
+
+    span#restAPI {
+        font-size: 0.7em;
+    }
+
+    span.pdf {
+        display: none;
+    }
+
+    div.floatingContact {
+        bottom: 0%;
+    }
+
+    div#profileImg img {
+        width: 5em;
+        height: 5em;
+    }
+}
