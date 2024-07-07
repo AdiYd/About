@@ -448,8 +448,8 @@ export default function Home({ ...props }) {
     </div>
 
     let blockDict = {
-        'Education': [education],
         'About Me': [aboutMe],
+        'Education': [education],
         'Professional Experience': [experience],
         'Skills': [skills],
         'Contact Me': [ContactMe]
