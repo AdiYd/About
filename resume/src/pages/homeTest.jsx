@@ -27,6 +27,7 @@ import sedg from '../img/sedg.svg';
 import coursera from '../img/coursera.svg';
 import openai from '../img/openai.svg';
 import mathMentor from '../img/MathMentor.png';
+import { AnimatePresence, motion } from "framer-motion";
 
 /**
  * A refined "About Me" / Resume page for showcasing skills, education, and work experience.
@@ -167,7 +168,11 @@ export default function Home({showPdf=false, ...props }) {
     let skillSet;
     if (skillMode) {
         skillSet = (
-            <>
+            <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 , ease: 'circInOut'}}
+             key={1} className='card'>
                 <fieldset
                     style={{ border: pdfMode ? 'none' : '' }}
                     className="skillzFieldSet"
@@ -267,12 +272,15 @@ export default function Home({showPdf=false, ...props }) {
                             )
                     )}
                 </fieldset>
-            </>
+            </motion.div>
         );
     } else {
         skillSet = (
-            <>
-            <div className="overflow-hidden w-full flex justify-center relative"> {/* Carousel container */}
+            <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8 , ease: 'circInOut'}}
+            key={2} className="overflow-hidden card w-full flex justify-center relative"> {/* Carousel container */}
                 <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration: `${40 * 1}s` }}> {/* Adjust duration */}
                 {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
                     (item, indx) =>
@@ -339,13 +347,13 @@ export default function Home({showPdf=false, ...props }) {
                         )
                 )}
                 </div>
-                </div>
-            </>
+            </motion.div>
+          
         );
     }
 
     // Skills container
-    let skills = skillSet && <div key="Skillz" className="skills-container">{skillSet}</div>;
+    let skills = skillSet && <div key="Skillz" className="skills-container"><AnimatePresence>{skillSet}</AnimatePresence></div>;
 
     // Education data
     let edDict = {
@@ -714,34 +722,34 @@ export default function Home({showPdf=false, ...props }) {
          
 
             <div className="card !block p-2 pt-0">
-            <div
-                className="flex flex-wrap my-4 items-center">
-                <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
-                    <FontAwesomeIcon icon={faUser} size="sm" />
-                    <p>36 y/o, Male</p>
-                </div>
-                <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
-                    <FontAwesomeIcon icon={faLocationDot} size="sm" />
-                    <p>Tel-Aviv, Remote</p>
-                </div>
-                <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
-                    <FontAwesomeIcon icon={faEarthAmerica} size="sm" />
-                    <p>EN (fluent), HE (native)</p>
-                </div>
-            </div>
-            {!pdfMode && (
-                <div id="profileImg" className="w-fit relative md:-top-16 float-right avatar online">
-                    <div className="w-24 mask !contents mask-hexagon">
-                        <img
-                            src={selfie}
-                            alt="Portrait of Adi Yehuda"
-                            title="Portrait of Adi Yehuda"
-                        />
+                <div
+                    className="flex flex-wrap my-4 items-center">
+                    <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
+                        <FontAwesomeIcon icon={faUser} size="sm" />
+                        <p>36 y/o, Male</p>
+                    </div>
+                    <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
+                    <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
+                        <FontAwesomeIcon icon={faLocationDot} size="sm" />
+                        <p>Tel-Aviv, Remote</p>
+                    </div>
+                    <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
+                    <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
+                        <FontAwesomeIcon icon={faEarthAmerica} size="sm" />
+                        <p>EN (fluent), HE (native)</p>
                     </div>
                 </div>
-            )}
+                {!pdfMode && (
+                    <div id="profileImg" className="w-fit relative md:-top-16 float-right avatar online">
+                        <div className="w-24 mask !contents mask-hexagon">
+                            <img
+                                src={selfie}
+                                alt="Portrait of Adi Yehuda"
+                                title="Portrait of Adi Yehuda"
+                            />
+                        </div>
+                    </div>
+                )}
                 <p className="text-base mb-3">
                     Passionate developer with strong technical background and a knack for creating
                     innovative, high-quality solutions. My journey began at Tel Aviv University, 
@@ -794,7 +802,7 @@ export default function Home({showPdf=false, ...props }) {
     };
 
     let ContactMe = (
-        <div key="Contact me" className="">
+        <div key="Contact me" className="card">
             <ul className="menu* p-4 rounded-box">
                 {Object.keys(contactMeDict).map((item, indx) => (
                     <li key={item + indx} className=" my-1">
@@ -875,7 +883,7 @@ export default function Home({showPdf=false, ...props }) {
     return (
         <div
             ref={targetRef}
-            className={`main !w-fit my-8 ${pdfMode ? 'pdfContainer' : ''}`}
+            className={`main  my-8 ${pdfMode ? 'pdfContainer' : ''}`}
             // data-theme="light"
         >
             <div className="flex justify-center mb-8" style={{ alignItems: 'center' }}>
@@ -908,7 +916,7 @@ export default function Home({showPdf=false, ...props }) {
 
             <div className="grid gap-6">
                 {Object.keys(blockDict).map((item, indx) => (
-                    <div key={indx + item} className="transition-all">
+                    <div key={indx + item} className="transition-all overflow-x-hidden">
                         <DataSection
                             key={item + indx}
                             extentedMenu={item === 'Skills'}
