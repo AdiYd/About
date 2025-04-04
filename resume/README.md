@@ -1,10 +1,13 @@
-# Adi Yehuda - Resume
+# Adi Yehuda - About
 
-This project is a React-based resume page for Adi Yehuda. It showcases my skills, education, experience, and contact information in a clean and interactive format.
+You can see this page at:
+https://adiyd.github.io/Resume
+
+This project is a React-based about page for Adi Yehuda. It showcases my skills, education, experience, and contact information in a clean and interactive format.
 
 ## Features
 
-*   **Interactive Resume:** A dynamic and visually appealing resume built with React.
+*   **Interactive About page:** A dynamic and visually appealing About page with my experiences, skills and education built with React.
 *   **PDF Download:** Option to download the resume as a PDF file.
 *   **Skills Showcase:** Highlights key technical skills with FontAwesome icons.
 *   **Responsive Design:** Adapts to different screen sizes for optimal viewing on various devices.
@@ -19,6 +22,9 @@ This project is a React-based resume page for Adi Yehuda. It showcases my skills
 *   @fortawesome/free-brands-svg-icons
 *   @fortawesome/free-solid-svg-icons
 *   @fortawesome/react-fontawesome
+*   @framer-motion
+*   @Tailwindcss
+*   @daisyUI
 *   CSS
 
 ## Installation
