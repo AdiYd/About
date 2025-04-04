@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Resume/static/css/main.4e3cf020.css",
-    "main.js": "/Resume/static/js/main.ba0285c0.js",
+    "main.js": "/Resume/static/js/main.7fd3180b.js",
     "static/js/213.ea4d34dc.chunk.js": "/Resume/static/js/213.ea4d34dc.chunk.js",
     "static/js/732.7721696b.chunk.js": "/Resume/static/js/732.7721696b.chunk.js",
     "static/media/MathMentor.png": "/Resume/static/media/MathMentor.a3bfc41729df81f4e30f.png",
@@ -14,12 +14,12 @@
     "static/media/openai.svg": "/Resume/static/media/openai.09e696fbc4b140844ed2f83d6bb5d593.svg",
     "index.html": "/Resume/index.html",
     "main.4e3cf020.css.map": "/Resume/static/css/main.4e3cf020.css.map",
-    "main.ba0285c0.js.map": "/Resume/static/js/main.ba0285c0.js.map",
+    "main.7fd3180b.js.map": "/Resume/static/js/main.7fd3180b.js.map",
     "213.ea4d34dc.chunk.js.map": "/Resume/static/js/213.ea4d34dc.chunk.js.map",
     "732.7721696b.chunk.js.map": "/Resume/static/js/732.7721696b.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4e3cf020.css",
-    "static/js/main.ba0285c0.js"
+    "static/js/main.7fd3180b.js"
   ]
 }
