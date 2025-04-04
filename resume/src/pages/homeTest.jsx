@@ -615,9 +615,9 @@ export default function Home({showPdf=false, ...props }) {
                 </div>
             )}
                 <p className="text-base mb-3">
-                    Passionate software & hardware engineer with a deep enthusiasm for creating 
+                    Passionate developer with strong technical background and a knack for creating
                     innovative, high-quality solutions. My journey began at Tel Aviv University, 
-                    where I balanced rigorous engineering studies with an ever-growing interest 
+                    where I balanced between SW & HW engineering studies with an ever-growing interest 
                     in programming and web technologies.
                 </p>
                 <p className="text-base mb-3">

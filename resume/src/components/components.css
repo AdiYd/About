@@ -17,7 +17,7 @@ span.pdf {
 }
 
 a.moreDetails {
-    @apply p-0 px-1 cursor-pointer self-center;
+    @apply p-0 px-1 text-lg cursor-pointer self-center;
 }
 
 .card {
