@@ -31,7 +31,7 @@ div.pdfContainer {
 
 
 div.aboutMe p {
-    @apply m-1 mx-4;
+    @apply  mx-4;
 }
 
 div.expContainer,

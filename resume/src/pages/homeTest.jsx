@@ -40,6 +40,7 @@ export default function Home({showPdf=false, ...props }) {
     const [pdfMode, setPdfMode] = useState(false);
     const [skillMode, setSkillMode] = useState(false);
     const [isRolling, setIsRolling] = useState(false);
+    const [themeName, setThemeName] = useState(null);
 
     const changeRandomTheme = async () => {
         setIsRolling(true);
@@ -76,6 +77,7 @@ export default function Home({showPdf=false, ...props }) {
             'silk'
         ];
         const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+        setThemeName(randomTheme);
         document.documentElement.setAttribute('data-theme', randomTheme);
         setIsRolling(false);
     }
@@ -612,20 +614,20 @@ export default function Home({showPdf=false, ...props }) {
                     </div>
                 </div>
             )}
-                <p className=" mb-3">
+                <p className="text-base mb-3">
                     Passionate software & hardware engineer with a deep enthusiasm for creating 
                     innovative, high-quality solutions. My journey began at Tel Aviv University, 
                     where I balanced rigorous engineering studies with an ever-growing interest 
                     in programming and web technologies.
                 </p>
-                <p className=" mb-3">
+                <p className="text-base mb-3">
                     After several years leading product R&D in the energy sector, I transitioned 
                     to full-stack web development—building interactive, scalable applications 
                     that streamline user experiences. My background in hardware and embedded systems 
                     equips me with a unique perspective in bridging the gap between physical devices 
                     and software solutions.
                 </p>
-                <p className="">
+                <p className="text-base">
                     I am driven by a desire to push boundaries, explore cutting-edge tech, and 
                     collaborate on impactful projects. Whether it's a dynamic web platform, an 
                     automation script, or an innovative AI integration—I'm always ready to deliver 
@@ -765,7 +767,7 @@ export default function Home({showPdf=false, ...props }) {
 
             <div id='roll-the-dice-theme' className="flex items-center text-base-content justify-center mb-8">
             <p onClick={changeRandomTheme} className="text-base hover:border-accent/40 border-primary/40 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg p-4  font-bold w-fit flex items-center cursor-pointer gap-2">
-              Roll the Dice
+              {themeName || 'Roll the Dice'}
             
                 <FontAwesomeIcon
                     icon={faDice}
