@@ -9,12 +9,12 @@ const DBG_PROPS = {
 }
 
 let arrDown =
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
         <path d="M480-360 280-560h400L480-360Z" />
     </svg>;
 
 let arrUp =
-    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#000000">
+    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor">
         <path d="m280-400 200-200 200 200H280Z" />
     </svg>;
 
@@ -30,12 +30,13 @@ function DataSection({
 
     return (
         <div key={title} className="dataContainer">
-            <div className={`tStart ${!isPDF ? 'dataWrapper' : ''}`}>
+            <div className={`text-start ${!isPDF ? 'dataWrapper' : ''}`}>
                 <div className='flex'>
-                    {<h3 className='darkBlue'>{title}</h3>}
+                    {<h3 className='mx-2 mb-2'>{title}</h3>}
                     {(extentedMenu && !isPDF) &&
                         <a
-                            className='moreDetails darkBlue'
+                            // href="#"
+                            className='moreDetails'
                             title={isActive ? 'Less skills' : 'More skills'}
                             onClick={() => { setActive(p => !p); callBack(p => !p) }}>
                             {isActive ? arrUp : arrDown}

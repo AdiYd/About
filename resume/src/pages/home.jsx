@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { Margin, usePDF } from 'react-to-pdf';
+import { usePDF } from 'react-to-pdf';
 import DataSection from "../components/dataSection";
 import '../App.css';
-import '../components/components.css';
+// import '../components/components.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faGithub, faReact, faPython, faInstagram, faHtml5, faAppStore,
@@ -16,6 +16,7 @@ import {
     faLock, faServer, faCode,
     faUser,
     faLocationDot,
+    faGlobe,
     faEarthAmerica
 } from '@fortawesome/free-solid-svg-icons';
 import selfie from '../img/AdiY.png';
@@ -28,7 +29,7 @@ import openai from '../img/openai.svg';
 import mathMentor from '../img/MathMentor.png';
 
 
-export default function Home({ ...props }) {
+export default function HomeTest({ ...props }) {
     const [update, setUpdate] = useState(false);
     const [reactSpin, setReactSpin] = useState(true);
     const [pdfMode, setPdfMode] = useState(false);
@@ -223,18 +224,18 @@ export default function Home({ ...props }) {
         frs: {
             head: <p>The Ultimate React Course 2024 for Web Applications |
                 <i className="subTitle">Udemy, Coursera </i></p>,
-            body: <p>Advanced Topics of web application development with <i className="detailH">React</i>, <i className="detailH">Next.js</i> and other front end tools</p>,
+            body: <p>Advanced Topics of web application development with <i className="detailH"><code>React</code></i>, <i className="detailH"><code>Next.js</code></i> and other front end tools</p>,
         },
         sec: {
             head: <p>The Complete 2023 Web Development Bootcamp |
                 <i className="subTitle">Udemy, Dr. Angela Yu</i></p>,
-            body: <p>Fundamental and advanced topics of web development - <i className="detailH">CSS</i>, <i className="detailH">HTML</i>, <i className="detailH">JS</i>,<i className="detailH">Express server</i>,
-                <i className="detailH">Node.js</i>, Jquery and DOM manipulation, <i className="detailH">SQL</i> and <i className="detailH">NoSQL</i></p>,
+            body: <p>Fundamental and advanced topics of web development - <i className="detailH"><code>CSS</code></i>, <i className="detailH"><code>HTML</code></i>, <i className="detailH"><code>JS</code></i>,<i className="detailH"><code>Express server</code></i>,
+                <i className="detailH"><code>Node.js</code></i>, Jquery and DOM manipulation, <i className="detailH"><code>SQL</code></i> and <i className="detailH"><code>NoSQL</code></i></p>,
         },
         thr: {
             head: <p>Python Developer - from zero to mastery |<i className="subTitle">Udemy, Andrei Neagoie</i></p>,
-            body: <p>Advanced Python - <i className="detailH">Servers</i>, <i className="detailH">RestAPI</i> ,<i className="detailH">AI models</i>, <i className="detailH">Numpy</i>, <i className="detailH">TensorFlow</i> and <i className="detailH">Pandas</i> for machine learning, <i className="detailH">files manipulation</i>,
-                <i className="detailH">Automations</i>, <i className="detailH">Selenium web driver</i>, <i className="detailH">tkinter</i>, <i className="detailH">Plotly</i> and more.</p>,
+            body: <p>Advanced Python - <i className="detailH"><code>Servers</code></i>, <i className="detailH"><code>RestAPI</code></i> ,<i className="detailH"><code>AI models</code></i>, <i className="detailH"><code>Numpy</code></i>, <i className="detailH"><code>TensorFlow</code></i> and <i className="detailH"><code>Pandas</code></i> for machine learning, <i className="detailH"><code>files manipulation</code></i>,
+                <i className="detailH"><code>Automations</code></i>, <i className="detailH"><code>Selenium web driver</code></i>, <i className="detailH"><code>tkinter</code></i>, <i className="detailH"><code>Plotly</code></i> and more.</p>,
         },
         fur: {
             head: <p>B.sc Engineering |
@@ -284,20 +285,20 @@ export default function Home({ ...props }) {
                 <br />Deploying applications according to your exact needs, with flexible frontend and backend design that will adjust to your traffic and buisness requirements.
                 <br />Using various advanced tools, assisted with AI tips for UX/UI and content suggestions, to provide a professional, modern, vibrant and playful applications.
                 <br />
-                <i className="detailH">User authentication</i>,
-                <i className="detailH">forms</i>,
-                <i className="detailH">Google cloud</i>,
-                <i className="detailH">NPM & PIP packages</i>,
-                <i className="detailH">AI tools</i>,
-                <i className="detailH">Image and file processing</i>,
-                <i className="detailH">RESTfull APIs</i>,
-                <i className="detailH">Request</i>,
-                <i className="detailH">Queries</i>,
-                <i className="detailH">DB</i> </p>,
+                <i className="detailH"><code>User authentication</code></i>,
+                <i className="detailH"><code>forms</code></i>,
+                <i className="detailH"><code>Google cloud</code></i>,
+                <i className="detailH"><code>NPM & PIP packages</code></i>,
+                <i className="detailH"><code>AI tools</code></i>,
+                <i className="detailH"><code>Image and file processing</code></i>,
+                <i className="detailH"><code>RESTfull APIs</code></i>,
+                <i className="detailH"><code>Request</code></i>,
+                <i className="detailH"><code>Queries</code></i>,
+                <i className="detailH"><code>DB</code></i> </p>,
         },
         sec: {
             head: <p>Senior HW engineer, product development | <i className="subTitle"> Solaredge R&D, 2019-2023  </i></p>,
-            body: <p>Digital and Analog board design, product R&D from PRD to MVP and production. Including <i className="detailH"> HW-SW architecture and interface</i>.
+            body: <p>Digital and Analog board design, product R&D from PRD to MVP and production. Including <i className="detailH"><code> HW-SW architecture and interface</code></i>.
                 <br />Designing of PS, analog and logic circuits, digital HW: DSP, RAM, wierless, SPI and other functional micro-chips.
                 <br />Developed a complete product that can be added to a solar inverter (as external feature) and provide energy managment capabilities, energy storage and back up on demand, power metering, consumption data, electrical islanding and more.
                 <br />During the development proccess as a hands-on senior engineer, I managed most of the multidiciplenary aspects of product development
@@ -374,9 +375,9 @@ export default function Home({ ...props }) {
                 Since I started my journy at Tel Aviv University as an highly motivated, self-learner student and developer, my passion was to develop new and innovative ideas.
                 Always looking to increase my knowladge and proficiency in SW and product development.
                 <br />
-                Currently as <i className="detailH">self-employed and freelance</i> I wish to provide high quality <i className="detailH">Web and SW services.</i>
-                <br /> My goal is to <i className="detailH">initiate, cooperate or provide services</i> for an innovative, digital and vibrant ideas, <i className="detailH">startups</i> or businesses that require web pages, platforms or applications. as well as SW solutions for businesses, retails and private customers.
-                <br /> Including automations, image and file proccessing, users managment, AI integration and data base.
+                Currently as <i className="detailH"><code>Entrepreneur and self-employed</code></i> I wish to create high quality <i className="detailH"><code>Web and SW services.</code></i>
+                <br /> My goal is to <i className="detailH"><code>initiate, cooperate and build scallable SaaS services</code></i> for an innovative, AI powered ideas, <i className="detailH"><code>startups</code></i> or businesses.
+                <br /> Including AI Agents, Automations, Image and file proccessing, Auth, Database, Storage and cloud solutions.
                 <br /> My agenda is to provide a great UX and a costume, scalable and flexible design that will adjust to your buisness requirements now and in the future.
             </p>
 
@@ -386,14 +387,20 @@ export default function Home({ ...props }) {
         Email: {
             icon: faEnvelope,
             color: '#D14836',
-            data: 'YdDevelops@gmail.com',
-            link: 'mailto: YdDevelops@gmail.com'
+            data: 'Admin@webly.digital',
+            link: 'mailto: Admin@webly.digital'
         },
         Linkedin: {
             icon: faLinkedin,
             color: '#0077B5',
             data: 'Adi Yehuda',
             link: 'https://www.linkedin.com/in/adi-yehuda-27969612b/'
+        },
+        website: {
+            icon: faGlobe,
+            color: '#0077B5',
+            data: 'webly.digital',
+            link: 'https://webly.digital/'
         },
         Whatsapp: {
             icon: faWhatsapp,
@@ -407,12 +414,14 @@ export default function Home({ ...props }) {
         <ul>
             {Object.keys(contactMeDict).map((item, indx) => (
                 <li key={item + indx} className='list contactList' title={item} >
-                    <a href={contactMeDict[item].link}
-                        className="grid columns contactMeLink">
-                        <FontAwesomeIcon
+                <FontAwesomeIcon
+                        // style={{marginRight: '6px', marginLeft: '6px'}}
                             color={contactMeDict[item].color}
                             icon={contactMeDict[item].icon} />
-                        &nbsp; &nbsp; &nbsp;
+                    <a href={contactMeDict[item].link}
+                        className="grid columns contactMeLink">
+                       
+                       
                         {contactMeDict[item].data}
 
                     </a>
@@ -471,7 +480,7 @@ export default function Home({ ...props }) {
             <div
                 className='flex center'
                 style={{ alignItems: 'center' }}>
-                <h1> Adi Yehuda - Resume</h1>
+                <h1 > Adi Yehuda</h1>
                 {!pdfMode && <span
                     title="Download pdf"
                     onClick={() => downloadPdf()}
