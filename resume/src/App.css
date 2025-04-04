@@ -7,10 +7,12 @@
 @tailwind utilities;
 
 @plugin "daisyui" {
-  themes: all;
+  themes: cupcake --default, dracula --prefersdark;
 };
 
-
+html {
+  transition: all 0.8s ease-in-out;
+}
 
 .App {
   text-align: center;

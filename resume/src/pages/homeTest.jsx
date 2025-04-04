@@ -28,6 +28,7 @@ import coursera from '../img/coursera.svg';
 import openai from '../img/openai.svg';
 import mathMentor from '../img/MathMentor.png';
 import { AnimatePresence, motion } from "framer-motion";
+import { icon } from "@fortawesome/fontawesome-svg-core";
 
 /**
  * A refined "About Me" / Resume page for showcasing skills, education, and work experience.
@@ -172,7 +173,7 @@ export default function Home({showPdf=false, ...props }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 , ease: 'circInOut'}}
-             key={1} className='card'>
+             key={1} className='card*'>
                 <fieldset
                     style={{ border: pdfMode ? 'none' : '' }}
                     className="skillzFieldSet"
@@ -280,7 +281,7 @@ export default function Home({showPdf=false, ...props }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 , ease: 'circInOut'}}
-            key={2} className="overflow-hidden card w-full flex justify-center relative"> {/* Carousel container */}
+            key={2} className="overflow-hidden card* w-full flex justify-center relative"> {/* Carousel container */}
                 <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration: `${40 * 1}s` }}> {/* Adjust duration */}
                 {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
                     (item, indx) =>
@@ -781,6 +782,12 @@ export default function Home({showPdf=false, ...props }) {
             data: 'Admin@webly.digital',
             link: 'mailto: Admin@webly.digital'
         },
+        github: {
+            icon: faGithub,
+            color: 'currentColor',
+            data: 'Adi Yehuda',
+            link: 'https://github.com/AdiYd' // Add your GitHub link here
+        },
         Linkedin: {
             icon: faLinkedin,
             color: 'currentColor',
@@ -834,7 +841,7 @@ export default function Home({showPdf=false, ...props }) {
                 title="Mail me"
             >
                 <FontAwesomeIcon
-                    size="xl"
+                    size="lg"
                     icon={contactMeDict.Email.icon}
                 />
             </a>
@@ -844,7 +851,7 @@ export default function Home({showPdf=false, ...props }) {
                 title="LinkedIn"
             >
                 <FontAwesomeIcon
-                    size="xl"
+                    size="lg"
                     icon={contactMeDict.Linkedin.icon}
                 />
             </a>
@@ -854,10 +861,23 @@ export default function Home({showPdf=false, ...props }) {
                 title="WhatsApp me"
             >
                 <FontAwesomeIcon
-                    size="xl"
+                    size="lg"
                     icon={contactMeDict.Whatsapp.icon}
                 />
             </a>
+            <div
+                
+                className="btn btn-circle btn-info backdrop-blur-lg btn-outline shakeHover"
+                title={themeName || 'Roll the Dice'}
+                onClick={changeRandomTheme}
+            >
+                 <FontAwesomeIcon
+                    icon={faDice}
+                    size="lg"
+                    style={{animationDuration: '0.5s'}}
+                    className={`${isRolling ? 'animate-spin' : ''}`}
+                />
+            </div>
         </div>
     );
 
@@ -883,7 +903,7 @@ export default function Home({showPdf=false, ...props }) {
     return (
         <div
             ref={targetRef}
-            className={`main  my-8 ${pdfMode ? 'pdfContainer' : ''}`}
+            className={`main z-10  my-8 ${pdfMode ? 'pdfContainer' : ''}`}
             // data-theme="light"
         >
             <div className="flex justify-center mb-8" style={{ alignItems: 'center' }}>

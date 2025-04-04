@@ -5,7 +5,7 @@ import App from './App';
 
 // Set default theme if not already set
 if (!document.documentElement.getAttribute('data-theme')) {
-  document.documentElement.setAttribute('data-theme', 'light');
+  document.documentElement.setAttribute('data-theme', 'dracula');
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

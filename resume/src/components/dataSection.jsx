@@ -53,7 +53,7 @@ function DataSection({
                         opacity: isInView ? 1 : 0,
                     }}
                     viewport={{ once: false, margin: '0px 0px -100px 0px' }}
-                    transition={{ duration: 1.2 }}
+                    transition={{ duration: 1 }}
                     className='overflow-x-hidden '
                 >
                     {childrens}

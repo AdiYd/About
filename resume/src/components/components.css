@@ -21,7 +21,7 @@ a.moreDetails {
 }
 
 .card {
-    @apply  backdrop-blur-[100px] bg-base-200/25  rounded-box p-4 max-sm:p-2;
+    @apply  backdrop-blur-lg bg-base-200/30  rounded-box p-4 max-sm:p-2 z-10;
 }
 
 
@@ -87,10 +87,11 @@ li.list#arrow {
     list-style-type: disclosure-closed;
     padding-inline: 6px;
     max-width: inherit;
+    @apply hover:bg-secondary/5 rounded-box;
 }
 
 li.list#arrow::marker {
-    @apply text-primary text-sm;
+    @apply text-accent text-sm;
 }
 
 div.skills-container {
@@ -98,7 +99,7 @@ div.skills-container {
 }
 
 div.skill-box {
-    @apply flex flex-col max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-3xl border text-sm font-semibold;
+    @apply flex flex-col max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-md border text-sm font-semibold;
 }
 
 span.skillName {
@@ -220,7 +221,7 @@ i.subTitle {
 }
 
 div.floatingContact {
-    @apply flex justify-center flex-col  gap-4 rounded-box fixed bottom-[30%] right-0 m-6 h-max z-40;
+    @apply flex justify-center flex-col  gap-4 rounded-box fixed bottom-[20%] right-0 m-6 h-max z-40;
 }
 
 
