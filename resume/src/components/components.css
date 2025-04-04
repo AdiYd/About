@@ -44,7 +44,7 @@ ul {
 }
 
 li.list {
-    @apply my-3 mx-3 items-center list-disc;
+    @apply my-3 mx-1 items-center list-disc;
 }
 
 /* span.listContainer {
@@ -85,7 +85,8 @@ div.listTextDiv {
 
 li.list#arrow {
     list-style-type: disclosure-closed;
-    padding-inline: 6px;
+    padding-inline-start: 4px;
+    margin-inline-start: 10px;
     max-width: inherit;
     @apply hover:bg-secondary/5 rounded-box;
 }
@@ -293,7 +294,7 @@ div.floatingContact {
     }
 
     div.floatingContact {
-        @apply bottom-0;
+        @apply bottom-0 right-0 m-2 scale-75;
     }
 
     div#profileImg img {

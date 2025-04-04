@@ -737,7 +737,7 @@ export default function Home({showPdf=false, ...props }) {
                     <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
                     <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
                         <FontAwesomeIcon icon={faEarthAmerica} size="sm" />
-                        <p>EN (fluent), HE (native)</p>
+                        <p>EN, HE</p>
                     </div>
                 </div>
                 {!pdfMode && (
@@ -817,7 +817,7 @@ export default function Home({showPdf=false, ...props }) {
                             href={contactMeDict[item].link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex text-base-content items-center gap-3 px-4 py-2 "
+                            className="flex text-lg max-sm:text-base text-base-content items-center gap-3 px-4 py-2 "
                         >
                             <div className=" ">
                                 <FontAwesomeIcon
@@ -835,7 +835,20 @@ export default function Home({showPdf=false, ...props }) {
     // Floating contact panel (right corner)
     let floatingContact = (
         <div className="floatingContact">
-            <a
+         <div
+                
+                className="btn btn-circle btn-info backdrop-blur-lg btn-outline shakeHover"
+                title={themeName || 'Roll the Dice'}
+                onClick={changeRandomTheme}
+            >
+                 <FontAwesomeIcon
+                    icon={faDice}
+                    size="lg"
+                    style={{animationDuration: '0.5s'}}
+                    className={`${isRolling ? 'animate-spin' : ''}`}
+                />
+            </div>
+            {/* <a
                 href={contactMeDict.Email.link}
                 className="btn btn-circle btn-primary backdrop-blur-lg btn-outline"
                 title="Mail me"
@@ -844,7 +857,7 @@ export default function Home({showPdf=false, ...props }) {
                     size="lg"
                     icon={contactMeDict.Email.icon}
                 />
-            </a>
+            </a> */}
             <a
                 href={contactMeDict.Linkedin.link}
                 className="btn btn-circle btn-secondary backdrop-blur-lg  btn-outline"
@@ -865,19 +878,7 @@ export default function Home({showPdf=false, ...props }) {
                     icon={contactMeDict.Whatsapp.icon}
                 />
             </a>
-            <div
-                
-                className="btn btn-circle btn-info backdrop-blur-lg btn-outline shakeHover"
-                title={themeName || 'Roll the Dice'}
-                onClick={changeRandomTheme}
-            >
-                 <FontAwesomeIcon
-                    icon={faDice}
-                    size="lg"
-                    style={{animationDuration: '0.5s'}}
-                    className={`${isRolling ? 'animate-spin' : ''}`}
-                />
-            </div>
+           
         </div>
     );
 
@@ -936,7 +937,7 @@ export default function Home({showPdf=false, ...props }) {
 
             <div className="grid gap-6">
                 {Object.keys(blockDict).map((item, indx) => (
-                    <div key={indx + item} className="transition-all overflow-x-hidden">
+                    <div key={indx + item} className="transition-all my-2 overflow-x-hidden">
                         <DataSection
                             key={item + indx}
                             extentedMenu={item === 'Skills'}
