@@ -138,12 +138,12 @@ export default function Home({showPdf=false, ...props }) {
      * Creates a styled list component to display various data in bullet points.
      */
     const list = ({ key, dictList = {}, style = {}, arrow = true } = {}) => (
-        <ul key={key ? key : Math.random() * 1000} style={style} className="menu card max-w-full">
+        <ul key={key ? key : Math.random() * 1000} style={style} className="menu* card max-w-full">
             {Object.keys(dictList).map((item, index) => (
                 <li
                     key={index + item + key}
                     id={`${arrow ? 'arrow' : ''}`}
-                    // className='list.'
+                    className='list'
                 >
                     <span className="listContainer* flex flex-col gap-0">
                         <div className="listHeaderDiv">
@@ -178,7 +178,7 @@ export default function Home({showPdf=false, ...props }) {
                             <div
                                 key={indx + item}
                                 title={item.startsWith('fa') ? item.slice(2) : item}
-                                className='skill-box'
+                                className='skill-box text-primary-focus'
                             >
                                 <FontAwesomeIcon
                                     id={item}
@@ -206,7 +206,7 @@ export default function Home({showPdf=false, ...props }) {
                             <div
                                 key={indx + item}
                                 title={item.startsWith('fa') ? item.slice(2) : item}
-                                className="skill-box "
+                                className="skill-box text-secondary-focus"
                             >
                                 <FontAwesomeIcon
                                     id={item}
@@ -236,7 +236,7 @@ export default function Home({showPdf=false, ...props }) {
                                 <div
                                     key={indx + item}
                                     title={item.startsWith('fa') ? item.slice(2) : item}
-                                    className="skill-box"
+                                    className="skill-box text-accent-focus"
                                 >
                                     <FontAwesomeIcon
                                         id={item}
@@ -272,7 +272,9 @@ export default function Home({showPdf=false, ...props }) {
     } else {
         skillSet = (
             <>
-                {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs'].map(
+            <div className="overflow-hidden w-full flex justify-center relative"> {/* Carousel container */}
+                <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration: `${40 * 1}s` }}> {/* Adjust duration */}
+                {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
                     (item, indx) =>
                         skillsDict[item] && (
                             <div
@@ -280,14 +282,21 @@ export default function Home({showPdf=false, ...props }) {
                                 title={item.startsWith('fa') ? item.slice(2) : item}
                                 className={`skill-box ${pdfMode ? '' : ''}`}
                             >
-                                <FontAwesomeIcon
+                               { item !== 'Open AI' ? <FontAwesomeIcon
                                     id={item}
                                     className={`fontAwsome  ${
                                         !pdfMode && reactSpin && item === 'faReact' ? 'rotate react' : ''
                                     }`}
                                     size="lg"
                                     icon={skillsDict[item]}
-                                />
+                                /> :
+                                 <img
+                                        className="openAI"
+                                        style={{ height: '1.5em' }}
+                                        src={skillsDict[item]}
+                                        alt="OpenAI logo"
+                                    />
+                                }
                                 <span
                                     id={item === 'REST API' ? 'restAPI' : ''}
                                     className="skillName"
@@ -297,6 +306,40 @@ export default function Home({showPdf=false, ...props }) {
                             </div>
                         )
                 )}
+                {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
+                    (item, indx) =>
+                        skillsDict[item] && (
+                            <div
+                                key={indx + item}
+                                title={item.startsWith('fa') ? item.slice(2) : item}
+                                className={`skill-box ${pdfMode ? '' : ''}`}
+                            >
+                               { item !== 'Open AI' ? <FontAwesomeIcon
+                                    id={item}
+                                    className={`fontAwsome  ${
+                                        !pdfMode && reactSpin && item === 'faReact' ? 'rotate react' : ''
+                                    }`}
+                                    size="lg"
+                                    icon={skillsDict[item]}
+                                /> :
+                                 <img
+                                        className="openAI"
+                                        style={{ height: '1.5em' }}
+                                        src={skillsDict[item]}
+                                        alt="OpenAI logo"
+                                    />
+                                }
+                                <span
+                                    id={item === 'REST API' ? 'restAPI' : ''}
+                                    className="skillName"
+                                >
+                                    {item.startsWith('fa') ? item.slice(2) : item}
+                                </span>
+                            </div>
+                        )
+                )}
+                </div>
+                </div>
             </>
         );
     }
@@ -306,7 +349,32 @@ export default function Home({showPdf=false, ...props }) {
 
     // Education data
     let edDict = {
+       
         first: {
+            head: (
+                <p className="font-medium !text-base-content">
+                    AI engineering for developers &nbsp;|
+                    <i className="subTitle"> Coursera / Microsoft, 2024-2025 </i>
+                </p>
+            ),
+            body: (
+                <p className="">
+                    In-depth course on AI engineering, covering advanced topics in AI models, prompt engineering, AI params, optimization, prompt caching and method to improve performance. Focused on practical applications and real-world scenarios.
+                    {` `} Hands on experience with various AI tools and platforms, including:
+                   <i className="detailH">
+                        <code>Open AI</code>,{` `}
+                        <code>Claude/Anthropic</code>,{` `}
+                        <code>Azure AI</code>,{` `}
+                        <code>Gemini</code>,{` `}
+                        <code>Co-pilots</code>,{` `}
+                        <code>AI Agents</code>.{` `}
+                    </i>
+                    <br/>
+                    In addition, built and deployed multiple projects using various AI tools and platforms, Agents and top AI models.
+                </p>
+            )
+        },
+        first2: {
             head: (
                 <p className="font-medium !text-base-content">
                     Advanced React & Next.js Development &nbsp;|
@@ -321,9 +389,50 @@ export default function Home({showPdf=false, ...props }) {
                     </i>
                     &nbsp;and&nbsp;
                     <i className="detailH">
-                        <code>Next.js.</code>
+                        <code>Next.js</code>.
                     </i>
-                    Strong API and cloud frameworks, server-side rendering, and scallable solutions.
+                    Strong API and cloud frameworks, server-side rendering, and scallable solutions. {` `}
+                    {/* <br /> */}
+                    Also covered advanced topics and best practices in web development, including professional UI/UX design, performance optimization, and security measures.
+                    <i className="detailH">
+                        <code>Tailwind</code>,
+                        <code>ShadCN</code>,
+                        <code>Ant design</code>,
+                        <code>MUI</code>,
+                        <code>Bootstrap</code>
+                    </i>
+                </p>
+            )
+        },
+        first3: {
+            head: (
+                <p className="font-medium !text-base-content">
+                    UI/UX and Web design &nbsp;|
+                    <i className="subTitle"> Udemy courses 2024-2025 </i>
+                </p>
+            ),
+            body: (
+                <p className="">
+                    multiple courses on UI/UX design and web development including various tools and techniques.
+                    <i className="detailH">
+                        <code>Figma</code>
+                    </i>
+                    ,&nbsp;
+                    <i className="detailH">
+                        <code>Layout and Grid systems</code>,
+                        <code>Typhography</code>,
+                        <code>Color theory</code>,
+                        <code>Design patterns</code>,
+                        <code>UI/UX</code>,
+                        <code>Responsive design</code>
+                    </i>
+                    ,&nbsp;
+                    <i className="detailH">
+                        <code>Photoshop</code>
+                    </i>
+                    ,&nbsp;
+
+                   
                 </p>
             )
         },
@@ -394,16 +503,16 @@ export default function Home({showPdf=false, ...props }) {
             body: (
                 <section className="max-w-[95%]">
                     Specialized in computers, control systems, and electromagnetics:
-                    <ul className="majorsList">
-                        <li>
+                    <ul className="majorsList list-none border-l-2 border-accent/40 pl-4">
+                        <li className="my-2">
                             <i className="majors">Computers & Programming –</i> In-depth
                             Python, C++, OS, encryption, and network protocols.
                         </li>
-                        <li>
+                        <li className="my-2">
                             <i className="majors">Electromagnetic Radiation –</i> Maxwell's
                             equations, wave propagation, and interference.
                         </li>
-                        <li>
+                        <li className="my-2">
                             <i className="majors">Control Systems –</i> Feedback loops,
                             logic blocks, and control theory fundamentals.
                         </li>
@@ -464,8 +573,23 @@ export default function Home({showPdf=false, ...props }) {
         first: {
             head: (
                 <p className="font-medium !text-base-content">
-                    Full-Stack Web Developer &nbsp;|
-                    <i className="subTitle"> Entrepreneur | Web expert </i>
+                    Tech lead and co-founder &nbsp;|
+                    <i className="subTitle"> Webly / Taskomatic, 2024-2025 </i>
+                </p>
+            ),
+            body: (
+                <p className="">
+                    Co-founded Webly, a digital agency specializing in AI powered website engine. 
+                    Developed and maintained multiple SaaS applications, including Taskomatic, a task management tool that integrates with various platforms. 
+                    Focused on delivering high-quality solutions that enhance productivity and streamline processes.
+                </p>
+            )
+        },
+        first2: {
+            head: (
+                <p className="font-medium !text-base-content">
+                    SW Developer &nbsp;|
+                    <i className="subTitle"> Self employed, 2023-2024 </i>
                 </p>
             ),
             body: (
@@ -474,10 +598,14 @@ export default function Home({showPdf=false, ...props }) {
                     that handle authentication, integrations, and database management. 
                     Incorporating automation and AI-driven insights to expedite development and
                     enhance the overall user experience. Skilled in 
+                    <i className="detailH"><code> Cloud</code></i>, 
+                    <i className="detailH"><code> AWS</code></i>, 
+                    <i className="detailH"><code> Firebase</code></i>, 
+                    <i className="detailH"><code> Supabase</code></i>, 
+                    <i className="detailH"><code> AI APIs</code></i>,
                     <i className="detailH"><code> RESTful APIs</code></i>, 
-                    <i className="detailH"><code> Node.js</code></i>, 
-                    <i className="detailH"><code> React</code></i>, 
                     <i className="detailH"><code> Python</code></i>, and 
+                    <i className="detailH"><code> Tailwind</code></i>, 
                     modern cloud services.
                 </p>
             )
@@ -588,17 +716,17 @@ export default function Home({showPdf=false, ...props }) {
             <div className="card !block p-2 pt-0">
             <div
                 className="flex flex-wrap my-4 items-center">
-                <div className="flex flex-nowrap justify-center badge bg-transparent border-none gap-2">
+                <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
                     <FontAwesomeIcon icon={faUser} size="sm" />
                     <p>36 y/o, Male</p>
                 </div>
                 <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                <div className="flex flex-nowrap justify-center badge bg-transparent border-none gap-2">
+                <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
                     <FontAwesomeIcon icon={faLocationDot} size="sm" />
                     <p>Tel-Aviv, Remote</p>
                 </div>
                 <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                <div className="flex flex-nowrap justify-center badge bg-transparent border-none gap-2">
+                <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
                     <FontAwesomeIcon icon={faEarthAmerica} size="sm" />
                     <p>EN (fluent), HE (native)</p>
                 </div>
@@ -621,8 +749,8 @@ export default function Home({showPdf=false, ...props }) {
                     in programming and web technologies.
                 </p>
                 <p className="text-base mb-3">
-                    After several years leading product R&D in the energy sector, I transitioned 
-                    to full-stack web development—building interactive, scalable applications 
+                    After several years leading product R&D in the energy sector, I focused fully on 
+                    full-stack web development and started building interactive, scalable applications 
                     that streamline user experiences. My background in hardware and embedded systems 
                     equips me with a unique perspective in bridging the gap between physical devices 
                     and software solutions.
@@ -667,7 +795,7 @@ export default function Home({showPdf=false, ...props }) {
 
     let ContactMe = (
         <div key="Contact me" className="">
-            <ul className="menu p-4 rounded-box">
+            <ul className="menu* p-4 rounded-box">
                 {Object.keys(contactMeDict).map((item, indx) => (
                     <li key={item + indx} className=" my-1">
                         <a
@@ -676,7 +804,7 @@ export default function Home({showPdf=false, ...props }) {
                             rel="noopener noreferrer"
                             className="flex text-base-content items-center gap-3 px-4 py-2 "
                         >
-                            <div className="badge badge-outline p-3">
+                            <div className=" ">
                                 <FontAwesomeIcon
                                     icon={contactMeDict[item].icon}
                                 />
@@ -728,8 +856,8 @@ export default function Home({showPdf=false, ...props }) {
     // Building the block structure of the page
     let blockDict = {
         'About Me': [aboutMe],
-        Education: [education],
         'Professional Experience': [experience],
+        Education: [education],
         Skills: [skills],
         'Contact Me': [ContactMe]
     };

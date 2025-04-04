@@ -21,7 +21,7 @@ a.moreDetails {
 }
 
 .card {
-    @apply  backdrop-blur-[100px] bg-base-100/20  rounded-box p-4 max-sm:p-2;
+    @apply  backdrop-blur-[100px] bg-base-200/25  rounded-box p-4 max-sm:p-2;
 }
 
 
@@ -85,6 +85,7 @@ div.listTextDiv {
 
 li.list#arrow {
     list-style-type: disclosure-closed;
+    padding-inline: 6px;
     max-width: inherit;
 }
 
@@ -97,7 +98,7 @@ div.skills-container {
 }
 
 div.skill-box {
-    @apply flex flex-col max-w-lg min-w-24 p-3.5 m-2 text-center  rounded-btn backdrop-blur-3xl border text-sm font-semibold;
+    @apply flex flex-col max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-3xl border text-sm font-semibold;
 }
 
 span.skillName {
@@ -201,16 +202,17 @@ a.contactMeLink {
     @apply w-fit no-underline text-neutral hover:underline;
 }
 
-ul.majorsList li {
+/* ul.majorsList li {
     @apply list-disc;
-}
+} */
 
 i.detailH {
     @apply italic inline-block;
 }
 
 i.majors {
-    @apply not-italic font-semibold text-base-content !px-0;
+
+    @apply italic font-[500] text-base-content/90 !px-0;
 }
 
 i.subTitle {

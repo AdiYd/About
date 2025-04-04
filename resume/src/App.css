@@ -28,7 +28,7 @@ body {
 }
 
 code {
-  @apply text-secondary mx-0.5 font-semibold;
+  @apply text-primary-focus mx-0.5 font-semibold hover:glass rounded-lg p-0.5;
 }
 
 h1 {
@@ -109,4 +109,14 @@ div.main {
 
 div.homeContainer {
   position: relative;
+}
+
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-55%); }
+}
+
+.animate-scroll {
+  animation: scroll linear alternate-reverse infinite;
 }
