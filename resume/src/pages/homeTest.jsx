@@ -579,26 +579,26 @@ export default function Home({showPdf=false, ...props }) {
 
     // Professional experience data
     let experienceDict = {
-        first: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Tech lead and co-founder &nbsp;|
-                    <i className="subTitle"> Webly / Taskomatic, 2024-2025 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Co-founded Webly, a digital agency specializing in AI powered website engine. 
-                    Developed and maintained multiple SaaS applications, including Taskomatic, a task management tool that integrates with various platforms. 
-                    Focused on delivering high-quality solutions that enhance productivity and streamline processes.
-                </p>
-            )
-        },
+        // first: {
+        //     head: (
+        //         <p className="font-medium !text-base-content">
+        //             Tech lead and co-founder &nbsp;|
+        //             <i className="subTitle"> Webly / Taskomatic, 2024-2025 </i>
+        //         </p>
+        //     ),
+        //     body: (
+        //         <p className="">
+        //             Co-founded Webly, a digital agency specializing in AI powered website engine. 
+        //             Developed and maintained multiple SaaS applications, including Taskomatic, a task management tool that integrates with various platforms. 
+        //             Focused on delivering high-quality solutions that enhance productivity and streamline processes.
+        //         </p>
+        //     )
+        // },
         first2: {
             head: (
                 <p className="font-medium !text-base-content">
                     SW Developer &nbsp;|
-                    <i className="subTitle"> Self employed, 2023-2024 </i>
+                    <i className="subTitle"> Self employed, 2023-2025 </i>
                 </p>
             ),
             body: (
