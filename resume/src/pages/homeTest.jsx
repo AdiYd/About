@@ -75,10 +75,14 @@ export default function Home({showPdf=false, ...props }) {
             'night',
             'coffee',
             'winter',
-            'caramellatte',
+            // 'caramellatte',
             'silk'
         ];
         const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+        if (themeName === randomTheme) {
+            changeRandomTheme();
+            return;
+        }
         setThemeName(randomTheme);
         document.documentElement.setAttribute('data-theme', randomTheme);
         setIsRolling(false);

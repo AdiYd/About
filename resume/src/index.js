@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { pre } from 'framer-motion/client';
 // import reportWebVitals from './reportWebVitals';
 
 // Set default theme if not already set
