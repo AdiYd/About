@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
+import { pre } from 'framer-motion/client';
 // import reportWebVitals from './reportWebVitals';
 
 // Set default theme if not already set
 if (!document.documentElement.getAttribute('data-theme')) {
-  document.documentElement.setAttribute('data-theme', 'dracula');
+  const preferThemeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', preferThemeMode === 'dark' ? 'dracula' : 'cupcake');
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

@@ -428,20 +428,14 @@ export default function Home({showPdf=false, ...props }) {
                     </i>
                     ,&nbsp;
                     <i className="detailH">
-                        <code>Layout and Grid systems</code>,
+                        {/* <code>Layout and Grid systems</code>, */}
                         <code>Typhography</code>,
                         <code>Color theory</code>,
                         <code>Design patterns</code>,
                         <code>UI/UX</code>,
                         <code>Responsive design</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
-                        <code>Photoshop</code>
-                    </i>
-                    ,&nbsp;
+                    </i>.
 
-                   
                 </p>
             )
         },
@@ -612,9 +606,8 @@ export default function Home({showPdf=false, ...props }) {
                     <i className="detailH"><code> Firebase</code></i>, 
                     <i className="detailH"><code> Supabase</code></i>, 
                     <i className="detailH"><code> AI APIs</code></i>,
-                    <i className="detailH"><code> RESTful APIs</code></i>, 
-                    <i className="detailH"><code> Python</code></i>, and 
-                    <i className="detailH"><code> Tailwind</code></i>, 
+                    {/* <i className="detailH"><code> RESTful APIs</code></i>,  */}
+                    <i className="detailH"><code> Python</code></i>, and other
                     modern cloud services.
                 </p>
             )
@@ -732,7 +725,7 @@ export default function Home({showPdf=false, ...props }) {
                     <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
                     <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
                         <FontAwesomeIcon icon={faLocationDot} size="sm" />
-                        <p>Tel-Aviv, Remote</p>
+                        <p>Tel-Aviv, Israel</p>
                     </div>
                     <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
                     <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
