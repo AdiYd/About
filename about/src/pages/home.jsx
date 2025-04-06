@@ -30,7 +30,7 @@ import mathMentor from '../img/MathMentor.png';
 import { AnimatePresence, motion } from "framer-motion";
 
 /**
- * A refined "About Me" / Resume page for showcasing skills, education, and work experience.
+ * A refined "About Me" / About page for showcasing skills, education, and work experience.
  * 
  * Updated content focuses on clarity and precision, describing a background in hardware engineering,
  * extensive software expertise, and strong passion for developing innovative solutions.
