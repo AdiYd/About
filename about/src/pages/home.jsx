@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePDF } from 'react-to-pdf';
 import DataSection from "../components/dataSection";
 import '../App.css';
@@ -42,6 +42,17 @@ export default function Home({showPdf=false, ...props }) {
     const [skillMode, setSkillMode] = useState(false);
     const [isRolling, setIsRolling] = useState(false);
     const [themeName, setThemeName] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        // update is mobile state on resize
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     const changeRandomTheme = async () => {
         setIsRolling(true);
@@ -285,7 +296,7 @@ export default function Home({showPdf=false, ...props }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 , ease: 'circInOut'}}
             key={2} className="overflow-hidden card* w-full flex justify-center relative"> {/* Carousel container */}
-                <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration: `${40 * 1}s` }}> {/* Adjust duration */}
+                <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration:isMobile ?  `${10 * 1}s` :`${40 * 1}s` }}> {/* Adjust duration */}
                 {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
                     (item, indx) =>
                         skillsDict[item] && (

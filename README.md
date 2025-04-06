@@ -8,7 +8,7 @@ This project is a React-based about page for Adi Yehuda. It showcases my skills,
 ## Features
 
 *   **Interactive About page:** A dynamic and visually appealing About page with my experiences, skills and education built with React.
-*   **PDF Download:** Option to download the resume as a PDF file.
+*   **PDF Download:** Option to download the about page as a PDF file.
 *   **Skills Showcase:** Highlights key technical skills with FontAwesome icons.
 *   **Responsive Design:** Adapts to different screen sizes for optimal viewing on various devices.
 *   **Contact Information:** Easy access to contact details via email, LinkedIn, and WhatsApp.
@@ -32,12 +32,12 @@ This project is a React-based about page for Adi Yehuda. It showcases my skills,
 1.  Clone the repository:
 
     ```sh
-    git clone https://github.com/AdiYd/Resume.git
+    git clone https://github.com/AdiYd/About.git
     ```
 2.  Navigate to the project directory:
 
     ```sh
-    cd Resume
+    cd about
     ```
 3.  Install dependencies:
 
@@ -52,7 +52,7 @@ This project is a React-based about page for Adi Yehuda. It showcases my skills,
     ```sh
     npm start
     ```
-2.  Open your browser and navigate to `http://localhost:3000` to view the resume.
+2.  Open your browser and navigate to `http://localhost:3000` to view the about.
 
 ## Deployment
 
