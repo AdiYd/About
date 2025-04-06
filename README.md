@@ -1,7 +1,7 @@
 # Adi Yehuda - About
 
 You can see this page at:
-https://adiyd.github.io/Resume
+https://adiyd.github.io/About
 
 This project is a React-based about page for Adi Yehuda. It showcases my skills, education, experience, and contact information in a clean and interactive format.
 

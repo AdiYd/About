@@ -1,6 +1,6 @@
 import './App.css';
 import FireDots from './components/fireFlies/firedots';
-import HomeTest from './pages/homeTest';
+import Home from './pages/home';
 // import './components/fireDots.scss';
 // import Home from './pages/home';
 
@@ -13,7 +13,7 @@ function App() {
       <header className="App-header">
 
       </header>
-      <HomeTest />
+      <Home />
       <FireDots />
 
     </div>

@@ -28,7 +28,6 @@ import coursera from '../img/coursera.svg';
 import openai from '../img/openai.svg';
 import mathMentor from '../img/MathMentor.png';
 import { AnimatePresence, motion } from "framer-motion";
-import { icon } from "@fortawesome/fontawesome-svg-core";
 
 /**
  * A refined "About Me" / Resume page for showcasing skills, education, and work experience.
@@ -739,7 +738,7 @@ export default function Home({showPdf=false, ...props }) {
                 </div>
                 {!pdfMode && (
                     <div id="profileImg" className="w-fit relative md:-top-16 float-right avatar online">
-                        <div className="w-24 mask !contents mask-hexagon">
+                        <div className="w-24 mask !contents ">
                             <img
                                 src={selfie}
                                 alt="Portrait of Adi Yehuda"
@@ -749,7 +748,7 @@ export default function Home({showPdf=false, ...props }) {
                     </div>
                 )}
                 <p className="text-base mb-3">
-                    Passionate developer with strong technical background and a knack for creating
+                    I'm a Passionate developer with strong technical background and a knack for creating
                     innovative, high-quality solutions. My journey began at Tel Aviv University, 
                     where I balanced between SW & HW engineering studies with an ever-growing interest 
                     in programming and web technologies.
