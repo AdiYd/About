@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/About/static/css/main.19b0ebc2.css",
-    "main.js": "/About/static/js/main.57aff010.js",
-    "static/js/213.ea4d34dc.chunk.js": "/About/static/js/213.ea4d34dc.chunk.js",
-    "static/js/732.7721696b.chunk.js": "/About/static/js/732.7721696b.chunk.js",
+    "main.js": "/About/static/js/main.a819671b.js",
+    "static/js/213.486c33ef.chunk.js": "/About/static/js/213.486c33ef.chunk.js",
+    "static/js/732.7d17402e.chunk.js": "/About/static/js/732.7d17402e.chunk.js",
     "static/media/MathMentor.png": "/About/static/media/MathMentor.a3bfc41729df81f4e30f.png",
     "static/media/TAU_Logo.png": "/About/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
     "static/media/AdiY.png": "/About/static/media/AdiY.5dd37912d35339560c9c.png",
@@ -14,12 +14,12 @@
     "static/media/openai.svg": "/About/static/media/openai.09e696fbc4b140844ed2f83d6bb5d593.svg",
     "index.html": "/About/index.html",
     "main.19b0ebc2.css.map": "/About/static/css/main.19b0ebc2.css.map",
-    "main.57aff010.js.map": "/About/static/js/main.57aff010.js.map",
-    "213.ea4d34dc.chunk.js.map": "/About/static/js/213.ea4d34dc.chunk.js.map",
-    "732.7721696b.chunk.js.map": "/About/static/js/732.7721696b.chunk.js.map"
+    "main.a819671b.js.map": "/About/static/js/main.a819671b.js.map",
+    "213.486c33ef.chunk.js.map": "/About/static/js/213.486c33ef.chunk.js.map",
+    "732.7d17402e.chunk.js.map": "/About/static/js/732.7d17402e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.19b0ebc2.css",
-    "static/js/main.57aff010.js"
+    "static/js/main.a819671b.js"
   ]
 }
