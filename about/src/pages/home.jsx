@@ -377,7 +377,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     AI engineering for developers &nbsp;|
-                    <i className="subTitle"> Coursera / Microsoft, 2024-2025 </i>
+                    <i className="subTitle"> Coursera / Microsoft, 2024 </i>
                 </p>
             ),
             body: (
@@ -401,7 +401,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     Advanced React & Next.js Development &nbsp;|
-                    <i className="subTitle"> Udemy / Coursera, 2024 </i>
+                    <i className="subTitle"> Udemy / Coursera, 2023 </i>
                 </p>
             ),
             body: (
@@ -420,6 +420,7 @@ export default function Home({showPdf=false, ...props }) {
                     <i className="detailH">
                         <code>Tailwind</code>,
                         <code>ShadCN</code>,
+                        <code>daisyUI</code>
                         <code>Ant design</code>,
                         <code>MUI</code>,
                         <code>Bootstrap</code>
@@ -431,7 +432,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     UI/UX and Web design &nbsp;|
-                    <i className="subTitle"> Udemy courses 2024-2025 </i>
+                    <i className="subTitle"> Udemy course 2023 </i>
                 </p>
             ),
             body: (
@@ -487,7 +488,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     Python Developer: Zero to Mastery &nbsp;|
-                    <i className="subTitle"> Udemy, Andrei Neagoie </i>
+                    <i className="subTitle"> Udemy, Andrei Neagoie</i>
                 </p>
             ),
             body: (
