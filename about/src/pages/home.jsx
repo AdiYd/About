@@ -401,7 +401,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     Advanced React & Next.js Development &nbsp;|
-                    <i className="subTitle"> Udemy / Coursera, 2023 </i>
+                    <i className="subTitle"> Udemy / Coursera, 2023-2024 </i>
                 </p>
             ),
             body: (
