@@ -662,21 +662,21 @@ export default function Home({showPdf=false, ...props }) {
                 </p>
             )
         },
-        fourth: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Math & Physics &nbsp;|
-                    <i className="subTitle"> 2016-2019 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Provided group tutoring to high-school students preparing for 
-                    national exams. Focused on building conceptual understanding, problem-solving 
-                    skills, and confidence in technical subjects.
-                </p>
-            )
-        }
+        // fourth: {
+        //     head: (
+        //         <p className="font-medium !text-base-content">
+        //             Math & Physics &nbsp;|
+        //             <i className="subTitle"> 2016-2019 </i>
+        //         </p>
+        //     ),
+        //     body: (
+        //         <p className="">
+        //             Provided group tutoring to high-school students preparing for 
+        //             national exams. Focused on building conceptual understanding, problem-solving 
+        //             skills, and confidence in technical subjects.
+        //         </p>
+        //     )
+        // }
     };
 
     let experience = (
