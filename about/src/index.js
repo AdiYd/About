@@ -6,7 +6,7 @@ import App from './App';
 // Set default theme if not already set
 if (!document.documentElement.getAttribute('data-theme')) {
   const preferThemeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', preferThemeMode === 'dark' ? 'dracula' : 'light');
+  document.documentElement.setAttribute('data-theme', preferThemeMode === 'dark' ? 'night' : 'cupcake');
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

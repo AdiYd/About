@@ -17,6 +17,7 @@ html {
 .App {
   text-align: center;
   font-family: "Inter", "Montserrat", 'Roboto', sans-serif;
+  transition: all 0.5s ease-in-out;
   
   @apply my-8 overflow-x-hidden;
 }
@@ -27,6 +28,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 16px;
+}
+
+.card {
+    @apply  !bg-base-100/50 !backdrop-blur-xl;
 }
 
 code {

@@ -28,6 +28,41 @@ import coursera from '../img/coursera.svg';
 import openai from '../img/openai.svg';
 import mathMentor from '../img/MathMentor.png';
 import { AnimatePresence, motion } from "framer-motion";
+import { Icon } from "@iconify/react/dist/iconify.js";
+
+export const themeIconify = {
+    light: 'ph:sun-bold',
+    dark: 'ph:moon-bold',
+    system: 'ph:desktop-bold',
+    cupcake: 'mdi:cupcake',
+    bumblebee: 'lucide-lab:bee',
+    emerald: 'fa6-solid:gem',
+    corporate: 'mdi:office-building',
+    synthwave: 'mdi:sine-wave',
+    retro: 'fa-solid:camera-retro',
+    cyberpunk: 'mdi:robot',
+    valentine: 'mdi:heart',
+    halloween: 'mdi:halloween',
+    garden: 'mdi:flower',
+    forest: 'mdi:pine-tree',
+    aqua: 'mdi:water',
+    lofi: 'mdi:fantasy',
+    pastel: 'mdi:palette-swatch',
+    fantasy: 'mdi:wizard-hat',
+    wireframe: 'mdi:pencil-ruler',
+    black: 'mdi:circle',
+    luxury: 'mdi:crown',
+    cmyk: 'mdi:printer',
+    autumn: 'mdi:leaf-maple',
+    business: 'mdi:briefcase',
+    acid: 'mdi:flask',
+    lemonade: 'icon-park-outline:lemon',
+    night: 'mdi:weather-night',
+    coffee: 'mdi:coffee',
+    winter: 'mdi:snowflake',
+    dracula: 'game-icons:vampire-dracula',
+    // caramellatte: 'mdi:coffee-to-go',
+  };
 
 /**
  * A refined "About Me" / About page for showcasing skills, education, and work experience.
@@ -57,6 +92,8 @@ export default function Home({showPdf=false, ...props }) {
     const changeRandomTheme = async () => {
         setIsRolling(true);
         await new Promise(resolve => setTimeout(resolve, 1000));
+        const preferThemeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const currentTheme = document.documentElement.getAttribute('data-theme') || preferThemeMode;
         const themes = [
             'light',
             'dark',
@@ -88,7 +125,16 @@ export default function Home({showPdf=false, ...props }) {
             // 'caramellatte',
             'silk'
         ];
-        const randomTheme = themes[Math.floor(Math.random() * themes.length)];
+
+        const themesByMode = {
+            light: ['light', 'cupcake', 'wireframe', 'corporate', 'retro','cmyk','autumn', 'cyberpunk','acid', 'lemonade','winter',  'valentine', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy'],
+            dark: ['dark', 'halloween', 'black','synthwave', 'luxury', 'dracula',  'business', 'night', 'coffee' ],
+        }
+
+        const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
+        const nextThemeMode = currentThemeMode === 'light' ? 'dark' : 'light';
+
+        const randomTheme = themesByMode[nextThemeMode][Math.floor(Math.random() * themesByMode[nextThemeMode].length)];
         if (themeName === randomTheme) {
             changeRandomTheme();
             return;
@@ -707,7 +753,7 @@ export default function Home({showPdf=false, ...props }) {
                             alt="Tel-Aviv university Logo"
                         />
                     </a>
-                    <a
+                    {/* <a
                         href="#"
                         className="card"
                         title="Math Mentor">
@@ -717,7 +763,7 @@ export default function Home({showPdf=false, ...props }) {
                             className="mathMentorLogo p-2"
                             alt="Math Mentor Logo"
                         />
-                    </a>
+                    </a> */}
                 </span>
             )}
             {list({ key: 'ExperienceList', style: { marginTop: '0px' }, dictList: experienceDict })}
@@ -849,7 +895,7 @@ export default function Home({showPdf=false, ...props }) {
                 title={themeName || 'Roll the Dice'}
                 onClick={changeRandomTheme}
             >
-                 <FontAwesomeIcon
+            <FontAwesomeIcon
                     icon={faDice}
                     size="lg"
                     style={{animationDuration: '0.5s'}}
@@ -931,16 +977,24 @@ export default function Home({showPdf=false, ...props }) {
             </div>
 
             <div id='roll-the-dice-theme' className="flex items-center text-base-content justify-center mb-8">
-            <p onClick={changeRandomTheme} className="text-base hover:border-accent/40 border-primary/40 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg p-4  font-bold w-fit flex items-center cursor-pointer gap-2">
-              {themeName || 'Roll the Dice'}
-            
-                <FontAwesomeIcon
-                    icon={faDice}
+                <p onClick={changeRandomTheme} className="text-base hover:border-accent/40 border-primary/40 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg p-4 font-bold w-fit flex items-center cursor-pointer gap-3 px-6">
+                    <div className="flex gap-1 justify-center">
+                        <div className="h-2 w-2 rounded-full bg-primary"/>
+                        <div className="h-2 w-2 rounded-full bg-secondary"/>
+                        <div className="h-2 w-2 rounded-full bg-accent"/>
+                    </div>
+                    {console.log('themeName', themeName)}
+                    {(!themeName|| isRolling) ? <FontAwesomeIcon
+                            icon={faDice}
+                            
+                            style={{animationDuration: '0.5s'}}
+                            className={`text-lg p-2 ${isRolling ? 'animate-spin' : ''}`}
+                        /> : 
+                        <Icon icon={themeIconify[themeName]} className="text-lg" />
+                        }
+                    {themeName || 'Roll the Dice'}
                     
-                    style={{animationDuration: '0.5s'}}
-                    className={`text-lg p-2 ${isRolling ? 'animate-spin' : ''}`}
-                />
-                  </p>
+                </p>
             </div>
 
             <div className="grid gap-6">

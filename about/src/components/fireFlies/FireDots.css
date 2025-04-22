@@ -16,8 +16,11 @@
     position: absolute;
     border-radius: 50%;
     mix-blend-mode: screen;
-    background-image: radial-gradient(hsl(118, 100%, 80%),
+    /* background-image: radial-gradient(hsl(118, 100%, 80%),
             hsl(36, 100%, 80%) 10%,
+            hsla(180, 100%, 80%, 0) 56%); */
+    background-image: radial-gradient(hsl(var(--s)),
+            hsl(var(--a)) 10%,
             hsla(180, 100%, 80%, 0) 56%);
     animation: fadein-frames 200ms infinite, scale-frames 5s infinite;
 }
