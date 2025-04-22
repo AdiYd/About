@@ -27,4 +27,4 @@ This project is a React-based about page for Adi Yehuda. It showcases my skills,
 *   CSS
 
 
-[MIT](LICENSE)
+* AdiY *
