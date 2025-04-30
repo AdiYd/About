@@ -88,7 +88,7 @@ li.list#arrow {
     padding-inline-start: 4px;
     margin-inline-start: 10px;
     max-width: inherit;
-    @apply hover:bg-secondary/5 rounded-box;
+    @apply  rounded-box;
 }
 
 li.list#arrow::marker {

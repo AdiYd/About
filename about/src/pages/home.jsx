@@ -967,25 +967,28 @@ second: {
                 )}
             </div>
 
-            <div id='roll-the-dice-theme' className="flex items-center text-base-content justify-center mb-8">
-                <p onClick={changeRandomTheme} className="text-base hover:border-accent/40 border-primary/40 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg p-4 font-bold w-fit flex items-center cursor-pointer gap-3 px-6">
-                    <div className="flex flex-col gap-1 justify-center">
+            <div onClick={changeRandomTheme} id='roll-the-dice-theme' className="items-center hover:shadow-lg cursor-pointer hover:shadow-accent max-sm:hover:shadow-none after:shadow-none text-base-content justify-center p-4 w-fit min-w-48 mx-auto mb-8 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg hover:border-secondary/40 border-primary/40">
+                <div className="grid-cols-[1fr_1fr_3fr] gap-4 grid w-full text-base font-bold items-center">
+                    <div className="flex flex-col gap-1 relative -right-2 justify-center">
                         <div className="h-1 w-1 rounded-full bg-primary"/>
                         <div className="h-1 w-1 rounded-full bg-secondary"/>
                         <div className="h-1 w-1 rounded-full bg-accent"/>
                     </div>
-                    {console.log('themeName', themeName)}
-                    {(!themeName|| isRolling) ? <FontAwesomeIcon
+                    <div className="text-lg">
+                    {(!themeName || isRolling) ? <FontAwesomeIcon
                             icon={faDice}
                             
                             style={{animationDuration: '0.5s'}}
-                            className={`text-lg p-2 ${isRolling ? 'animate-spin' : ''}`}
+                            className={` ${isRolling ? 'animate-spin' : ''}`}
                         /> : 
-                        <Icon icon={themeIconify[themeName]} className="text-lg" />
+                        <Icon icon={themeIconify[themeName]} className="" />
                         }
+                    </div>
+                    <div className="flex">
                     {themeName || 'Roll the Dice'}
+                    </div>
                     
-                </p>
+                </div>
             </div>
 
             <div className="grid gap-6">
