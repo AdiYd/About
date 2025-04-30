@@ -4,7 +4,7 @@ import './FireDots.css';
 const FireDots = () => {
     const containerRef = useRef(null);
     const createdStylesRef = useRef([]); // Keep track of created style elements
-    const particleNum = 25;
+    const particleNum = 20;
     const particleBaseSize = 18;
 
     useEffect(() => {
