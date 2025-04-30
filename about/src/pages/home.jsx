@@ -26,7 +26,6 @@ import udemyLogo from '../img/udemyLogo.svg';
 import sedg from '../img/sedg.svg';
 import coursera from '../img/coursera.svg';
 import openai from '../img/openai.svg';
-import mathMentor from '../img/MathMentor.png';
 import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -94,37 +93,37 @@ export default function Home({showPdf=false, ...props }) {
         await new Promise(resolve => setTimeout(resolve, 1000));
         const preferThemeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const currentTheme = document.documentElement.getAttribute('data-theme') || preferThemeMode;
-        const themes = [
-            'light',
-            'dark',
-            'cupcake',
-            'corporate',
-            'synthwave',
-            'retro',
-            'cyberpunk',
-            'valentine',
-            'halloween',
-            'garden',
-            'forest',
-            'aqua',
-            'lofi',
-            'pastel',
-            'fantasy',
-            'wireframe',
-            'black',
-            'luxury',
-            'dracula',
-            'cmyk',
-            'autumn',
-            'business',
-            'acid',
-            'lemonade',
-            'night',
-            'coffee',
-            'winter',
-            // 'caramellatte',
-            'silk'
-        ];
+        // const themes = [
+        //     'light',
+        //     'dark',
+        //     'cupcake',
+        //     'corporate',
+        //     'synthwave',
+        //     'retro',
+        //     'cyberpunk',
+        //     'valentine',
+        //     'halloween',
+        //     'garden',
+        //     'forest',
+        //     'aqua',
+        //     'lofi',
+        //     'pastel',
+        //     'fantasy',
+        //     'wireframe',
+        //     'black',
+        //     'luxury',
+        //     'dracula',
+        //     'cmyk',
+        //     'autumn',
+        //     'business',
+        //     'acid',
+        //     'lemonade',
+        //     'night',
+        //     'coffee',
+        //     'winter',
+        //     // 'caramellatte',
+        //     'silk'
+        // ];
 
         const themesByMode = {
             light: ['light', 'cupcake', 'wireframe', 'corporate', 'retro','cmyk','autumn', 'cyberpunk','acid', 'lemonade','winter',  'valentine', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy'],
@@ -176,25 +175,25 @@ export default function Home({showPdf=false, ...props }) {
         'Open AI': openai
     };
 
-    const skillsColorsDict = {
-        CSS: 'currentColor',
-        faPython: 'currentColor',
-        faGithub: 'currentColor',
-        HTML: 'currentColor',
-        faInstagram: 'currentColor',
-        JS: 'currentColor',
-        faReact: 'currentColor',
-        faGooglePay: 'currentColor',
-        faBootstrap: 'currentColor',
-        faNodeJs: 'currentColor',
-        Google: 'currentColor',
-        faNpm: 'currentColor',
-        Payment: 'currentColor',
-        faAppStore: 'currentColor',
-        faDatabase: 'currentColor',
-        AI: 'currentColor',
-        faUser: 'currentColor'
-    };
+    // const skillsColorsDict = {
+    //     CSS: 'currentColor',
+    //     faPython: 'currentColor',
+    //     faGithub: 'currentColor',
+    //     HTML: 'currentColor',
+    //     faInstagram: 'currentColor',
+    //     JS: 'currentColor',
+    //     faReact: 'currentColor',
+    //     faGooglePay: 'currentColor',
+    //     faBootstrap: 'currentColor',
+    //     faNodeJs: 'currentColor',
+    //     Google: 'currentColor',
+    //     faNpm: 'currentColor',
+    //     Payment: 'currentColor',
+    //     faAppStore: 'currentColor',
+    //     faDatabase: 'currentColor',
+    //     AI: 'currentColor',
+    //     faUser: 'currentColor'
+    // };
 
     /**
      * Creates a styled list component to display various data in bullet points.
@@ -418,12 +417,39 @@ export default function Home({showPdf=false, ...props }) {
 
     // Education data
     let edDict = {
-       
         first: {
             head: (
                 <p className="font-medium !text-base-content">
+                    B.Sc. Electrical Engineering &nbsp;|
+                    <i className="subTitle"> Tel Aviv University, 2014-2019 </i>
+                </p>
+            ),
+            body: (
+                <section className="max-w-[95%]">
+                    Specialized in computers, control systems, and electromagnetics:
+                    <ul className="majorsList list-none border-l-2 border-accent/40 pl-4">
+                        <li className="my-2">
+                            <i className="majors">Computers & Programming –</i> In-depth
+                            Python, Computer organization, Algorithms, Data structures, C++, OS, encryption, and network protocols.
+                        </li>
+                        <div className="w-full h-2"/>
+                        <li className="my-2">
+                            <i className="majors">Electromagnetic Radiation –</i> Waves propagation,Radiation and Transmissions.
+                        </li>
+                        <div className="w-full h-2"/>
+                        <li className="my-2">
+                            <i className="majors">Controled Systems –</i> Feedback loops,
+                            logic blocks, and control theory fundamentals.
+                        </li>
+                    </ul>
+                </section>
+            )
+        },
+        second: {
+            head: (
+                <p className="font-medium !text-base-content">
                     AI engineering for developers &nbsp;|
-                    <i className="subTitle"> Coursera / Microsoft, 2024 </i>
+                    <i className="subTitle"> Microsoft, 2024 </i>
                 </p>
             ),
             body: (
@@ -443,7 +469,7 @@ export default function Home({showPdf=false, ...props }) {
                 </p>
             )
         },
-        first2: {
+        third: {
             head: (
                 <p className="font-medium !text-base-content">
                     Advanced React & Next.js Development &nbsp;|
@@ -474,7 +500,7 @@ export default function Home({showPdf=false, ...props }) {
                 </p>
             )
         },
-        first3: {
+        fourth: {
             head: (
                 <p className="font-medium !text-base-content">
                     UI/UX and Web design &nbsp;|
@@ -500,7 +526,7 @@ export default function Home({showPdf=false, ...props }) {
                 </p>
             )
         },
-        second: {
+        fifth: {
             head: (
                 <p className="font-medium !text-base-content">
                     The Complete Web Development Bootcamp &nbsp;|
@@ -530,7 +556,7 @@ export default function Home({showPdf=false, ...props }) {
                 </p>
             )
         },
-        third: {
+        sixth: {
             head: (
                 <p className="font-medium !text-base-content">
                     Python Developer: Zero to Mastery &nbsp;|
@@ -557,33 +583,7 @@ export default function Home({showPdf=false, ...props }) {
                 </p>
             )
         },
-        fourth: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    B.Sc. Electrical Engineering &nbsp;|
-                    <i className="subTitle"> Tel Aviv University, 2014-2019 </i>
-                </p>
-            ),
-            body: (
-                <section className="max-w-[95%]">
-                    Specialized in computers, control systems, and electromagnetics:
-                    <ul className="majorsList list-none border-l-2 border-accent/40 pl-4">
-                        <li className="my-2">
-                            <i className="majors">Computers & Programming –</i> In-depth
-                            Python, C++, OS, encryption, and network protocols.
-                        </li>
-                        <li className="my-2">
-                            <i className="majors">Electromagnetic Radiation –</i> Maxwell's
-                            equations, wave propagation, and interference.
-                        </li>
-                        <li className="my-2">
-                            <i className="majors">Control Systems –</i> Feedback loops,
-                            logic blocks, and control theory fundamentals.
-                        </li>
-                    </ul>
-                </section>
-            )
-        }
+        
     };
 
     let education = (
@@ -649,80 +649,71 @@ export default function Home({showPdf=false, ...props }) {
         //         </p>
         //     )
         // },
-        first2: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    SW Developer &nbsp;|
-                    <i className="subTitle"> Self employed, 2023-2025 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Building and maintaining scalable and innovative web applications and SaaS. Delivering both intuitive UIs and robust back-end systems
-                    that handle authentication, integrations, and database management. 
-                    Incorporating automation and AI-driven insights to expedite development and
-                    enhance the overall user experience. Skilled in 
-                    <i className="detailH"><code> Cloud</code></i>, 
-                    <i className="detailH"><code> AWS</code></i>, 
-                    <i className="detailH"><code> Firebase</code></i>, 
-                    <i className="detailH"><code> Supabase</code></i>, 
-                    <i className="detailH"><code> AI APIs</code></i>,
-                    {/* <i className="detailH"><code> RESTful APIs</code></i>,  */}
-                    <i className="detailH"><code> Python</code></i>, and other
-                    modern cloud services.
-                </p>
-            )
-        },
-        second: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Senior HW Eng & Product lead &nbsp;|
-                    <i className="subTitle"> SolarEdge R&D, 2019-2023 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Spearheaded design and implementation of complex digital/analog electronics
-                    for global solar energy solutions. Oversaw complete product lifecycle,
-                    from concept and specifications to mass production. Collaborated closely
-                    with firmware, QA, and manufacturing teams. Developed rigorous testing
-                    processes (Python/C#) and managed real-time data acquisition systems for
-                    performance monitoring. Worked extensively on advanced power electronics,
-                    wireless modules, and DSP integration.
-                </p>
-            )
-        },
+    first2: {
+    head: (
+        <p className="font-medium !text-base-content">
+            Full-Stack Developer &nbsp;|
+            <i className="subTitle"> Self-Employed, 2023–2025 </i>
+        </p>
+    ),
+    body: (
+        <p className="">
+            Designing and developing modern web applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure including authentication, integrations, and data pipelines. Leveraging automation, AI APIs, and cloud platforms to speed up development and optimize workflows. Proficient in 
+            <i className="detailH"><code>React</code></i>, 
+            <i className="detailH"><code>Next.js</code></i>, 
+            <i className="detailH"><code>Firebase</code></i>, 
+            <i className="detailH"><code>Supabase</code></i>, 
+            <i className="detailH"><code>AWS</code></i>, 
+            <i className="detailH"><code>Python</code></i>, and 
+            <i className="detailH"><code>AI integrations</code></i>.
+        </p>
+    )
+},
+second: {
+    head: (
+        <p className="font-medium !text-base-content">
+            Senior Hardware Engineer & Product Lead &nbsp;|
+            <i className="subTitle"> SolarEdge R&D, 2019–2023 </i>
+        </p>
+    ),
+    body: (
+        <p className="">
+            Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy products. Responsible for full product cycle—from early design and prototyping to validation and mass production. Collaborated with firmware, QA, and manufacturing teams to ensure system-level reliability. Built automated test frameworks and real-time data tools using 
+            <i className="detailH"><code>Python</code></i> and 
+            <i className="detailH"><code>C#</code></i> to streamline validation processes. Experience with DSPs, wireless communication, power electronics, and system-level debugging. Known for hands-on problem solving and cross-domain coordination.
+        </p>
+    )
+}
+,
         third: {
             head: (
                 <p className="font-medium !text-base-content">
                     Teaching Assistant &nbsp;|
-                    <i className="subTitle"> Tel Aviv University, 2019 </i>
+                    <i className="subTitle"> Tel Aviv University, 2019-2020 </i>
                 </p>
             ),
             body: (
                 <p className="">
-                    Conducted frontal lectures for first-year engineering students in mathematics
-                    and physics. Tailored lessons to clarify complex topics, driving higher exam
-                    success rates. Coordinated hands-on labs, administered tests, and offered 
-                    tutoring sessions for undergraduates across multiple courses.
+                    Frontal lectures for TAU engineering students in mathematics
+                    and physics. lessons and marathons to clarify complex topics, driving higher exam
+                    success rates. Focusing on teaching out of the box problem solving skills and creative thinking.
                 </p>
             )
         },
-        // fourth: {
-        //     head: (
-        //         <p className="font-medium !text-base-content">
-        //             Math & Physics &nbsp;|
-        //             <i className="subTitle"> 2016-2019 </i>
-        //         </p>
-        //     ),
-        //     body: (
-        //         <p className="">
-        //             Provided group tutoring to high-school students preparing for 
-        //             national exams. Focused on building conceptual understanding, problem-solving 
-        //             skills, and confidence in technical subjects.
-        //         </p>
-        //     )
-        // }
+        fourth: {
+            head: (
+                <p className="font-medium !text-base-content">
+                    Senior Math & Physics Tutor &nbsp;| 
+                    <i className="subTitle"> 2016-2019 </i>
+                </p>
+            ),
+            body: (
+                <p className="">
+                    Frontal lectures for high school students in math and physics.
+                    Including Marathon sessions for Bagrut.
+                </p>
+            )
+        }
     };
 
     let experience = (
@@ -978,10 +969,10 @@ export default function Home({showPdf=false, ...props }) {
 
             <div id='roll-the-dice-theme' className="flex items-center text-base-content justify-center mb-8">
                 <p onClick={changeRandomTheme} className="text-base hover:border-accent/40 border-primary/40 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg p-4 font-bold w-fit flex items-center cursor-pointer gap-3 px-6">
-                    <div className="flex gap-1 justify-center">
-                        <div className="h-2 w-2 rounded-full bg-primary"/>
-                        <div className="h-2 w-2 rounded-full bg-secondary"/>
-                        <div className="h-2 w-2 rounded-full bg-accent"/>
+                    <div className="flex flex-col gap-1 justify-center">
+                        <div className="h-1 w-1 rounded-full bg-primary"/>
+                        <div className="h-1 w-1 rounded-full bg-secondary"/>
+                        <div className="h-1 w-1 rounded-full bg-accent"/>
                     </div>
                     {console.log('themeName', themeName)}
                     {(!themeName|| isRolling) ? <FontAwesomeIcon
