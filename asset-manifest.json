@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/About/static/css/main.53ebf913.css",
-    "main.js": "/About/static/js/main.30e2a567.js",
+    "main.js": "/About/static/js/main.bc027e82.js",
     "static/js/213.486c33ef.chunk.js": "/About/static/js/213.486c33ef.chunk.js",
     "static/js/732.7d17402e.chunk.js": "/About/static/js/732.7d17402e.chunk.js",
     "static/media/TAU_Logo.png": "/About/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
@@ -13,12 +13,12 @@
     "static/media/openai.svg": "/About/static/media/openai.09e696fbc4b140844ed2f83d6bb5d593.svg",
     "index.html": "/About/index.html",
     "main.53ebf913.css.map": "/About/static/css/main.53ebf913.css.map",
-    "main.30e2a567.js.map": "/About/static/js/main.30e2a567.js.map",
+    "main.bc027e82.js.map": "/About/static/js/main.bc027e82.js.map",
     "213.486c33ef.chunk.js.map": "/About/static/js/213.486c33ef.chunk.js.map",
     "732.7d17402e.chunk.js.map": "/About/static/js/732.7d17402e.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.53ebf913.css",
-    "static/js/main.30e2a567.js"
+    "static/js/main.bc027e82.js"
   ]
 }
