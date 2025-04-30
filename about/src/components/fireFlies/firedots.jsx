@@ -5,7 +5,7 @@ const FireDots = () => {
     const containerRef = useRef(null);
     const createdStylesRef = useRef([]); // Keep track of created style elements
     const particleNum = 15;
-    const particleBaseSize = 15;
+    const particleBaseSize = 18;
 
     useEffect(() => {
         const container = containerRef.current;

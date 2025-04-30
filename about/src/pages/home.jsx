@@ -430,7 +430,7 @@ export default function Home({showPdf=false, ...props }) {
                     <ul className="majorsList list-none border-l-2 border-accent/40 pl-4">
                         <li className="my-2">
                             <i className="majors">Computers & Programming –</i> In-depth
-                            Python, Computer organization, Algorithms, Data structures, C++, OS, encryption, and network protocols.
+                            Python, Computer organization, Algorithms, Data structures, C++, OS, encryption and network protocols.
                         </li>
                         <div className="w-full h-2"/>
                         <li className="my-2">
@@ -449,7 +449,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     AI engineering for developers &nbsp;|
-                    <i className="subTitle"> Microsoft, 2024 </i>
+                    <i className="subTitle"> Coursera, 2024 </i>
                 </p>
             ),
             body: (
@@ -465,6 +465,7 @@ export default function Home({showPdf=false, ...props }) {
                         <code>AI Agents</code>.{` `}
                     </i>
                     <br/>
+                    On top of that I participated in a microsoft Webinar on AI engineering, where I learned about the latest trends and best practices in the field, including co-pilot mastering.
                     In addition, built and deployed multiple projects using various AI tools and platforms, Agents and top AI models.
                 </p>
             )
@@ -473,7 +474,7 @@ export default function Home({showPdf=false, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     Advanced React & Next.js Development &nbsp;|
-                    <i className="subTitle"> Udemy / Coursera, 2023-2024 </i>
+                    <i className="subTitle"> Udemy, 2023-2024 </i>
                 </p>
             ),
             body: (
