@@ -335,7 +335,7 @@ export default function Home({showPdf=true, ...props }) {
             <motion.div 
             initial={{ opacity: pdfMode ? 1 : 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: pdfMode ? 0 : 0.8 , ease: 'circInOut'}}
+            transition={{ duration: 0.4 , ease: 'circInOut'}}
             key={2} className="overflow-hidden card* w-full flex justify-center relative"> {/* Carousel container */}
                 <div className="flex justify-between w-full whitespace-nowrap animate-scroll"> {/* Adjust duration */}
                 {['HTML','CSS', 'JS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','Google','faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI','Radix', 'Ant', 'MUI','faBootstrap', 'Auth','faGithub','Payment']
@@ -658,8 +658,8 @@ second: {
             body: (
                 <p className="">
                     Frontal lectures for TAU engineering students in mathematics
-                    and physics. lessons and marathons to clarify complex topics, driving higher exam
-                    success rates. Focusing on teaching out of the box problem solving skills and creative thinking.
+                    and physics. lessons and marathons to practice complex topics, driving higher exam
+                    success rates. Focusing on problem solving skills, out of the box thinking and creative approaches.
                 </p>
             )
         },
