@@ -224,7 +224,7 @@ i.subTitle {
 }
 
 div.floatingContact {
-    @apply flex justify-center flex-col  gap-4 rounded-box fixed bottom-[20%] right-0 m-6 h-max z-40;
+    @apply flex justify-center flex-col  gap-4 rounded-box fixed bottom-[10%] right-0 m-2 h-max z-40;
 }
 
 
