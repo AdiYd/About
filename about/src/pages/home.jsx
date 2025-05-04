@@ -177,6 +177,7 @@ export default function Home({showPdf=false, ...props }) {
         'daisyUI': <Icon icon="simple-icons:daisyui" className="text-xl mx-auto" />,
         'Ant': <Icon icon="ant-design:ant-design" className="text-xl mx-auto" />,
         'MUI': <Icon icon="simple-icons:mui" className="text-xl mx-auto" />,
+        'Radix': <Icon icon="simple-icons:radixui" className="text-xl mx-auto" />,
         'Next.js': <Icon icon="nonicons:next-16" className="text-xl mx-auto" />,
         'Tailwind': <Icon icon="mdi:tailwind" className="text-xl mx-auto" />,
         'Firebase': <Icon icon="simple-icons:firebase" className="text-xl mx-auto" />,
@@ -249,7 +250,7 @@ export default function Home({showPdf=false, ...props }) {
                     className="skillzFieldSet"
                 >
                     {!pdfMode && <legend className="legend badge badge-lg">Front</legend>}
-                    {['JS', 'HTML', 'CSS','Tailwind', 'faReact','Shadcn','MUI','Ant', 'daisyUI'].map((item, indx) => (
+                    {['JS', 'HTML', 'CSS','Tailwind', 'faReact','Radix','Shadcn','daisyUI','MUI','Ant'].map((item, indx) => (
                         skillsDict[item] && (
                             <div
                                 key={indx + item}
@@ -340,7 +341,7 @@ export default function Home({showPdf=false, ...props }) {
             transition={{ duration: 0.8 , ease: 'circInOut'}}
             key={2} className="overflow-hidden card* w-full flex justify-center relative"> {/* Carousel container */}
                 <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration:isMobile ?  `${10 * 1}s` :`${20 * 1}s` }}> {/* Adjust duration */}
-                {['HTML','CSS', 'JS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','Google', 'faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI', 'Ant', 'MUI','faBootstrap', 'Auth','faGithub','Payment']
+                {['HTML','CSS', 'JS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','Google','faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI','Radix', 'Ant', 'MUI','faBootstrap', 'Auth','faGithub','Payment']
                 .map(
                     (item, indx) =>
                         skillsDict[item] && (
@@ -455,7 +456,7 @@ export default function Home({showPdf=false, ...props }) {
                     <i className="detailH">
                         <code>Tailwind</code>,
                         <code>ShadCN</code>,
-                        <code>daisyUI</code>
+                        <code>daisyUI</code>,
                         <code>Ant design</code>,
                         <code>MUI</code>,
                         <code>Bootstrap</code>

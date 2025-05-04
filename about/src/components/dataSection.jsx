@@ -34,7 +34,7 @@ function DataSection({
                     {(extentedMenu && !isPDF) &&
                         <div className='flex gap-0 flex-row-reverse'>
                             <span className='text-xs place-self-center'>
-                                {isActive ? '' : '(See the full tech stack)'}
+                                {isActive ? '' : '(See the full Tech Stack)'}
                             </span>
                         <a
                             // href="#"

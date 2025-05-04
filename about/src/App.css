@@ -31,22 +31,38 @@ body {
 }
 
 #blur_glow{
-  animation: blur 20s linear alternate infinite;
+  animation: blur 10s linear alternate infinite;
 }
 
 @keyframes blur {
   0% {
     filter: blur(150px);
+    height: 50vh;
+    width: 25vw;
     /* translate: 0 0; */
     /* rotate: 0deg; */
   }
+  /* 35% {
+    filter: blur(250px);
+    height: 65vh;
+    width: 40vw;
+  } */
   50% {
-    filter: blur(400px);
+    filter: blur(200px);
+    height: 65vh;
+    width: 40vw;
     /* translate: -100px 0px; */
     /* rotate: 360deg; */
   }
+  /* 65% {
+    filter: blur(250px);
+    height: 65vh;
+    width: 40vw;
+  } */
   100% {
     filter: blur(150px);
+    height: 50vh;
+    width: 25vw;
     /* translate: 0 0;  */
     /* rotate: 0deg; */
   }
