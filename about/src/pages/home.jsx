@@ -25,7 +25,6 @@ import tau2 from '../img/TAU_Logo.png';
 import udemyLogo from '../img/udemyLogo.svg';
 import sedg from '../img/sedg.svg';
 import coursera from '../img/coursera.svg';
-import openai from '../img/openai.svg';
 import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -75,6 +74,7 @@ export default function Home({showPdf=false, ...props }) {
     const [pdfMode, setPdfMode] = useState(false);
     const [skillMode, setSkillMode] = useState(false);
     const [isRolling, setIsRolling] = useState(false);
+    const [showDice, setShowDice] = useState(false); 
     const [themeName, setThemeName] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -172,7 +172,18 @@ export default function Home({showPdf=false, ...props }) {
         AI: faBrain,
         Auth: faUser,
         'REST API': faRightLeft,
-        'Open AI': openai
+        'Open AI': <Icon icon="lineicons:open-ai" className="text-xl mx-auto" />,
+        'Shadcn': <Icon icon="simple-icons:shadcnui" className="text-xl mx-auto" />,
+        'daisyUI': <Icon icon="simple-icons:daisyui" className="text-xl mx-auto" />,
+        'Ant': <Icon icon="ant-design:ant-design" className="text-xl mx-auto" />,
+        'MUI': <Icon icon="simple-icons:mui" className="text-xl mx-auto" />,
+        'Next.js': <Icon icon="nonicons:next-16" className="text-xl mx-auto" />,
+        'Tailwind': <Icon icon="mdi:tailwind" className="text-xl mx-auto" />,
+        'Firebase': <Icon icon="simple-icons:firebase" className="text-xl mx-auto" />,
+        'Supabase': <Icon icon="lineicons:supabase" className="text-xl mx-auto" />,
+        'Postgres': <Icon icon="akar-icons:postgresql-fill" className="text-xl mx-auto" />,
+        'Anthropic': <Icon icon="ri:anthropic-fill" className="text-xl mx-auto" />,
+
     };
 
     // const skillsColorsDict = {
@@ -237,14 +248,15 @@ export default function Home({showPdf=false, ...props }) {
                     style={{ border: pdfMode ? 'none' : '' }}
                     className="skillzFieldSet"
                 >
-                    {!pdfMode && <legend className="legend badge badge-lg">Frontend</legend>}
-                    {['JS', 'HTML', 'faReact', 'CSS', 'faBootstrap'].map((item, indx) => (
+                    {!pdfMode && <legend className="legend badge badge-lg">Front</legend>}
+                    {['JS', 'HTML', 'CSS','Tailwind', 'faReact','Shadcn','MUI','Ant', 'daisyUI'].map((item, indx) => (
                         skillsDict[item] && (
                             <div
                                 key={indx + item}
                                 title={item.startsWith('fa') ? item.slice(2) : item}
                                 className='skill-box text-primary-focus'
                             >
+                                 {skillsDict[item]?.type ? skillsDict[item]  :
                                 <FontAwesomeIcon
                                     id={item}
                                     className={`fontAwsome  ${
@@ -252,7 +264,7 @@ export default function Home({showPdf=false, ...props }) {
                                     }`}
                                     size="lg"
                                     icon={skillsDict[item]}
-                                />
+                                />}
                                 <span className="skillName">
                                     {item.startsWith('fa') ? item.slice(2) : item}
                                 </span>
@@ -265,20 +277,21 @@ export default function Home({showPdf=false, ...props }) {
                     style={{ border: pdfMode ? 'none' : '' }}
                     className="skillzFieldSet"
                 >
-                    {!pdfMode && <legend className="legend badge badge-lg">Backend</legend>}
-                    {['faDatabase', 'faServer', 'faNodeJs', 'faNpm', 'faCode', 'faPython', 'REST API', 'AI'].map(
+                    {!pdfMode && <legend className="legend badge badge-lg">Back</legend>}
+                    {['Postgres', 'faServer','Next.js', 'faNodeJs',  'faPython','faCode'].map(
                         (item, indx) => (
                             <div
                                 key={indx + item}
                                 title={item.startsWith('fa') ? item.slice(2) : item}
                                 className="skill-box text-secondary-focus"
                             >
+                               {skillsDict[item]?.type ? skillsDict[item]  :
                                 <FontAwesomeIcon
                                     id={item}
                                     className="fontAwsome"
                                     size="lg"
                                     icon={skillsDict[item]}
-                                />
+                                />}
                                 <span
                                     id={item === 'REST API' ? 'restAPI' : ''}
                                     className="skillName"
@@ -294,42 +307,27 @@ export default function Home({showPdf=false, ...props }) {
                     style={{ border: pdfMode ? 'none' : '' }}
                     className="skillzFieldSet"
                 >
-                    {!pdfMode && <legend className="legend badge  badge-lg">APIs</legend>}
-                    {['faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
+                    {!pdfMode && <legend className="legend badge  badge-lg">Cloud & API</legend>}
+                    {['Firebase','Supabase', 'Open AI','Anthropic','faGithub', 'Auth', 'Payment', 'Google'].map(
                         (item, indx) =>
-                            item !== 'Open AI' ? (
+                           
                                 <div
                                     key={indx + item}
                                     title={item.startsWith('fa') ? item.slice(2) : item}
                                     className="skill-box text-accent-focus"
                                 >
-                                    <FontAwesomeIcon
-                                        id={item}
-                                        className="fontAwsome"
-                                        size="lg"
-                                        icon={skillsDict[item]}
-                                    />
+                                      {skillsDict[item]?.type ? skillsDict[item]  :
+                                <FontAwesomeIcon
+                                    id={item}
+                                    className="fontAwsome"
+                                    size="lg"
+                                    icon={skillsDict[item]}
+                                />}
                                     <span className="skillName text-accent-focus">
                                         {item.startsWith('fa') ? item.slice(2) : item}
                                     </span>
                                 </div>
-                            ) : (
-                                <div
-                                    key={indx + item}
-                                    title={item.startsWith('fa') ? item.slice(2) : item}
-                                    className="skill-box"
-                                >
-                                    <img
-                                        className="openAI"
-                                        style={{ height: '1.5em' }}
-                                        src={skillsDict[item]}
-                                        alt="OpenAI logo"
-                                    />
-                                    <span className="skillName">
-                                        {item.startsWith('fa') ? item.slice(2) : item}
-                                    </span>
-                                </div>
-                            )
+                           
                     )}
                 </fieldset>
             </motion.div>
@@ -341,8 +339,9 @@ export default function Home({showPdf=false, ...props }) {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8 , ease: 'circInOut'}}
             key={2} className="overflow-hidden card* w-full flex justify-center relative"> {/* Carousel container */}
-                <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration:isMobile ?  `${10 * 1}s` :`${40 * 1}s` }}> {/* Adjust duration */}
-                {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
+                <div className="flex justify-between w-full whitespace-nowrap animate-scroll" style={{ animationDuration:isMobile ?  `${10 * 1}s` :`${20 * 1}s` }}> {/* Adjust duration */}
+                {['HTML','CSS', 'JS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','Google', 'faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI', 'Ant', 'MUI','faBootstrap', 'Auth','faGithub','Payment']
+                .map(
                     (item, indx) =>
                         skillsDict[item] && (
                             <div
@@ -350,52 +349,15 @@ export default function Home({showPdf=false, ...props }) {
                                 title={item.startsWith('fa') ? item.slice(2) : item}
                                 className={`skill-box ${pdfMode ? '' : ''}`}
                             >
-                               { item !== 'Open AI' ? <FontAwesomeIcon
+                               { skillsDict[item]?.type ? skillsDict[item] : 
+                              <FontAwesomeIcon
                                     id={item}
                                     className={`fontAwsome  ${
                                         !pdfMode && reactSpin && item === 'faReact' ? 'rotate react' : ''
                                     }`}
                                     size="lg"
                                     icon={skillsDict[item]}
-                                /> :
-                                 <img
-                                        className="openAI"
-                                        style={{ height: '1.5em' }}
-                                        src={skillsDict[item]}
-                                        alt="OpenAI logo"
-                                    />
-                                }
-                                <span
-                                    id={item === 'REST API' ? 'restAPI' : ''}
-                                    className="skillName"
-                                >
-                                    {item.startsWith('fa') ? item.slice(2) : item}
-                                </span>
-                            </div>
-                        )
-                )}
-                {['faDatabase', 'faServer', 'REST API', 'faReact', 'faPython', 'AI', 'faNodeJs', 'JS', 'HTML', 'faReact', 'CSS', 'faBootstrap', 'faInstagram', 'Payment', 'faAppStore', 'Auth', 'Open AI', 'faGithub', 'Google'].map(
-                    (item, indx) =>
-                        skillsDict[item] && (
-                            <div
-                                key={indx + item}
-                                title={item.startsWith('fa') ? item.slice(2) : item}
-                                className={`skill-box ${pdfMode ? '' : ''}`}
-                            >
-                               { item !== 'Open AI' ? <FontAwesomeIcon
-                                    id={item}
-                                    className={`fontAwsome  ${
-                                        !pdfMode && reactSpin && item === 'faReact' ? 'rotate react' : ''
-                                    }`}
-                                    size="lg"
-                                    icon={skillsDict[item]}
-                                /> :
-                                 <img
-                                        className="openAI"
-                                        style={{ height: '1.5em' }}
-                                        src={skillsDict[item]}
-                                        alt="OpenAI logo"
-                                    />
+                                /> 
                                 }
                                 <span
                                     id={item === 'REST API' ? 'restAPI' : ''}
@@ -883,16 +845,20 @@ second: {
         <div className="floatingContact">
          <div
                 
-                className="btn btn-circle btn-info backdrop-blur-lg btn-outline shakeHover"
+                className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
                 title={themeName || 'Roll the Dice'}
                 onClick={changeRandomTheme}
+                onMouseEnter={() => setShowDice(true)}
+                onMouseLeave={() => setShowDice(false)}
             >
-            <FontAwesomeIcon
+            { (isRolling || showDice || !themeName) ? <FontAwesomeIcon
                     icon={faDice}
                     size="lg"
                     style={{animationDuration: '0.5s'}}
                     className={`${isRolling ? 'animate-spin' : ''}`}
-                />
+                /> :
+                <Icon icon={themeIconify[themeName]} className="text-xl" />
+                }
             </div>
             {/* <a
                 href={contactMeDict.Email.link}
@@ -916,7 +882,7 @@ second: {
             </a>
             <a
                 href={contactMeDict.Whatsapp.link}
-                className="btn btn-circle btn-success backdrop-blur-lg btn-outline shakeHover"
+                className="btn btn-circle btn-success* border-success text-success backdrop-blur-lg btn-outline shakeHover"
                 title="WhatsApp me"
             >
                 <FontAwesomeIcon

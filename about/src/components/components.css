@@ -17,11 +17,12 @@ span.pdf {
 }
 
 a.moreDetails {
-    @apply p-0 px-1 text-lg cursor-pointer self-center;
+    transition: transform 0.4s ease-in-out; 
+    @apply p-0 px-1 flex self-start text-xs cursor-pointer;
 }
 
 .card {
-    @apply  backdrop-blur-lg bg-base-200/30  rounded-box p-4 max-sm:p-2 z-10;
+    @apply backdrop-blur-[100px] bg-base-200/40 rounded-box p-6 max-sm:p-2 z-10;
 }
 
 
@@ -68,7 +69,7 @@ div.listTextDiv p {
 }
 
 .react {
-    @apply text-info;
+    @apply text-[#61DAFB];
 }
 
 #reactBackground {
@@ -100,7 +101,8 @@ div.skills-container {
 }
 
 div.skill-box {
-    @apply flex flex-col max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-md border text-sm font-semibold;
+    transition: all 0.2s ease-in-out;
+    @apply flex flex-col  max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-[8px] border text-sm font-semibold;
 }
 
 span.skillName {
@@ -121,7 +123,7 @@ legend.legend {
 }
 
 .rotate {
-    animation: rotate 8s alternate infinite forwards;
+    animation: rotate 4s alternate infinite forwards;
 }
 
 .rotateHover:hover {
@@ -282,7 +284,7 @@ div.floatingContact {
     }
 
     div.skill-box {
-        @apply w-[3.2em] p-3.5;
+        @apply w-[3.2em] p-3.5 ;
     }
 
     span#restAPI {

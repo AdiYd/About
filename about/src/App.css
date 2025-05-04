@@ -30,9 +30,28 @@ body {
   font-size: 16px;
 }
 
-.card {
-    @apply  !bg-base-100/50 !backdrop-blur-xl;
+#blur_glow{
+  animation: blur 20s linear alternate infinite;
 }
+
+@keyframes blur {
+  0% {
+    filter: blur(150px);
+    /* translate: 0 0; */
+    /* rotate: 0deg; */
+  }
+  50% {
+    filter: blur(400px);
+    /* translate: -100px 0px; */
+    /* rotate: 360deg; */
+  }
+  100% {
+    filter: blur(150px);
+    /* translate: 0 0;  */
+    /* rotate: 0deg; */
+  }
+}
+
 
 code {
   @apply text-primary-focus mx-0.5 font-semibold hover:glass rounded-lg p-0.5;
@@ -122,7 +141,7 @@ div.homeContainer {
 
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-55%); }
+  100% { transform: translateX(-85%); }
 }
 
 .animate-scroll {
