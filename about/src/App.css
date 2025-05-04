@@ -19,7 +19,7 @@ html {
   font-family: "Inter", "Montserrat", 'Roboto', sans-serif;
   transition: all 0.5s ease-in-out;
   
-  @apply my-8 overflow-x-hidden;
+  @apply mb-8 overflow-x-hidden;
 }
 
 body {
@@ -125,6 +125,7 @@ a {
   h3 {
     @apply text-3xl;
   }
+
 }
 
 div.App-header {
@@ -157,9 +158,19 @@ div.homeContainer {
 
 @keyframes scroll {
   0% { transform: translateX(0); }
-  100% { transform: translateX(-85%); }
+  100% { transform: translateX(-100%); }
+}
+@keyframes scrollMobile {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-580%); }
 }
 
 .animate-scroll {
-  animation: scroll linear alternate-reverse infinite;
+  animation: scroll 15s linear alternate infinite;
+}
+
+@media (max-width: 640px) {
+  .animate-scroll {
+    animation: scrollMobile 28s linear alternate infinite;
+  }
 }

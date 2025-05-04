@@ -1,6 +1,6 @@
 import './components.css';
 import { debug } from '../pages/home';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import {motion, useInView} from 'framer-motion';
 
 const DBG_PROPS = {
@@ -23,8 +23,13 @@ function DataSection({
     callBack = (...args) => { debug('callBack with params: ', args, DBG_PROPS) },
     ...props }) {
     const [isActive, setActive] = useState(false);
+    const [, setUpdate] = useState(false);
     const ref = useRef(null);
     const isInView = useInView(ref);
+
+    useEffect(() => {
+        setUpdate(p => !p);
+    }, [isPDF]);
 
     return (
         <div key={title} className="dataContainer">
@@ -34,7 +39,7 @@ function DataSection({
                     {(extentedMenu && !isPDF) &&
                         <div className='flex gap-0 flex-row-reverse'>
                             <span className='text-xs place-self-center'>
-                                {isActive ? '' : '(See the full Tech Stack)'}
+                                {isActive ? '' : '(Click for the full Tech Stack)'}
                             </span>
                         <a
                             // href="#"
@@ -44,7 +49,7 @@ function DataSection({
                         </a>
                         </div>}
                 </div>
-                <motion.div
+                {isPDF ? childrens :<motion.div
                     ref={ref}
                     initial={{
                         opacity: 0,
@@ -57,7 +62,7 @@ function DataSection({
                     className='overflow-x-hidden '
                 >
                     {childrens}
-                </motion.div>
+                </motion.div>}
             </div>
         </div>
     )
