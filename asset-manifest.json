@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/About/static/css/main.f8f467fc.css",
+    "main.css": "/About/static/css/main.b73ad208.css",
     "main.js": "/About/static/js/main.461fea0a.js",
     "static/js/213.486c33ef.chunk.js": "/About/static/js/213.486c33ef.chunk.js",
     "static/js/732.7d17402e.chunk.js": "/About/static/js/732.7d17402e.chunk.js",
@@ -11,13 +11,13 @@
     "static/media/coursera.svg": "/About/static/media/coursera.b59b66274dad2f2aa02bcbdc73814032.svg",
     "static/media/udemyLogo.svg": "/About/static/media/udemyLogo.47fb35ff56259d570c8232f355fe39df.svg",
     "index.html": "/About/index.html",
-    "main.f8f467fc.css.map": "/About/static/css/main.f8f467fc.css.map",
+    "main.b73ad208.css.map": "/About/static/css/main.b73ad208.css.map",
     "main.461fea0a.js.map": "/About/static/js/main.461fea0a.js.map",
     "213.486c33ef.chunk.js.map": "/About/static/js/213.486c33ef.chunk.js.map",
     "732.7d17402e.chunk.js.map": "/About/static/js/732.7d17402e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f8f467fc.css",
+    "static/css/main.b73ad208.css",
     "static/js/main.461fea0a.js"
   ]
 }
