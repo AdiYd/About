@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/About/static/css/main.94f66ffe.css",
-    "main.js": "/About/static/js/main.9578c2cb.js",
+    "main.css": "/About/static/css/main.47967d56.css",
+    "main.js": "/About/static/js/main.3ab9ae77.js",
     "static/js/213.486c33ef.chunk.js": "/About/static/js/213.486c33ef.chunk.js",
     "static/js/732.7d17402e.chunk.js": "/About/static/js/732.7d17402e.chunk.js",
     "static/media/TAU_Logo.png": "/About/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
@@ -11,13 +11,13 @@
     "static/media/coursera.svg": "/About/static/media/coursera.b59b66274dad2f2aa02bcbdc73814032.svg",
     "static/media/udemyLogo.svg": "/About/static/media/udemyLogo.47fb35ff56259d570c8232f355fe39df.svg",
     "index.html": "/About/index.html",
-    "main.94f66ffe.css.map": "/About/static/css/main.94f66ffe.css.map",
-    "main.9578c2cb.js.map": "/About/static/js/main.9578c2cb.js.map",
+    "main.47967d56.css.map": "/About/static/css/main.47967d56.css.map",
+    "main.3ab9ae77.js.map": "/About/static/js/main.3ab9ae77.js.map",
     "213.486c33ef.chunk.js.map": "/About/static/js/213.486c33ef.chunk.js.map",
     "732.7d17402e.chunk.js.map": "/About/static/js/732.7d17402e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.94f66ffe.css",
-    "static/js/main.9578c2cb.js"
+    "static/css/main.47967d56.css",
+    "static/js/main.3ab9ae77.js"
   ]
 }
