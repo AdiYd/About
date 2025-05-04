@@ -132,6 +132,18 @@ export default function Home({showPdf=true, ...props }) {
 
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
         const nextThemeMode = currentThemeMode === 'light' ? 'dark' : 'light';
+        if (!themeName && nextThemeMode === 'dark') {
+        setThemeName('dracula');
+        document.documentElement.setAttribute('data-theme', 'dracula');
+        setIsRolling(false);
+        return;
+        }
+        else if (!themeName && nextThemeMode === 'light') {
+            setThemeName('autumn');
+            document.documentElement.setAttribute('data-theme', 'autumn');
+            setIsRolling(false);
+            return;
+        }
 
         const randomTheme = themesByMode[nextThemeMode][Math.floor(Math.random() * themesByMode[nextThemeMode].length)];
         if (themeName === randomTheme) {
@@ -909,7 +921,7 @@ second: {
             className={`main z-10  py-8 ${pdfMode ? 'pdfContainer pdfCard' : ''}`}
             // data-theme="light"
         >
-            <div className="flex justify-center mb-8" style={{ alignItems: 'center' }}>
+            <div className="flex justify-center gap-4 max-sm:gap-0 mb-8" style={{ alignItems: 'center' }}>
                 <h1 className="text-4xl font-bold">
                     Adi Yehuda 
                 </h1>
