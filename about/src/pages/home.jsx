@@ -56,7 +56,7 @@ export const themeIconify = {
     acid: 'mdi:flask',
     lemonade: 'icon-park-outline:lemon',
     night: 'mdi:weather-night',
-    coffee: 'mdi:coffee',
+    // coffee: 'mdi:coffee',
     winter: 'mdi:snowflake',
     dracula: 'game-icons:vampire-dracula',
     // caramellatte: 'mdi:coffee-to-go',
@@ -93,41 +93,11 @@ export default function Home({showPdf=true, ...props }) {
         await new Promise(resolve => setTimeout(resolve, 800));
         const preferThemeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const currentTheme = document.documentElement.getAttribute('data-theme') || preferThemeMode;
-        // const themes = [
-        //     'light',
-        //     'dark',
-        //     'cupcake',
-        //     'corporate',
-        //     'synthwave',
-        //     'retro',
-        //     'cyberpunk',
-        //     'valentine',
-        //     'halloween',
-        //     'garden',
-        //     'forest',
-        //     'aqua',
-        //     'lofi',
-        //     'pastel',
-        //     'fantasy',
-        //     'wireframe',
-        //     'black',
-        //     'luxury',
-        //     'dracula',
-        //     'cmyk',
-        //     'autumn',
-        //     'business',
-        //     'acid',
-        //     'lemonade',
-        //     'night',
-        //     'coffee',
-        //     'winter',
-        //     // 'caramellatte',
-        //     'silk'
-        // ];
+
 
         const themesByMode = {
-            light: ['light', 'cupcake', 'wireframe', 'corporate', 'retro','cmyk','autumn', 'cyberpunk','acid', 'lemonade','winter',  'valentine', 'garden', 'forest', 'aqua', 'lofi', 'pastel', 'fantasy'],
-            dark: ['dark', 'halloween', 'black','synthwave', 'luxury', 'dracula',  'business', 'night', 'coffee' ],
+            light: ['light', 'cupcake', 'corporate', 'retro','cmyk','autumn', 'lemonade','winter', 'valentine','cyberpunk', 'garden', 'aqua', 'pastel', 'fantasy'],
+            dark: ['dark', 'halloween', 'synthwave',  'dracula',  'business', 'night' ,'forest', 'luxury'],
         }
 
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
