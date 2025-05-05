@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { usePDF } from 'react-to-pdf';
 import DataSection from "../components/dataSection";
 import '../App.css';
@@ -71,12 +71,13 @@ export const themeIconify = {
 
 export default function Home({showPdf=true, ...props }) {
     const [reactSpin] = useState(true);
-    const [pdfMode, setPdfMode] = useState(false);
+    const [pdfMode, ] = useState(false);
     const [isRolling, setIsRolling] = useState(false);
     const [showDice, setShowDice] = useState(false); 
     const [themeName, setThemeName] = useState(null);
     const [skillMode, setSkillMode] = useState(false);
-    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+    const [, setIsMobile] = useState(window.innerWidth <= 768);
+    const usedThemes = useRef(new Set());
 
     useEffect(() => {
         // update is mobile state on resize
@@ -97,30 +98,36 @@ export default function Home({showPdf=true, ...props }) {
 
         const themesByMode = {
             light: ['light', 'cupcake', 'corporate', 'retro','cmyk','autumn', 'lemonade','winter', 'valentine','cyberpunk', 'garden', 'aqua', 'pastel', 'fantasy'],
-            dark: ['dark', 'halloween', 'synthwave',  'dracula',  'business', 'night' ,'forest', 'luxury'],
+            dark: ['dark', 'halloween', 'synthwave',  'dracula',  'business', 'night' ,'forest'],
         }
 
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
         const nextThemeMode = currentThemeMode === 'light' ? 'dark' : 'light';
         if (!themeName && nextThemeMode === 'dark') {
         setThemeName('dracula');
+        usedThemes.current.add('dracula');
         document.documentElement.setAttribute('data-theme', 'dracula');
         setIsRolling(false);
         return;
         }
         else if (!themeName && nextThemeMode === 'light') {
             setThemeName('autumn');
+            usedThemes.current.add('autumn');
             document.documentElement.setAttribute('data-theme', 'autumn');
             setIsRolling(false);
             return;
         }
-
-        const randomTheme = themesByMode[nextThemeMode][Math.floor(Math.random() * themesByMode[nextThemeMode].length)];
+        let availableThemes = themesByMode[nextThemeMode].filter(theme => !usedThemes.current.has(theme));
+        if (availableThemes.length === 0) {
+            availableThemes = themesByMode[nextThemeMode].filter(theme => theme !== themeName);
+        }
+        const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
         if (themeName === randomTheme) {
             changeRandomTheme();
             return;
         }
         setThemeName(randomTheme);
+        usedThemes.current.add(randomTheme);
         document.documentElement.setAttribute('data-theme', randomTheme);
         setIsRolling(false);
     }
