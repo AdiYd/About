@@ -636,8 +636,8 @@ second: {
         fourth: {
             head: (
                 <p className="font-medium !text-base-content">
-                    Math & Physics Tutor &nbsp;| 
-                    <i className="subTitle"> 2016-2019 </i>
+                    Senior Math & Physics Tutor &nbsp;| 
+                    <i className="subTitle">Archimedes, 2016-2019 </i>
                 </p>
             ),
             body: (
