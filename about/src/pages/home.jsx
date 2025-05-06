@@ -776,7 +776,7 @@ second: {
             icon: faLinkedin,
             color: 'currentColor',
             data: 'LinkedIn Profile',
-            link: 'https://www.linkedin.com/in/adi-yehuda-27969612b/'
+            link: 'https://www.linkedin.com/in/adiyd'
         },
         Website: {
             icon: faEarthAmerica,
