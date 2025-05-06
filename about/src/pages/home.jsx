@@ -828,13 +828,13 @@ second: {
                 onMouseEnter={() => setShowDice(true)}
                 onMouseLeave={() => setShowDice(false)}
             >
-            { (isRolling || showDice || !themeName) ? <FontAwesomeIcon
+            { (isRolling || showDice ) ? <FontAwesomeIcon
                     icon={faDice}
                     size="lg"
                     style={{animationDuration: '0.5s'}}
                     className={`${isRolling ? 'animate-spin' : ''}`}
                 /> :
-                <Icon icon={themeIconify[themeName]} className="text-xl" />
+                <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'dracula']} className="text-xl" />
                 }
             </div>
             {/* <a
