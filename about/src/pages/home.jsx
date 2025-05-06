@@ -77,7 +77,7 @@ export default function Home({showPdf=true, ...props }) {
     const [themeName, setThemeName] = useState(null);
     const [skillMode, setSkillMode] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set('drcaula'));
+    const usedThemes = useRef(new Set('dracula'));
 
     useEffect(() => {
         // update is mobile state on resize
@@ -849,6 +849,8 @@ second: {
             </a> */}
             <a
                 href={contactMeDict.Linkedin.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-circle btn-secondary backdrop-blur-lg  btn-outline"
                 title="LinkedIn"
             >
@@ -859,6 +861,8 @@ second: {
             </a>
             <a
                 href={contactMeDict.Whatsapp.link}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn btn-circle btn-success* border-success text-success backdrop-blur-lg btn-outline shakeHover"
                 title="WhatsApp me"
             >
