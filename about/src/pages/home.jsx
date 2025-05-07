@@ -77,7 +77,7 @@ export default function Home({showPdf=true, ...props }) {
     const [themeName, setThemeName] = useState(null);
     const [skillMode, setSkillMode] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set('dracula'));
+    const usedThemes = useRef(new Set(['dracula']));
 
     useEffect(() => {
         // update is mobile state on resize
