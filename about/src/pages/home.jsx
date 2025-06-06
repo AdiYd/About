@@ -923,7 +923,7 @@ second: {
             className={`main z-10  py-8 ${pdfMode ? 'pdfContainer pdfCard' : ''}`}
             // data-theme="light"
         >
-            <div className="flex justify-center gap-2 max-sm:gap-0 mb-8" style={{ alignItems: 'center' }}>
+            <div className="flex justify-center max-sm:gap-0 mb-8" style={{ alignItems: 'center' }}>
                 <h1 className="text-4xl font-bold">
                     Adi Yehuda 
                 </h1>
@@ -949,7 +949,7 @@ second: {
                         rel="noopener noreferrer"
                         title="Download Word Document"
                         // onClick={() => downloadPdf()}
-                        className="btn btn-circle btn-outline btn-primary btn-sm"
+                        className="btn btn-circle btn-outline btn-primary btn-sm ml-2"
                     >
                         <FontAwesomeIcon icon={faFileWord} />
                     </a>
