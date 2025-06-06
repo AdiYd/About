@@ -17,7 +17,8 @@ import {
     faUser,
     faLocationDot,
     faDice,
-    faEarthAmerica
+    faEarthAmerica,
+    faFileWord
 } from '@fortawesome/free-solid-svg-icons';
 import selfie from '../img/AdiY.png';
 import tau from '../img/TAU_university_logo_ENG.png';
@@ -77,8 +78,8 @@ export default function Home({showPdf=true, ...props }) {
     const [themeName, setThemeName] = useState(null);
     const [skillMode, setSkillMode] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set(['dracula']));
-
+    const usedThemes = useRef(new Set(['light']));
+ 
     useEffect(() => {
         // update is mobile state on resize
         const handleResize = () => {
@@ -96,7 +97,7 @@ export default function Home({showPdf=true, ...props }) {
         const currentTheme = document.documentElement.getAttribute('data-theme') || preferThemeMode;
 
         const themesByMode = {
-            light: ['light', 'cupcake', 'corporate', 'retro','cmyk','autumn', 'lemonade','winter', 'valentine','cyberpunk', 'garden', 'aqua', 'pastel', 'fantasy'],
+            light: ['light', 'cupcake', 'corporate', 'retro','cmyk','autumn', 'lemonade','winter', 'valentine','cyberpunk', 'garden', 'aqua','light', 'pastel', 'fantasy'],
             dark: ['dark', 'halloween', 'synthwave',  'dracula',  'business', 'night' ,'forest'],
         }
 
@@ -109,7 +110,7 @@ export default function Home({showPdf=true, ...props }) {
         setIsRolling(false);
         return;
         }
-        else if (!themeName && nextThemeMode === 'light') {
+        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
             setThemeName('autumn');
             usedThemes.current.add('autumn');
             document.documentElement.setAttribute('data-theme', 'autumn');
@@ -356,17 +357,26 @@ export default function Home({showPdf=true, ...props }) {
         first: {
             head: (
                 <p className="font-medium !text-base-content">
-                    B.Sc. Electrical Engineering &nbsp;|
+                    B.Sc. Electrical & Electronics Engineering &nbsp;|
                     <i className="subTitle"> Tel Aviv University, 2014-2019 </i>
                 </p>
             ),
             body: (
                 <section className="max-w-[95%]">
-                    Majors in computers, control systems, and electromagnetics:
-                    <ul className="majorsList list-none border-l-2 border-accent/40 pl-4">
+                    Majors in computers, control systems, and EM waves:
+                    <ul className="majorsList list-none  border-l-2 border-accent/40 pl-4">
                         <li className="my-2">
-                            <i className="majors">Computers & Programming –</i> In-depth
-                            Python, Computer organization, Algorithms, Data structures, C++, OS, encryption and network protocols.
+                            <i className="majors">Computers & Programming –</i> In-depth programming,
+                            <code>Python</code>,
+                            <code>C++</code>,
+                            <code>JS & TS</code>,
+                            <code>Computer organization</code>,
+                            <code>HW-SW interfaces</code>,
+                            <code>Algorithms</code>,
+                            <code>Data structures</code>,
+                            <code>OS</code>,
+                            <code>encryption</code>,
+                            <code>network protocols.</code>
                         </li>
                         <div className="w-full h-2"/>
                         <li className="my-2">
@@ -390,7 +400,7 @@ export default function Home({showPdf=true, ...props }) {
             ),
             body: (
                 <p className="">
-                    In-depth course on AI engineering, covering advanced topics in AI models, prompt engineering, AI params, optimization, prompt caching and method to improve performance. Focused on practical applications and real-world scenarios.
+                    In-depth course on AI engineering, covering advanced topics in AI models, prompt engineering, AI params, optimization, caching and other methods to improve performance. Focused on practical applications and real-world scenarios.
                     {` `} Hands on experience with various AI tools and platforms, including:
                    <i className="detailH">
                         <code>Open AI</code>,{` `}
@@ -538,7 +548,7 @@ export default function Home({showPdf=true, ...props }) {
                             src={tau}
                             id={pdfMode ? 'pdfImg' : ''}
                             alt="Tel-Aviv university Logo"
-                            className="p-2"
+                            className="p-2 aspect-video"
                         />
                     </a>
                     <a
@@ -550,7 +560,7 @@ export default function Home({showPdf=true, ...props }) {
                             src={udemyLogo}
                             id={pdfMode ? 'pdfImg' : ''}
                             alt="Udemy Logo"
-                            className="p-2"
+                            className="p-2 aspect-video"
                         />
                     </a>
                     <a
@@ -562,7 +572,7 @@ export default function Home({showPdf=true, ...props }) {
                             src={coursera}
                             id={pdfMode ? 'pdfImg' : ''}
                             alt="Coursera Logo"
-                            className="p-2"
+                            className="p-2 aspect-video"
                         />
                     </a>
                 </span>
@@ -597,10 +607,14 @@ export default function Home({showPdf=true, ...props }) {
     ),
     body: (
         <p className="">
-            Designing and developing modern web applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure including authentication, integrations, and data pipelines. Leveraging automation, AI APIs, and cloud platforms to speed up development and optimize workflows. Proficient in 
+            Designing and developing modern web applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure includes cloud services and functions, database, authentication, integrations and data pipelines. Leveraging automation, AI APIs, and cloud platforms to speed up development and optimize workflows. Proficient in 
+            <i className="detailH"><code>Node.js</code></i>, 
+            <i className="detailH"><code>TS & JS</code></i>, 
             <i className="detailH"><code>React</code></i>, 
             <i className="detailH"><code>Next.js</code></i>, 
             <i className="detailH"><code>Firebase</code></i>, 
+            <i className="detailH"><code>Postgres</code></i>, 
+            <i className="detailH"><code>MongoDB</code></i>, 
             <i className="detailH"><code>Supabase</code></i>, 
             <i className="detailH"><code>AWS</code></i>, 
             <i className="detailH"><code>Python</code></i>, and 
@@ -618,8 +632,7 @@ second: {
     body: (
         <p className="">
             Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy products. Responsible for full product cycle - from early design and prototyping to validation and mass production. Collaborated with firmware, QA, and manufacturing teams to ensure system-level reliability. Built automated test frameworks and real-time data tools using 
-            <i className="detailH"><code>Python</code></i> and 
-            <i className="detailH"><code>C#</code></i> to streamline validation processes. Experience with DSPs, wireless communication, power electronics, and system-level debugging. Known for hands-on problem solving and cross-domain coordination.
+            python and C# to streamline validation processes. Experience with DSPs, wireless communication, power electronics, and system-level debugging. Known for hands-on problem solving and cross-domain coordination.
         </p>
     )
 }
@@ -643,7 +656,7 @@ second: {
             head: (
                 <p className="font-medium !text-base-content">
                     Senior Math & Physics Tutor &nbsp;| 
-                    <i className="subTitle">Archimedes, 2016-2019 </i>
+                    <i className="subTitle">Archimedes LTD, 2016-2019 </i>
                 </p>
             ),
             body: (
@@ -668,7 +681,7 @@ second: {
                             src={sedg}
                             id={pdfMode ? 'pdfImg' : ''}
                             alt="SolarEdge Logo"
-                            className="p-2"
+                            className="p-2 aspect-video"
                         />
                     </a>
                     <a
@@ -679,7 +692,7 @@ second: {
                         <img
                             src={tau2}
                             id={pdfMode ? 'pdfImg' : ''}
-                            className="tauLogo p-2"
+                            className="tauLogo* p-2 aspect-video"
                             alt="Tel-Aviv university Logo"
                         />
                     </a>
@@ -736,23 +749,13 @@ second: {
                     </div>
                 )}
                 <p className="text-base mb-3">
-                    I'm a Passionate developer with strong technical background and a knack for creating
-                    innovative, high-quality solutions. My journey began at Tel Aviv University, 
-                    where I balanced between SW & HW engineering studies with an ever-growing interest 
-                    in programming and web technologies.
+                    I'm a Passionate developer with strong technical background in HW, Web applications and Product R&D.  I focus on creating innovative, high-quality solutions. My journey began at Tel Aviv University, where I balanced SW & HW engineering studies with an ever-growing interest in programming and web technologies.
                 </p>
                 <p className="text-base mb-3">
-                    After several years leading product R&D in the energy sector, I focused fully on 
-                    full-stack web development and started building interactive, scalable applications 
-                    that streamline user experiences. My background in hardware and embedded systems 
-                    equips me with a unique perspective in bridging the gap between physical devices 
-                    and software solutions.
+                    After several years leading product R&D in the energy sector as an HW engineer, I focused on full-stack web development and started building interactive, scalable applications that streamline innovation and user experiences. My background in hardware and embedded systems equips me with a unique perspective in bridging the gap between HW and SW solutions together with strong project management skills.
                 </p>
                 <p className="text-base">
-                    I am driven by a desire to push boundaries, explore cutting-edge tech, and 
-                    collaborate on impactful projects. Whether it's a dynamic web platform, an 
-                    automation script, or an innovative AI integration—I'm always ready to deliver 
-                    a tailored, future-proof product.
+                  I am driven by a desire to push boundaries, explore cutting-edge tech, and collaborate on impactful ideas. Whether it's a dynamic web platform, an automation script, or an innovative Al integration, I'm always ready to deliver a tailored, future-proof product.
                 </p>
             </div>
         </div>
@@ -769,7 +772,7 @@ second: {
         github: {
             icon: faGithub,
             color: 'currentColor',
-            data: 'Adi Yehuda',
+            data: 'Github - AdiY',
             link: 'https://github.com/AdiYd' // Add your GitHub link here
         },
         Linkedin: {
@@ -802,9 +805,9 @@ second: {
                             href={contactMeDict[item].link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="flex text-lg max-sm:text-base text-base-content items-center gap-3 px-4 py-2 "
+                            className="flex text-base max-sm:text-base text-base-content items-center gap-3 px-4 py-2 "
                         >
-                            <div className=" ">
+                            <div className="">
                                 <FontAwesomeIcon
                                     icon={contactMeDict[item].icon}
                                 />
@@ -834,7 +837,7 @@ second: {
                     style={{animationDuration: '0.5s'}}
                     className={`${isRolling ? 'animate-spin' : ''}`}
                 /> :
-                <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'dracula']} className="text-xl" />
+                <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'cupcake']} className="text-xl" />
                 }
             </div>
             {/* <a
@@ -857,6 +860,18 @@ second: {
                 <FontAwesomeIcon
                     size="lg"
                     icon={contactMeDict.Linkedin.icon}
+                />
+            </a>
+            <a
+                href={contactMeDict.github.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-circle btn-accent backdrop-blur-lg btn-outline shakeHover"
+                title="My Github"
+            >
+                <FontAwesomeIcon
+                    size="lg"
+                    icon={contactMeDict.github.icon}
                 />
             </a>
             <a
@@ -901,11 +916,12 @@ second: {
             className={`main z-10  py-8 ${pdfMode ? 'pdfContainer pdfCard' : ''}`}
             // data-theme="light"
         >
-            <div className="flex justify-center gap-4 max-sm:gap-0 mb-8" style={{ alignItems: 'center' }}>
+            <div className="flex justify-center gap-2 max-sm:gap-0 mb-8" style={{ alignItems: 'center' }}>
                 <h1 className="text-4xl font-bold">
                     Adi Yehuda 
                 </h1>
                 {!pdfMode && showPdf && (
+                    <>
                     <a
                         href='https://adiyd.github.io/About/assets/Adi Yehuda-CVS.pdf'
                         download
@@ -918,6 +934,19 @@ second: {
                     >
                         <FontAwesomeIcon icon={faFilePdf} />
                     </a>
+                    <a
+                        href='https://adiyd.github.io/About/assets/AdiYehuda-CVS.docx'
+                        download
+                        id="downloadDoc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Download Word Document"
+                        // onClick={() => downloadPdf()}
+                        className="btn btn-circle btn-outline btn-primary btn-sm"
+                    >
+                        <FontAwesomeIcon icon={faFileWord} />
+                    </a>
+                    </>
                 )}
             </div>
 

@@ -70,7 +70,7 @@ body {
 
 
 code {
-  @apply text-primary-focus mx-0.5 font-semibold hover:glass rounded-lg p-0.5;
+  @apply text-primary-focus hover:shadow-lg hover:shadow-accent/70 text-nowrap hover:px-2 transition-all mx-0.5 font-semibold rounded-lg p-0.5;
 }
 
 h1 {
@@ -101,7 +101,7 @@ h6 {
 }
 
 p {
-  @apply text-base-content/80 !mx-0;
+  @apply text-base-content/90 !mx-0;
 }
 
 span {
