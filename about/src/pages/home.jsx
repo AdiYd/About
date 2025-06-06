@@ -18,7 +18,8 @@ import {
     faLocationDot,
     faDice,
     faEarthAmerica,
-    faFileWord
+    faFileWord,
+    faPassport
 } from '@fortawesome/free-solid-svg-icons';
 import selfie from '../img/AdiY.png';
 import tau from '../img/TAU_university_logo_ENG.png';
@@ -362,32 +363,37 @@ export default function Home({showPdf=true, ...props }) {
                 </p>
             ),
             body: (
-                <section className="max-w-[95%]">
+                <section className="max-w-[95%] text-wrap">
                     Majors in computers, control systems, and EM waves:
-                    <ul className="majorsList list-none  border-l-2 border-accent/40 pl-4">
-                        <li className="my-2">
-                            <i className="majors">Computers & Programming –</i> In-depth programming,
-                            <code>Python</code>,
-                            <code>C++</code>,
-                            <code>JS & TS</code>,
-                            <code>Computer organization</code>,
-                            <code>HW-SW interfaces</code>,
-                            <code>Algorithms</code>,
-                            <code>Data structures</code>,
-                            <code>OS</code>,
-                            <code>encryption</code>,
-                            <code>network protocols.</code>
-                        </li>
-                        <div className="w-full h-2"/>
-                        <li className="my-2">
-                            <i className="majors">Electromagnetic Radiation –</i> Waves propagation,Radiation and Transmissions.
-                        </li>
-                        <div className="w-full h-2"/>
-                        <li className="my-2">
-                            <i className="majors">Controlled Systems –</i> Feedback loops,
-                            logic blocks, and control theory fundamentals.
-                        </li>
-                    </ul>
+                    <p>
+                        <ul className="majorsList list-none text-wrap border-l-2 border-accent/40 pl-4">
+                            <li className="my-2">
+                                <i className="majors">Computers & Programming – </i> 
+                                In-depth computer science courses in:   
+                                <div className="detailH flex flex-wrap">
+                                    <code>Python</code>,
+                                    <code>C++</code>,
+                                    <code>JS & TS</code>,
+                                    <code>Computer organization</code>,
+                                    <code>HW-SW interfaces</code>,
+                                    <code>Algorithms</code>,
+                                    <code>Data structures</code>,
+                                    <code>OS</code>,
+                                    <code>encryption</code>,
+                                    <code>network protocols.</code>
+                                </div>
+                            </li>
+                            <div className="w-full h-2"/>
+                            <li className="my-2">
+                                <i className="majors">Electromagnetic Radiation –</i> Waves propagation,Radiation and Transmissions.
+                            </li>
+                            <div className="w-full h-2"/>
+                            <li className="my-2">
+                                <i className="majors">Controlled Systems –</i> Feedback loops,
+                                logic blocks, and control theory fundamentals.
+                            </li>
+                        </ul>
+                    </p>
                 </section>
             )
         },
@@ -426,26 +432,23 @@ export default function Home({showPdf=true, ...props }) {
             ),
             body: (
                 <p className="">
-                    In-depth web development, with a focus on modern frameworks like&nbsp;
+                    In-depth web development, with a focus on modern frameworks like
                     <i className="detailH">
                         <code>React</code>
-                    </i>
-                    &nbsp;and&nbsp;
-                    <i className="detailH">
+                        and {` `}       
                         <code>Next.js</code>.
                     </i>
-                    Strong API and cloud frameworks, server-side rendering, and scalable solutions. {` `}
-                    {/* <br /> */}
+                    Strong API and cloud frameworks, database, authentication, server-side rendering, and scalable apps. {` `}
                     Also covered advanced topics and best practices in web development, including professional UI/UX design, performance optimization, and security measures.
-                    <i className="detailH">
+                    <div className="detailH flex flex-wrap">
                         <code>Tailwind</code>,
                         <code>Radix UI</code>,
                         <code>ShadCN</code>,
                         <code>daisyUI</code>,
                         <code>Ant design</code>,
                         <code>MUI</code>,
-                        <code>Bootstrap</code>
-                    </i>
+                        <code>Bootstrap</code>.
+                    </div>
                 </p>
             )
         },
@@ -459,18 +462,15 @@ export default function Home({showPdf=true, ...props }) {
             body: (
                 <p className="">
                     multiple courses on UI/UX design and web development including various tools and techniques.
-                    <i className="detailH">
-                        <code>Figma</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
+                    <div className="detailH flex flex-wrap">
                         {/* <code>Layout and Grid systems</code>, */}
+                        <code>Figma</code>
                         <code>Typhography</code>,
                         <code>Color theory</code>,
                         <code>Design patterns</code>,
                         <code>UI/UX</code>,
-                        <code>Responsive design</code>
-                    </i>.
+                        <code>Responsive design</code>.
+                    </div>
 
                 </p>
             )
@@ -607,7 +607,7 @@ export default function Home({showPdf=true, ...props }) {
     ),
     body: (
         <p className="">
-            Designing and developing modern web applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure includes cloud services and functions, database, authentication, integrations and data pipelines. Leveraging automation, AI APIs, and cloud platforms to speed up development and optimize workflows. Proficient in 
+            Designing and developing modern web applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure includes cloud services and functions, database, authentication and integrations of data pipelines. Leveraging automation with AI, APIs and cloud platforms to speed up development and optimize workflows. Proficient in 
             <i className="detailH"><code>Node.js</code></i>, 
             <i className="detailH"><code>TS & JS</code></i>, 
             <i className="detailH"><code>React</code></i>, 
@@ -617,7 +617,7 @@ export default function Home({showPdf=true, ...props }) {
             <i className="detailH"><code>MongoDB</code></i>, 
             <i className="detailH"><code>Supabase</code></i>, 
             <i className="detailH"><code>AWS</code></i>, 
-            <i className="detailH"><code>Python</code></i>, and 
+            <i className="detailH"><code>Python</code></i>,
             <i className="detailH"><code>AI integrations</code></i>.
         </p>
     )
@@ -719,7 +719,19 @@ second: {
 
          
 
-            <div className={`${pdfMode ? '': 'card'} !block p-2 pt-0`}>
+            <div className={`${pdfMode ? '': 'card'} !block p-2`}>
+              {!pdfMode && (
+                    <div id="profileImg" className="w-fit relative  float-right avatar online">
+                        <div className="w-24 mask !contents ">
+                            <img
+                                src={selfie}
+                                alt="Portrait of Adi Yehuda"
+                                title="Portrait of Adi Yehuda"
+                            />
+                        </div>
+                    </div>
+                )}
+
                 <div
                     className="flex flex-wrap my-4 items-center">
                     <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
@@ -736,26 +748,21 @@ second: {
                         <FontAwesomeIcon icon={faEarthAmerica} size="sm" />
                         <p>EN, HE</p>
                     </div>
-                </div>
-                {!pdfMode && (
-                    <div id="profileImg" className="w-fit relative md:-top-16 float-right avatar online">
-                        <div className="w-24 mask !contents ">
-                            <img
-                                src={selfie}
-                                alt="Portrait of Adi Yehuda"
-                                title="Portrait of Adi Yehuda"
-                            />
-                        </div>
+                    <p className="max-sm:hidden" style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
+                    <div className="flex flex-nowrap max-sm:hidden justify-center badge bg-transparent hover:glass border-none gap-2">
+                        <FontAwesomeIcon icon={faPassport} size="sm" />
+                        <p>EU, IL</p>
                     </div>
-                )}
-                <p className="text-base mb-3">
-                    I'm a Passionate developer with strong technical background in HW, Web applications and Product R&D.  I focus on creating innovative, high-quality solutions. My journey began at Tel Aviv University, where I balanced SW & HW engineering studies with an ever-growing interest in programming and web technologies.
+                </div>
+              
+                <p className="text-base mb-3 max-sm:max-w-[95%] max-sm:!ml-2">
+                    I'm a Passionate developer with strong technical background in Web applications, Product R&D and HW.  I focus on creating innovative, high-quality solutions. My journey began at Tel Aviv University, where I balanced SW & HW engineering studies with an ever-growing interest in programming and web apps.
                 </p>
-                <p className="text-base mb-3">
+                <p className="text-base mb-3 max-sm:max-w-[95%] max-sm:!ml-2">
                     After several years leading product R&D in the energy sector as an HW engineer, I focused on full-stack web development and started building interactive, scalable applications that streamline innovation and user experiences. My background in hardware and embedded systems equips me with a unique perspective in bridging the gap between HW and SW solutions together with strong project management skills.
                 </p>
-                <p className="text-base">
-                  I am driven by a desire to push boundaries, explore cutting-edge tech, and collaborate on impactful ideas. Whether it's a dynamic web platform, an automation script, or an innovative Al integration, I'm always ready to deliver a tailored, future-proof product.
+                <p className="text-base mb-3 max-sm:max-w-[95%] max-sm:!ml-2">
+                  I am driven by a desire to push boundaries, explore cutting-edge tech and collaborate on impactful ideas. Whether it's a dynamic application, platform, product or any other AI driven Ideas - I'm always ready to deliver a professional, meaningful and future-proof development.
                 </p>
             </div>
         </div>
@@ -952,7 +959,7 @@ second: {
 
             {!pdfMode && 
             <div onClick={changeRandomTheme} id='roll-the-dice-theme' className="items-center hover:shadow-lg cursor-pointer hover:shadow-accent max-sm:hover:shadow-none after:shadow-none text-base-content justify-center p-4 w-fit min-w-48 mx-auto mb-8 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg hover:border-secondary/40 border-primary/40">
-                <div className="grid-cols-[1fr_1fr_3fr] gap-4 grid w-full text-base font-bold items-center">
+                <div className="grid-cols-[1fr_1fr_3fr] gap-2 grid w-full text-base font-bold items-center">
                     <div className="flex flex-col gap-1 relative -right-2 justify-center">
                         <div className="h-1 w-1 rounded-full bg-primary"/>
                         <div className="h-1 w-1 rounded-full bg-secondary"/>
@@ -961,7 +968,6 @@ second: {
                     <div className="text-lg">
                     {(!themeName || isRolling) ? <FontAwesomeIcon
                             icon={faDice}
-                            
                             style={{animationDuration: '0.5s'}}
                             className={` ${isRolling ? 'animate-spin' : ''}`}
                         /> : 

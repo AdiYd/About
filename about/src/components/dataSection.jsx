@@ -34,19 +34,19 @@ function DataSection({
     return (
         <div key={title} className="dataContainer">
             <div className={`text-start ${!isPDF ? 'dataWrapper' : ''}`}>
-                <div onClick={extentedMenu && !isPDF ? () => { setActive(p => !p); callBack(p => !p) } : undefined} className='flex cursor-pointer'>
+                <div onClick={extentedMenu && !isPDF ? () => { setActive(p => !p); callBack(p => !p) } : undefined} className='flex cursor-pointer w-fit'>
                     {<h3 className='mx-2 mb-2'>{title}</h3>}
                     {(extentedMenu && !isPDF) &&
                         <div className='flex gap-0 flex-row-reverse'>
                             <span className='text-xs place-self-center'>
                                 {isActive ? '' : '(Click for the full Tech Stack)'}
                             </span>
-                        <a
-                            // href="#"
-                            className={`moreDetails  ${isActive ? 'rotate-180' : ''}`}
-                            title={isActive ? 'Less skills' : 'More skills'}>
-                            {arrDown}
-                        </a>
+                            <a
+                                // href="#"
+                                className={`moreDetails  ${isActive ? 'rotate-180' : ''}`}
+                                title={isActive ? 'Less skills' : 'More skills'}>
+                                {arrDown}
+                            </a>
                         </div>}
                 </div>
                 {isPDF ? childrens :<motion.div
@@ -59,7 +59,7 @@ function DataSection({
                     }}
                     viewport={{ once: false, margin: '0px 0px -100px 0px' }}
                     transition={{ duration: 1 }}
-                    className='overflow-x-hidden '
+                    className='overflow-x-hidden overflow-y-visible'
                 >
                     {childrens}
                 </motion.div>}
