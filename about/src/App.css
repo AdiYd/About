@@ -7,7 +7,7 @@
 @tailwind utilities;
 
 @plugin "daisyui" {
-  themes: cupcake --default, dracula --prefersdark;
+  themes: light --default, dracula --prefersdark;
 };
 
 html {
@@ -70,7 +70,7 @@ body {
 
 
 code {
-  @apply text-primary-focus hover:shadow-lg hover:shadow-accent/70 text-nowrap hover:px-2 transition-all mx-0.5 font-semibold rounded-lg p-0.5;
+  @apply text-primary-focus hover:shadow-md hover:shadow-accent/90 text-nowrap hover:px-2 transition-all mx-0.5 font-semibold rounded-lg p-0.5;
 }
 
 h1 {

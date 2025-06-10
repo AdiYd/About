@@ -223,7 +223,7 @@ i.majors {
 }
 
 i.subTitle {
-    @apply inline-block self-center justify-self-center not-italic text-base-content/80 tracking-wide text-xs hover:text-accent mx-2;
+    @apply inline-block self-center justify-self-center not-italic text-accent-focus tracking-wide text-xs hover:text-accent mx-2;
 }
 
 div.floatingContact {

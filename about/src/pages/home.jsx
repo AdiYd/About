@@ -21,12 +21,12 @@ import {
     faFileWord,
     faPassport
 } from '@fortawesome/free-solid-svg-icons';
-import selfie from '../img/AdiY.png';
+import selfie from '../img/AdiYd.jpeg';
 import tau from '../img/TAU_university_logo_ENG.png';
 import tau2 from '../img/TAU_Logo.png';
-import udemyLogo from '../img/udemyLogo.svg';
+// import udemyLogo from '../img/udemyLogo.svg';
 import sedg from '../img/sedg.svg';
-import coursera from '../img/coursera.svg';
+// import coursera from '../img/coursera.svg';
 import { AnimatePresence, motion } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
@@ -366,7 +366,7 @@ export default function Home({showPdf=true, ...props }) {
                 <section className="max-w-[95%] text-wrap">
                     Majors in computers, control systems, and EM waves:
                     <p>
-                        <ul className="majorsList list-none text-wrap border-l-2 border-accent/40 pl-4">
+                        <ul className="majorsList list-none text-wrap border-l-2 border-accent-focus/50 pl-4">
                             <li className="my-2">
                                 <i className="majors">Computers & Programming – </i> 
                                 In-depth computer science courses in:   
@@ -537,7 +537,7 @@ export default function Home({showPdf=true, ...props }) {
 
     let education = (
         <div key="Education" className="eduContainer">
-            {!pdfMode && (
+            {false && (
                 <span className="educationImg max-sm:hidden">
                     <a
                         href="https://english.tau.ac.il/"
@@ -551,7 +551,7 @@ export default function Home({showPdf=true, ...props }) {
                             className="p-2 aspect-video"
                         />
                     </a>
-                    <a
+                    {/* <a
                         href="https://www.udemy.com/"
                         className="card"
                         title="Udemy"
@@ -562,8 +562,8 @@ export default function Home({showPdf=true, ...props }) {
                             alt="Udemy Logo"
                             className="p-2 aspect-video"
                         />
-                    </a>
-                    <a
+                    </a> */}
+                    {/* <a
                         href="https://www.coursera.com/"
                         className="card"
                         title="Coursera"
@@ -574,7 +574,7 @@ export default function Home({showPdf=true, ...props }) {
                             alt="Coursera Logo"
                             className="p-2 aspect-video"
                         />
-                    </a>
+                    </a> */}
                 </span>
             )}
             {list({ key: 'EducationList', style: { marginTop: '0px' }, dictList: edDict })}
@@ -670,7 +670,7 @@ second: {
 
     let experience = (
         <div key="Experience" className="expContainer">
-            {!pdfMode && (
+            {false && (
                 <span className="educationImg">
                     <a
                         href="https://investors.solaredge.com/"
@@ -721,12 +721,13 @@ second: {
 
             <div className={`${pdfMode ? '': 'card'} !block p-2`}>
               {!pdfMode && (
-                    <div id="profileImg" className="w-fit relative  float-right avatar online">
-                        <div className="w-24 mask !contents ">
+                    <div id="profileImg" className="w-fit relative transition-all float-right avatar overflow-hidden shadow-md">
+                        <div className="w-24 mask overflow-hidden transition-all !contents ">
                             <img
                                 src={selfie}
                                 alt="Portrait of Adi Yehuda"
-                                title="Portrait of Adi Yehuda"
+                                title="Adi Yehuda"
+                                className="hover:scale-125 transition-all"
                             />
                         </div>
                     </div>
