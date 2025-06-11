@@ -929,7 +929,7 @@ second: {
                 {!pdfMode && showPdf && (
                     <>
                     <a
-                        href='https://adiyd.github.io/About/assets/Adi Yehuda-CVS.pdf'
+                        href='https://adiyd.github.io/About/assets/Adi Yehuda-CV.pdf'
                         download
                         id="downloadPdf"
                         target="_blank"
@@ -941,7 +941,7 @@ second: {
                         <FontAwesomeIcon icon={faFilePdf} />
                     </a>
                     <a
-                        href='https://adiyd.github.io/About/assets/AdiYehuda-CVS.docx'
+                        href='https://adiyd.github.io/About/assets/Adi Yehuda-CV.docx'
                         download
                         id="downloadDoc"
                         target="_blank"
