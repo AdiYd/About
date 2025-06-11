@@ -187,12 +187,12 @@ span.educationImg img#pdfImg {
 }
 
 div#profileImg {
-    @apply float-right max-sm:float-none bg-base-100 m-5 mt-0 rounded-full flex border border-info;
+    @apply  max-sm:float-none m-5 mt-0 flex overflow-hidden;
 }
 
-div#profileImg img {
+/* div#profileImg img {
     @apply w-24 h-24 rounded-full;
-}
+} */
 
 .animUp:hover {
     transform: translateY(-1vh);

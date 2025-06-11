@@ -21,7 +21,7 @@ import {
     faFileWord,
     faPassport
 } from '@fortawesome/free-solid-svg-icons';
-import selfie from '../img/AdiYd.jpeg';
+import selfie from '../img/AdiYd2.jpeg';
 import tau from '../img/TAU_university_logo_ENG.png';
 import tau2 from '../img/TAU_Logo.png';
 // import udemyLogo from '../img/udemyLogo.svg';
@@ -721,15 +721,13 @@ second: {
 
             <div className={`${pdfMode ? '': 'card'} !block p-2`}>
               {!pdfMode && (
-                    <div id="profileImg" className="w-fit relative transition-all float-right avatar overflow-hidden shadow-md">
-                        <div className="w-24 mask overflow-hidden transition-all !contents ">
+                    <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle overflow-hidden">
                             <img
                                 src={selfie}
                                 alt="Portrait of Adi Yehuda"
                                 title="Adi Yehuda"
-                                className="hover:scale-125 transition-all"
+                                className="hover:scale-110 !w-24 !h-24  transition-all"
                             />
-                        </div>
                     </div>
                 )}
 
