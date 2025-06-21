@@ -629,13 +629,13 @@ export default function Home({showPdf=true, ...props }) {
 second: {
     head: (
         <p className="font-medium !text-base-content">
-            Senior Hardware & Product Engineer &nbsp;|
+            Hardware & Product Engineer &nbsp;|
             <i className="subTitle"> SolarEdge R&D, 2019–2023 </i>
         </p>
     ),
     body: (
         <p className="">
-            Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy products. Responsible for full product cycle - from early design and prototyping to validation and mass production. Collaborated with firmware, QA, and manufacturing teams to ensure system-level reliability. Built automated test frameworks and real-time data tools using 
+            Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy products. Responsible for full product cycle - from early design and prototyping, Board design and architecture to validation and mass production. Collaborated with firmware, QA, and manufacturing teams to ensure system-level reliability. Built automated test frameworks and real-time data tools using
             python and C# to streamline validation processes. Experience with DSPs, wireless communication, power electronics, and system-level debugging. Known for hands-on problem solving and cross-domain coordination.
         </p>
     )
