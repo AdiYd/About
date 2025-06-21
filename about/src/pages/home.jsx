@@ -83,7 +83,7 @@ export default function Home({showPdf=true, ...props }) {
         const handleResize = () => {
             setIsMobile(window.innerWidth <= 768);
         };
-
+        debugFunction();
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -918,7 +918,7 @@ second: {
     //     }, 100);
     // }
 
-    debugFunction();
+
 
     return (
         <div
