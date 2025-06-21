@@ -369,7 +369,7 @@ export default function Home({showPdf=true, ...props }) {
             body: (
                 <section className="max-w-[95%] text-wrap">
                     Majors in computers, control systems, and EM waves:
-                    <p>
+                    <div>
                         <ul className="majorsList list-none text-wrap border-l-2 border-accent-focus/50 pl-4">
                             <li className="my-2">
                                 <i className="majors">Computers & Programming – </i> 
@@ -397,7 +397,7 @@ export default function Home({showPdf=true, ...props }) {
                                 logic blocks, and control theory fundamentals.
                             </li>
                         </ul>
-                    </p>
+                    </div>
                 </section>
             )
         },
@@ -435,7 +435,7 @@ export default function Home({showPdf=true, ...props }) {
                 </p>
             ),
             body: (
-                <p className="">
+                <div className="">
                     In-depth web development, with a focus on modern frameworks like
                     <i className="detailH">
                         <code>React</code>
@@ -453,7 +453,7 @@ export default function Home({showPdf=true, ...props }) {
                         <code>MUI</code>,
                         <code>Bootstrap</code>.
                     </div>
-                </p>
+                </div>
             )
         },
         fourth: {
@@ -464,7 +464,7 @@ export default function Home({showPdf=true, ...props }) {
                 </p>
             ),
             body: (
-                <p className="">
+                <div className="">
                     multiple courses on UI/UX design and web development including various tools and techniques.
                     <div className="detailH flex flex-wrap">
                         {/* <code>Layout and Grid systems</code>, */}
@@ -476,7 +476,7 @@ export default function Home({showPdf=true, ...props }) {
                         <code>Responsive design</code>.
                     </div>
 
-                </p>
+                </div>
             )
         },
         fifth: {
@@ -918,6 +918,7 @@ second: {
     //     }, 100);
     // }
 
+    debugFunction();
 
     return (
         <div
@@ -1006,4 +1007,41 @@ second: {
 // Debug function
 export const debug = (...args) => {
     console.log(...args);
+};
+
+export const debugFunction = () => {
+    // Futuristic, colorful console log styling
+    const styles = [
+        'font-weight: bold',
+        'font-size: 20px',
+        'color: #FF00FF',
+        'text-shadow: 2px 2px 4px #00DFFF',
+        'background: linear-gradient(90deg, #0D0221 0%, #241734 50%, #0D0221 100%)',
+        'padding: 10px 20px',
+        'border-radius: 5px',
+        'border: 1px solid #7F5AF0',
+        'margin: 20px 0'
+    ].join(';');
+    
+    const styles2 = [
+        'font-weight: bold',
+        'font-size: 20px',
+        'color: #00FFAA',
+        'text-shadow: 2px 2px 4px #FF5500',
+        'background: linear-gradient(90deg, #112211 0%, #224422 50%, #112211 100%)',
+        'padding: 10px 20px',
+        'border-radius: 5px',
+        'border: 1px solid #22AA44',
+        'margin: 20px 0'
+    ].join(';');
+
+
+    // Title with large, bold styling
+    console.log('%c🚀 Thanks for checking on my Logs! 🚀', styles);
+    console.log('%c✨ Let\'s Talk 🙋', styles2);
+
+    
+    // App state placeholder
+    // console.log('%cReady to inspect application state', 'color: #FF8500; font-weight: bold; font-size: 14px');
+    
 };
