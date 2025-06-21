@@ -56,12 +56,9 @@ export const themeIconify = {
     autumn: 'mdi:leaf-maple',
     business: 'mdi:briefcase',
     acid: 'mdi:flask',
-    lemonade: 'icon-park-outline:lemon',
     night: 'mdi:weather-night',
-    // coffee: 'mdi:coffee',
     winter: 'mdi:snowflake',
     dracula: 'game-icons:vampire-dracula',
-    // caramellatte: 'mdi:coffee-to-go',
   };
 
 /**
@@ -79,7 +76,7 @@ export default function Home({showPdf=true, ...props }) {
     const [themeName, setThemeName] = useState(null);
     const [skillMode, setSkillMode] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set(['light']));
+    const usedThemes = useRef(new Set(['dracula']));
  
     useEffect(() => {
         // update is mobile state on resize
@@ -98,8 +95,8 @@ export default function Home({showPdf=true, ...props }) {
         const currentTheme = document.documentElement.getAttribute('data-theme') || preferThemeMode;
 
         const themesByMode = {
-            light: ['light', 'cupcake', 'corporate', 'retro','cmyk','autumn', 'lemonade','winter', 'valentine','cyberpunk', 'garden', 'aqua','light', 'pastel', 'fantasy'],
-            dark: ['dark', 'halloween', 'synthwave',  'dracula',  'business', 'night' ,'forest'],
+            light: ['light', 'cupcake', 'retro', 'autumn', 'winter','light', 'fantasy'],
+            dark: ['halloween', 'synthwave',  'dracula', 'night' ,'forest'],
         }
 
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
@@ -112,12 +109,19 @@ export default function Home({showPdf=true, ...props }) {
         return;
         }
         else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
-            setThemeName('autumn');
-            usedThemes.current.add('autumn');
-            document.documentElement.setAttribute('data-theme', 'autumn');
+            setThemeName('light');
+            usedThemes.current.add('light');
+            document.documentElement.setAttribute('data-theme', 'light');
             setIsRolling(false);
             return;
         }
+        // else if ((themeName === 'light' && nextThemeMode === 'dark')) {
+        //     setThemeName('forest');
+        //     usedThemes.current.add('forest');
+        //     document.documentElement.setAttribute('data-theme', 'forest');
+        //     setIsRolling(false);
+        //     return;
+        // }
         let availableThemes = themesByMode[nextThemeMode].filter(theme => !usedThemes.current.has(theme));
         if (availableThemes.length === 0) {
             availableThemes = themesByMode[nextThemeMode].filter(theme => theme !== themeName);
@@ -464,7 +468,7 @@ export default function Home({showPdf=true, ...props }) {
                     multiple courses on UI/UX design and web development including various tools and techniques.
                     <div className="detailH flex flex-wrap">
                         {/* <code>Layout and Grid systems</code>, */}
-                        <code>Figma</code>
+                        <code>Figma</code>,
                         <code>Typhography</code>,
                         <code>Color theory</code>,
                         <code>Design patterns</code>,
@@ -721,13 +725,13 @@ second: {
 
             <div className={`${pdfMode ? '': 'card'} !block p-2`}>
               {!pdfMode && (
-                    <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle overflow-hidden">
-                            <img
-                                src={selfie}
-                                alt="Portrait of Adi Yehuda"
-                                title="Adi Yehuda"
-                                className="hover:scale-110 !w-24 !h-24  transition-all"
-                            />
+                    <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle rounded-3xl overflow-hidden">
+                        <img
+                            src={selfie}
+                            alt="Portrait of Adi Yehuda"
+                            title="Adi Yehuda"
+                            className="hover:scale-110 !w-24 !h-24 rotate-[-5deg] transition-all"
+                        />
                     </div>
                 )}
 
@@ -748,7 +752,7 @@ second: {
                         <p>EN, HE</p>
                     </div>
                     <p className="max-sm:hidden" style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                    <div className="flex flex-nowrap max-sm:hidden justify-center badge bg-transparent hover:glass border-none gap-2">
+                    <div title="Passport" className="flex flex-nowrap max-sm:hidden justify-center badge bg-transparent hover:glass border-none gap-2">
                         <FontAwesomeIcon icon={faPassport} size="sm" />
                         <p>EU, IL</p>
                     </div>
@@ -830,13 +834,12 @@ second: {
     let floatingContact = (
         <div className="floatingContact">
          <div
-                
-                className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
-                title={themeName || 'Roll the Dice'}
-                onClick={changeRandomTheme}
-                onMouseEnter={() => setShowDice(true)}
-                onMouseLeave={() => setShowDice(false)}
-            >
+            className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
+            title={themeName || 'Roll the Dice'}
+            onClick={changeRandomTheme}
+            onMouseEnter={() => setShowDice(true)}
+            onMouseLeave={() => setShowDice(false)}
+        >
             { (isRolling || showDice ) ? <FontAwesomeIcon
                     icon={faDice}
                     size="lg"

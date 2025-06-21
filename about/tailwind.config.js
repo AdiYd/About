@@ -11,6 +11,6 @@ module.exports = {
     require("daisyui"),
   ],
   daisyui: {
-    themes: ["light", "dark", "cupcake", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade", "night", "coffee", "winter", "caramellatte", "silk"],
+    themes: ["light", "dark", "cupcake", "corporate", "synthwave", "retro", "cyberpunk", "valentine", "halloween", "garden", "forest", "aqua", "lofi", "pastel", "fantasy", "wireframe", "black", "luxury", "dracula", "cmyk", "autumn", "business", "acid",  "night",  "winter", "caramellatte", "silk"],
   }
 }
