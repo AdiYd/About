@@ -195,7 +195,7 @@ export default function Home({showPdf=true, ...props }) {
                     className='list list-none'
                 >
                     <span className="listContainer* flex flex-col gap-0">
-                        <div className="listHeaderDiv">
+                        <div className="listHeaderDiv mb-1">
                             {dictList[item].head}
                         </div>
                         <div className="listTextDiv self-start">
@@ -367,7 +367,7 @@ export default function Home({showPdf=true, ...props }) {
                 </p>
             ),
             body: (
-                <section className="max-w-[95%] text-wrap">
+                <section className="max-w-[95%] mt-2 text-base-content/80 text-wrap">
                     Majors in computers, control systems, and EM waves:
                     <div>
                         <ul className="majorsList list-none text-wrap border-l-2 border-accent-focus/50 pl-4">
@@ -435,7 +435,7 @@ export default function Home({showPdf=true, ...props }) {
                 </p>
             ),
             body: (
-                <div className="">
+                <div className="mt-2 text-base-content/80 text-wrap">
                     In-depth web development, with a focus on modern frameworks like
                     <i className="detailH">
                         <code>React</code>
@@ -464,7 +464,7 @@ export default function Home({showPdf=true, ...props }) {
                 </p>
             ),
             body: (
-                <div className="">
+                <div className="mt-2 text-base-content/80 text-wrap">
                     multiple courses on UI/UX design and web development including various tools and techniques.
                     <div className="detailH flex flex-wrap">
                         {/* <code>Layout and Grid systems</code>, */}
@@ -720,9 +720,6 @@ second: {
     // About Me content
     let aboutMe = (
         <div key="About me" className="aboutMe">
-
-         
-
             <div className={`${pdfMode ? '': 'card'} !block p-2`}>
               {!pdfMode && (
                     <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle rounded-3xl overflow-hidden">
