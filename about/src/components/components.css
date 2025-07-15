@@ -22,7 +22,7 @@ a.moreDetails {
 }
 
 .card {
-    @apply backdrop-blur-[100px] bg-base-200/40 border-[0.9px] border-zinc-400/40 rounded-box p-6 max-sm:p-2 z-10;
+    @apply backdrop-blur-[100px] bg-base-200/80 border-[0.9px] border-zinc-400/40 rounded-box p-6 max-sm:p-2 z-10;
     position: relative;
     overflow: hidden;
 }
@@ -284,7 +284,8 @@ p.listHeader {
 }
 
 div.listHeaderDiv p {
-    @apply m-1 mx-1.5;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    @apply m-1 mx-1.5 !text-primary !text-pretty;
 }
 
 div.listTextDiv p {
@@ -304,6 +305,7 @@ div#reactSkill:hover {
 }
 
 div.listTextDiv {
+    /* font-family: 'Courier New', Courier, monospace; */
     @apply flex flex-wrap text-base-content m-0 mx-1 content-center;
 }
 
@@ -325,11 +327,11 @@ div.skills-container {
 
 div.skill-box {
     transition: all 0.2s ease-in-out;
-    @apply flex flex-col  max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-[8px] border text-sm font-semibold;
+    @apply flex flex-col max-w-lg min-w-24 p-3.5 m-2 text-center hover:glass rounded-btn backdrop-blur-[8px] border text-sm font-semibold;
 }
 
 span.skillName {
-    @apply pt-2 text-sm text-base-content font-semibold;
+    @apply pt-2 text-sm font-[montserrat] text-base-content font-semibold;
 }
 
 fieldset.skillzFieldSet {
@@ -434,11 +436,12 @@ a.contactMeLink {
 } */
 
 i.detailH {
-    @apply italic inline-block;
+    @apply inline-block;
 }
 
 i.majors {
-    @apply italic font-[500] text-secondary-focus/90 !px-0;
+    font-family: 'Montserrat', 'Inter', sans-serif;
+    @apply not-italic font-[500] text-secondary-focus/90 !px-0;
 }
 
 i.subTitle {
