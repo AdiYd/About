@@ -335,7 +335,11 @@ span.skillName {
 }
 
 fieldset.skillzFieldSet {
-    @apply flex flex-wrap justify-center h-fit text-center p-4 mx-4 my-4 rounded-box border border-primary/20 shadow-sm;
+    @apply flex flex-wrap gap-2 justify-center h-fit text-center p-4 max-sm:px-2 my-4 rounded-box border-[0.6px] border-primary/20 shadow-sm;
+}
+
+fieldset.skillzFieldSet > div {
+    @apply m-0;
 }
 
 legend.legend {
@@ -509,7 +513,7 @@ div.floatingContact {
     }
 
     div.skill-box {
-        @apply w-[3.2em] p-3.5 ;
+        @apply w-[3.2em] p-3 max-sm:p-2 ;
     }
 
     span#restAPI {
