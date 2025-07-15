@@ -4,8 +4,8 @@ import './FireDots.css';
 const FireDots = () => {
     const containerRef = useRef(null);
     const createdStylesRef = useRef([]); // Keep track of created style elements
-    const particleNum = 15;
-    const particleBaseSize = 16;
+    const particleNum = 250;
+    const particleBaseSize = 6;
 
     useEffect(() => {
         const container = containerRef.current;
@@ -23,7 +23,7 @@ const FireDots = () => {
 
             const startPositionY = Math.floor(Math.random() * 10) + 100;
             const framesName = `move-frames-${i}`;
-            const moveDuration = 28000 + Math.floor(Math.random() * 9000);
+            const moveDuration = 58000 + Math.floor(Math.random() * 9000);
 
             circle.style.animationName = framesName;
             circle.style.animationDuration = `${moveDuration}ms`;

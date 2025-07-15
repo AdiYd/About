@@ -22,7 +22,226 @@ a.moreDetails {
 }
 
 .card {
-    @apply backdrop-blur-[100px] bg-base-200/40 rounded-box p-6 max-sm:p-2 z-10;
+    @apply backdrop-blur-[100px] bg-base-200/40 border-[0.9px] border-zinc-400/40 rounded-box p-6 max-sm:p-2 z-10;
+    position: relative;
+    overflow: hidden;
+}
+
+.card-animated-border {
+    position: relative;
+    overflow: visible;
+}
+
+.card-animated-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.8), transparent);
+    z-index: -1;
+    border-radius: inherit;
+    transform: translateX(-100%);
+    animation: shimmer 3s infinite;
+}
+
+.card-animated-border::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 50%, transparent 100%);
+    border-radius: 50%;
+    z-index: 1;
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5),
+                0 0 20px 5px rgba(255, 255, 255, 0.3);
+    animation: rotate-spark 4s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(0deg);
+    }
+    20% {
+        transform: translateX(100%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(0deg);
+    }
+}
+
+@keyframes rotate-spark {
+    0% {
+        transform: rotate(0deg) translateX(-50%) translateY(-50%) scale(0.8);
+        top: 0%;
+        left: 0%;
+    }
+    25% {
+        top: 0%;
+        left: 100%;
+    }
+    50% {
+        top: 100%;
+        left: 100%;
+    }
+    75% {
+        top: 100%;
+        left: 0%;
+    }
+    100% {
+        transform: rotate(360deg) translateX(-50%) translateY(-50%) scale(0.8);
+        top: 0%;
+        left: 0%;
+    }
+}
+
+
+.card-spark {
+    position: relative;
+    overflow: visible;
+    border-radius: 20px;
+}
+
+.card-spark::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    z-index: -1;
+    border-radius: inherit;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-spark::after {
+    content: '';
+    position: absolute;
+    overflow: hidden;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #fff, rgba(255, 255, 255, 0.8));
+    filter: blur(2px);
+    z-index: 1;
+    box-shadow: 0 0 6px 3px rgba(255, 255, 255, 0.5), 
+                0 0 10px 6px rgba(255, 255, 255, 0.3),
+                0 0 14px 10px rgba(255, 255, 255, 0.1);
+    animation: spark-spin 15s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes spark-spin {
+    0% {
+        transform: rotate(0deg) translateX(-50%) translateY(-50%);
+        top: 0%;
+        left: 0%;
+        opacity: 1;
+    }
+    25% {
+        top: 0%;
+        left: 100%;
+        opacity: 0.9;
+    }
+    50% {
+        top: 100%;
+        left: 100%;
+        opacity: 0.7;
+    }
+    75% {
+        top: 100%;
+        left: 0%;
+        opacity: 0.9;
+    }
+    100% {
+        transform: rotate(360deg) translateX(-50%) translateY(-50%);
+        top: 0%;
+        left: 0%;
+        opacity: 1;
+    }
+}
+
+/* Trail effect - multiple particles */
+.card-trail {
+    position: relative;
+    overflow: visible;
+}
+
+.card-trail::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    border-radius: inherit;
+    border: 1px solid transparent;
+    z-index: -1;
+    background: linear-gradient(90deg, #8B5CF6, #EC4899, #10B981, #3B82F6);
+    background-size: 300% 300%;
+    animation: gradient-shift 8s ease infinite;
+    opacity: 0.2;
+}
+
+.card-trail::after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    filter: blur(1px);
+    z-index: 1;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
+    animation: trail-rotate 3s linear infinite;
+}
+
+@keyframes trail-rotate {
+    0%, 100% {
+        top: 0;
+        left: 50%;
+        box-shadow: 
+            0 0 10px 2px rgba(255, 255, 255, 0.8),
+            8px 8px 8px 0px rgba(255, 255, 255, 0.3),
+            16px 16px 6px 0px rgba(255, 255, 255, 0.1),
+            24px 24px 4px 0px rgba(255, 255, 255, 0.05);
+    }
+    25% {
+        top: 50%;
+        left: 100%;
+        box-shadow: 
+            0 0 10px 2px rgba(255, 255, 255, 0.8),
+            -8px 8px 8px 0px rgba(255, 255, 255, 0.3),
+            -16px 16px 6px 0px rgba(255, 255, 255, 0.1),
+            -24px 24px 4px 0px rgba(255, 255, 255, 0.05);
+    }
+    50% {
+        top: 100%;
+        left: 50%;
+        box-shadow: 
+            0 0 10px 2px rgba(255, 255, 255, 0.8),
+            -8px -8px 8px 0px rgba(255, 255, 255, 0.3),
+            -16px -16px 6px 0px rgba(255, 255, 255, 0.1),
+            -24px -24px 4px 0px rgba(255, 255, 255, 0.05);
+    }
+    75% {
+        top: 50%;
+        left: 0;
+        box-shadow: 
+            0 0 10px 2px rgba(255, 255, 255, 0.8),
+            8px -8px 8px 0px rgba(255, 255, 255, 0.3),
+            16px -16px 6px 0px rgba(255, 255, 255, 0.1),
+            24px -24px 4px 0px rgba(255, 255, 255, 0.05);
+    }
+}
+
+@keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 
