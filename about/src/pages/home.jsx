@@ -722,8 +722,9 @@ second: {
 
     // About Me content
     let aboutMe = (
-        <div key="About me" className="aboutMe">
+        <div key="About me" className="aboutMe relative ">
             <div className={`${pdfMode ? '': 'card'} !block p-2`}>
+                <div className="absolute max-sm:hidden rounded-card overflow-hidden top-2 right-2 w-[12%] h-[20%] blur-[60px] bg-gradient-to-r from-yellow-200 to-orange-400 opacity-60"/>
               {!pdfMode && (
                     <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle rounded-3xl overflow-hidden">
                         <img
