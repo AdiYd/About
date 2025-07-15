@@ -320,7 +320,7 @@ li.list#arrow::marker {
 }
 
 div.skills-container {
-    @apply flex justify-around flex-wrap mt-4;
+    @apply flex justify-around overflow-x-visible flex-wrap mt-4;
 }
 
 div.skill-box {
@@ -446,7 +446,7 @@ i.subTitle {
 }
 
 div.floatingContact {
-    @apply flex justify-center flex-col  gap-4 rounded-box fixed bottom-[16%] scale-90 right-0 m-2 h-max z-40;
+    @apply flex justify-center flex-col gap-4 rounded-box fixed bottom-[8%] scale-90 right-0 m-2 h-max z-40;
 }
 
 

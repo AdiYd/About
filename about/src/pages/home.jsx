@@ -19,7 +19,9 @@ import {
     faDice,
     faEarthAmerica,
     faFileWord,
-    faPassport
+    faPassport,
+    faMinus,
+    faPlus
 } from '@fortawesome/free-solid-svg-icons';
 import selfie from '../img/AdiYd2.jpeg';
 import tau from '../img/TAU_university_logo_ENG.png';
@@ -75,6 +77,7 @@ export default function Home({showPdf=true, ...props }) {
     const [showDice, setShowDice] = useState(false); 
     const [themeName, setThemeName] = useState(null);
     const [skillMode, setSkillMode] = useState(false);
+    const [minimizeButtons, setMinimizeButtons] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
     const usedThemes = useRef(new Set(['dracula']));
  
@@ -318,7 +321,7 @@ export default function Home({showPdf=true, ...props }) {
             initial={{ opacity: pdfMode ? 1 : 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4 , ease: 'circInOut'}}
-            key={2} className="overflow-hidden card* w-full flex justify-center relative"> {/* Carousel container */}
+            key={2} className="overflow-hidden* card* w-full flex justify-center relative"> {/* Carousel container */}
                 <div className="flex justify-between w-full whitespace-nowrap animate-scroll"> {/* Adjust duration */}
                 {['HTML','CSS', 'JS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','Google','faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI','Radix', 'Ant', 'MUI','faBootstrap', 'Auth','faGithub','Payment']
                 .map(
@@ -830,21 +833,76 @@ second: {
     // Floating contact panel (right corner)
     let floatingContact = (
         <div className="floatingContact">
-         <div
-            className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
-            title={themeName || 'Roll the Dice'}
-            onClick={changeRandomTheme}
-            onMouseEnter={() => setShowDice(true)}
-            onMouseLeave={() => setShowDice(false)}
-        >
-            { (isRolling || showDice ) ? <FontAwesomeIcon
-                    icon={faDice}
-                    size="lg"
-                    style={{animationDuration: '0.5s'}}
-                    className={`${isRolling ? 'animate-spin' : ''}`}
-                /> :
-                <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'cupcake']} className="text-xl" />
-                }
+            <AnimatePresence>
+                {minimizeButtons && (
+                    <motion.div
+                        className="flex flex-col gap-2"
+                        initial={{ x: 120, scale: 0.7, opacity: 0 }}
+                        animate={{ x: 0, scale: 1, opacity: 1 }}
+                        exit={{ x: 120, scale: 0.7, opacity: 0 }}
+                        transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 30,
+                            duration: 0.35,
+                            staggerChildren: 0.15
+                        }}
+                    >
+                        <a
+                            href={contactMeDict.Linkedin.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-circle btn-secondary backdrop-blur-lg  btn-outline"
+                            title="LinkedIn"
+                        >
+                            <FontAwesomeIcon
+                                size="lg"
+                                icon={contactMeDict.Linkedin.icon}
+                            />
+                        </a>
+                        <a
+                            href={contactMeDict.github.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-circle btn-accent backdrop-blur-lg btn-outline shakeHover"
+                            title="My Github"
+                        >
+                            <FontAwesomeIcon
+                                size="lg"
+                                icon={contactMeDict.github.icon}
+                            />
+                        </a>
+                        <a
+                            href={contactMeDict.Whatsapp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-circle btn-success* border-success text-success backdrop-blur-lg btn-outline shakeHover"
+                            title="WhatsApp me"
+                        >
+                            <FontAwesomeIcon
+                                size="lg"
+                                icon={contactMeDict.Whatsapp.icon}
+                            />
+                        </a>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+       
+            <div
+                className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
+                title={themeName || 'Roll the Dice'}
+                onClick={changeRandomTheme}
+                onMouseEnter={() => setShowDice(true)}
+                onMouseLeave={() => setShowDice(false)}
+            >
+                { (isRolling || showDice ) ? <FontAwesomeIcon
+                        icon={faDice}
+                        size="lg"
+                        style={{animationDuration: '0.5s'}}
+                        className={`${isRolling ? 'animate-spin' : ''}`}
+                    /> :
+                    <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'cupcake']} className="text-xl" />
+                    }
             </div>
             {/* <a
                 href={contactMeDict.Email.link}
@@ -856,43 +914,27 @@ second: {
                     icon={contactMeDict.Email.icon}
                 />
             </a> */}
-            <a
-                href={contactMeDict.Linkedin.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-circle btn-secondary backdrop-blur-lg  btn-outline"
-                title="LinkedIn"
+
+            <div 
+                className="btn btn-square btn-sm mx-auto btn-primary backdrop-blur-lg btn-outline transition-all duration-300 hover:scale-105" 
+                onClick={()=>setMinimizeButtons(!minimizeButtons)} 
+                title={!minimizeButtons ? 'Expand' : 'Minimize'}
             >
-                <FontAwesomeIcon
-                    size="lg"
-                    icon={contactMeDict.Linkedin.icon}
-                />
-            </a>
-            <a
-                href={contactMeDict.github.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-circle btn-accent backdrop-blur-lg btn-outline shakeHover"
-                title="My Github"
-            >
-                <FontAwesomeIcon
-                    size="lg"
-                    icon={contactMeDict.github.icon}
-                />
-            </a>
-            <a
-                href={contactMeDict.Whatsapp.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-circle btn-success* border-success text-success backdrop-blur-lg btn-outline shakeHover"
-                title="WhatsApp me"
-            >
-                <FontAwesomeIcon
-                    size="lg"
-                    icon={contactMeDict.Whatsapp.icon}
-                />
-            </a>
-           
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={minimizeButtons ? 'minus' : 'plus'}
+                        initial={{ rotate: -90, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 90, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                    >
+                        <FontAwesomeIcon 
+                            icon={minimizeButtons ? faMinus : faPlus} 
+                            size="lg" 
+                        />
+                    </motion.div>
+                </AnimatePresence>
+            </div>
         </div>
     );
 

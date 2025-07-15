@@ -70,7 +70,8 @@ body {
 
 
 code {
-  @apply text-primary-focus hover:shadow-md hover:shadow-accent/90 text-nowrap hover:px-2 transition-all mx-0.5 font-semibold rounded-lg p-0.5;
+  font-family:   'IBM Plex Mono', 'Inconsolata', monospace;
+  @apply text-base-content/85 hover:text-primary-focus hover:shadow-md hover:shadow-accent/90 italic text-nowrap hover:px-2 transition-all mx-0.5 font-semibold rounded-lg p-0.5;
 }
 
 h1 {
@@ -134,6 +135,8 @@ div.App-header {
 
 div.main {
   position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .App-link {
