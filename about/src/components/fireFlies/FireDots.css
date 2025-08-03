@@ -5,6 +5,7 @@
     z-index: 0;
     /* background-position: fixed; */
     /* background-repeat: no-repeat; */
+    /* transform: rotate(45deg); */
     top: 0;
     left: 0;
     width: 100%;
@@ -22,7 +23,7 @@
     background-image: radial-gradient(hsl(var(--s)),
             hsl(var(--a)) 10%,
             hsla(180, 100%, 80%, 0) 56%);
-    animation: fadein-frames 200ms infinite, scale-frames 5s infinite;
+    animation: fadein-frames 200ms infinite, scale-frames 8s infinite;
 }
 
 @keyframes fadein-frames {

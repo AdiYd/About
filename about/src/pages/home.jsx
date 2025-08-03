@@ -79,7 +79,7 @@ export default function Home({showPdf=true, ...props }) {
     const [skillMode, setSkillMode] = useState(false);
     const [minimizeButtons, setMinimizeButtons] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set(['dracula']));
+    const usedThemes = useRef(new Set(['night']));
  
     useEffect(() => {
         // update is mobile state on resize
@@ -111,7 +111,7 @@ export default function Home({showPdf=true, ...props }) {
         setIsRolling(false);
         return;
         }
-        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
+        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'night' && nextThemeMode === 'light')) {
             setThemeName('light');
             usedThemes.current.add('light');
             document.documentElement.setAttribute('data-theme', 'light');
@@ -409,7 +409,7 @@ export default function Home({showPdf=true, ...props }) {
             head: (
                 <p className="font-medium !text-base-content">
                     AI engineering for developers &nbsp;|
-                    <i className="subTitle"> Coursera, 2024 </i>
+                    <i className="subTitle"> Microsoft & Coursera, 2024 </i>
                 </p>
             ),
             body: (
@@ -609,8 +609,8 @@ export default function Home({showPdf=true, ...props }) {
     first2: {
     head: (
         <p className="font-medium !text-base-content">
-            Full-Stack Developer &nbsp;|
-            <i className="subTitle"> Self-Employed, 2023–2025 </i>
+            Full-Stack Engineer &nbsp;|
+            <i className="subTitle"> Self-Employed, 2023–Present </i>
         </p>
     ),
     body: (
@@ -1078,8 +1078,8 @@ export const debugFunction = () => {
 
 
     // Title with large, bold styling
-    console.log('%c🚀 Thanks for checking on my Logs! 🚀', styles);
-    console.log('%c✨ Let\'s Talk 🙋', styles2);
+    console.log('%c✨ 🙋 ✨', styles2);
+    console.log('%c🚀 Thanks for checking my Logs! 🚀', styles);
 
     
     // App state placeholder
