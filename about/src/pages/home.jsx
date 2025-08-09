@@ -79,7 +79,7 @@ export default function Home({showPdf=true, ...props }) {
     const [skillMode, setSkillMode] = useState(false);
     const [minimizeButtons, setMinimizeButtons] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set(['night']));
+    const usedThemes = useRef(new Set(['dracula']));
  
     useEffect(() => {
         // update is mobile state on resize
@@ -105,13 +105,13 @@ export default function Home({showPdf=true, ...props }) {
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
         const nextThemeMode = currentThemeMode === 'light' ? 'dark' : 'light';
         if (!themeName && nextThemeMode === 'dark') {
-        setThemeName('dracula');
-        usedThemes.current.add('dracula');
-        document.documentElement.setAttribute('data-theme', 'dracula');
+        setThemeName('night');
+        usedThemes.current.add('night');
+        document.documentElement.setAttribute('data-theme', 'night');
         setIsRolling(false);
         return;
         }
-        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'night' && nextThemeMode === 'light')) {
+        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
             setThemeName('light');
             usedThemes.current.add('light');
             document.documentElement.setAttribute('data-theme', 'light');
@@ -385,7 +385,7 @@ export default function Home({showPdf=true, ...props }) {
                                     <code>Computer organization</code>,
                                     <code>HW-SW interfaces</code>,
                                     <code>Algorithms</code>,
-                                    <code>Data structures</code>,
+                                    <code>Data models</code>,
                                     <code>OS</code>,
                                     <code>encryption</code>,
                                     <code>network protocols.</code>
@@ -725,7 +725,7 @@ second: {
     let aboutMe = (
         <div key="About me" className="aboutMe relative ">
             <div className={`${pdfMode ? '': 'card'} !block p-2`}>
-                <div style={{animationDuration: '4s'}} className="absolute max-sm:hidden  overflow-hidden top-3 right-2 w-[12%] h-[20%] blur-[60px] bg-gradient-to-r animate-pulse from-yellow-200 to-orange-400 opacity-60"/>
+                <div style={{animationDuration: '4s'}} className="absolute max-sm:left-4 max-sm:-top-4 overflow-hidden top-3 right-2 w-[12%] h-[20%] blur-[60px] bg-gradient-to-r animate-pulse from-yellow-200 to-orange-400 opacity-60"/>
               {!pdfMode && (
                     <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle rounded-3xl overflow-hidden">
                         <img
@@ -1027,7 +1027,7 @@ second: {
 
             <div className="grid gap-6">
                 {Object.keys(blockDict).map((item, indx) => (
-                    <div key={indx + item} className="transition-all my-2 overflow-x-hidden">
+                    <div key={indx + item} className="transition-all my-2 overflow-x-hidden max-sm:pb-4">
                         <DataSection
                             key={item + indx}
                             extentedMenu={item === 'Skills'}
