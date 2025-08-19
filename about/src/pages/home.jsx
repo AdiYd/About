@@ -793,12 +793,12 @@ second: {
             data: 'LinkedIn Profile',
             link: 'https://www.linkedin.com/in/adiyd'
         },
-        Website: {
-            icon: faEarthAmerica,
-            color: 'currentColor',
-            data: 'webly.digital',
-            link: 'https://webly.digital/'
-        },
+        // Website: {
+        //     icon: faEarthAmerica,
+        //     color: 'currentColor',
+        //     data: 'webly.digital',
+        //     link: 'https://webly.digital/'
+        // },
         Whatsapp: {
             icon: faWhatsapp,
             color: 'currentColor',
