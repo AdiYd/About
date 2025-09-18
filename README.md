@@ -27,7 +27,7 @@ This project is a React-based about page for Adi Yehuda. It showcases my skills,
 *   CSS
 
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=30&pause=1000&color=36BCF7&center=true&vCenter=true&random=false&width=600&height=100&lines=Hi%2C+I'm+Adi+Yehuda+%F0%9F%91%8B;Full+Stack+Developer;AI+Integration+Specialist" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=30&pause=1000&color=36BCF7&center=true&vCenter=true&random=false&width=600&height=100&lines=Hi%2C+I'm+Adi+%F0%9F%91%8B;Full+Stack+Developer;Web and mobile Applications;AI integration" alt="Typing SVG" />
 </div>
 
 ## 👨‍💻 About Me
@@ -77,7 +77,6 @@ Passionate developer with a strong technical background in both software and har
 
 [![Email](https://img.shields.io/badge/Email-Admin@webly.digital-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:Admin@webly.digital)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Adi_Yehuda-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/adiyd)
-[![Website](https://img.shields.io/badge/Website-webly.digital-4285F4?style=for-the-badge&logo=googlechrome&logoColor=white)](https://webly.digital/)
 [![GitHub](https://img.shields.io/badge/GitHub-AdiYd-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AdiYd)
 
 
