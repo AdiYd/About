@@ -34,14 +34,14 @@ function DataSection({
     return (
         <div key={title} className="dataContainer">
             <div className={`text-start ${!isPDF ? 'dataWrapper' : ''}`}>
-                <div onClick={extentedMenu && !isPDF ? () => { setActive(p => !p); callBack(p => !p) } : undefined} className='flex items-center gap-3 justify-between cursor-pointer'>
+                <div onClick={extentedMenu && !isPDF ? () => { setActive(p => !p); callBack(p => !p) } : undefined} className='flex items-start gap-3 justify-between cursor-pointer'>
                     {<h3 className='mx-2 mb-2 flex items-center gap-1'>{title}
-                    {extentedMenu && !isPDF &&
+                    {/* {extentedMenu && !isPDF &&
                     <div
                         className={`moreDetails  ${isActive ? 'rotate-180' : ''}`}
                         title={isActive ? 'Less skills' : 'More skills'}>
                         {arrDown}
-                    </div>}
+                    </div>} */}
                     </h3>}
                     {(extentedMenu && !isPDF) &&
                         <div className='btn btn-sm  text-xs flex items-center rounded-md select-none text-center'>

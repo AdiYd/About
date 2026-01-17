@@ -1005,7 +1005,7 @@ second: {
             </div>
 
             {!pdfMode && 
-            <div onClick={changeRandomTheme} id='roll-the-dice-theme' className="items-center hover:shadow-lg cursor-pointer hover:shadow-accent max-sm:hover:shadow-none after:shadow-none text-base-content justify-center p-4 w-fit min-w-48 mx-auto mb-8 backdrop-blur-3xl border-[1px] badge badge-outline badge-lg hover:border-secondary/40 border-primary/40">
+            <div onClick={changeRandomTheme} id='roll-the-dice-theme' className="items-center hover:shadow-lg cursor-pointer hover:shadow-accent max-sm:hover:shadow-none after:shadow-none text-base-content justify-center p-4 w-fit min-w-48 mx-auto mb-8 backdrop-blur-3xl border-[1px] badge rounded-lg badge-outline badge-lg hover:border-secondary/40 border-primary/40">
                 <div className="grid-cols-[1fr_1fr_3fr] gap-2 grid w-full text-base font-bold items-center">
                     <div className="flex flex-col gap-1 relative -right-2 justify-center">
                         <div className="h-1 w-1 rounded-full bg-primary"/>
