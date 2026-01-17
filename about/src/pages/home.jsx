@@ -79,7 +79,7 @@ export default function Home({showPdf=true, ...props }) {
     const [skillMode, setSkillMode] = useState(false);
     const [minimizeButtons, setMinimizeButtons] = useState(false);
     const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set(['dracula']));
+    const usedThemes = useRef(new Set(['night']));
  
     useEffect(() => {
         // update is mobile state on resize
@@ -111,7 +111,7 @@ export default function Home({showPdf=true, ...props }) {
         setIsRolling(false);
         return;
         }
-        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
+        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'night' && nextThemeMode === 'light')) {
             setThemeName('light');
             usedThemes.current.add('light');
             document.documentElement.setAttribute('data-theme', 'light');
@@ -159,6 +159,9 @@ export default function Home({showPdf=true, ...props }) {
         faBootstrap,
         faNodeJs,
         Google: faGoogle,
+        AWS: <Icon icon="mdi:aws" className="mx-auto size-5" />,
+        GCP: <Icon icon="devicon-plain:googlecloud" className="mx-auto size-5" />,
+        Whatsapp: faWhatsapp,
         faNpm,
         faLock,
         faServer,
@@ -167,7 +170,7 @@ export default function Home({showPdf=true, ...props }) {
         Payment: faWallet,
         faDatabase,
         AI: faBrain,
-        Auth: faUser,
+        Auth: <Icon icon="mdi:shield-key-outline" className="mx-auto size-5"/>,
         'REST API': faRightLeft,
         'TS': <Icon icon="akar-icons:typescript-fill" color="currentColor" className="mx-auto" width="1.2em" height="1.2em" />,
         'Open AI': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 25"><path fill="currentColor" d="M20.557 10.634a5.07 5.07 0 0 0-.42-4.099c-1.087-1.901-3.284-2.864-5.432-2.42c-.939-1.061-2.321-1.654-3.754-1.654a5.07 5.07 0 0 0-4.814 3.481a5 5 0 0 0-3.334 2.42a5.07 5.07 0 0 0 .618 5.901a5.06 5.06 0 0 0 .444 4.1a5.025 5.025 0 0 0 5.432 2.419a5.07 5.07 0 0 0 3.753 1.679a5.07 5.07 0 0 0 4.815-3.481a5 5 0 0 0 3.333-2.42a5.07 5.07 0 0 0-.642-5.926M13.05 21.152a3.66 3.66 0 0 1-2.395-.864c.025-.025.099-.05.124-.074l3.975-2.296a.65.65 0 0 0 .321-.568v-5.605l1.679.963c.025 0 .025.024.025.05v4.641a3.716 3.716 0 0 1-3.729 3.753M5 17.72c-.444-.765-.592-1.654-.444-2.518c.025.024.075.05.124.074l3.975 2.296a.6.6 0 0 0 .642 0l4.864-2.815v1.95c0 .026 0 .05-.024.05l-4.025 2.321c-1.778 1.037-4.074.42-5.111-1.358M3.965 9.03a3.88 3.88 0 0 1 1.95-1.654v4.74c0 .223.124.445.321.568l4.865 2.815l-1.68.963c-.024 0-.049.025-.049 0L5.347 14.14a3.714 3.714 0 0 1-1.383-5.111m13.827 3.21l-4.864-2.815l1.679-.963c.024 0 .05-.025.05 0l4.024 2.32a3.727 3.727 0 0 1 1.358 5.112a3.72 3.72 0 0 1-1.95 1.63v-4.716a.61.61 0 0 0-.297-.568m1.654-2.519a.5.5 0 0 0-.123-.074L15.347 7.35a.6.6 0 0 0-.642 0L9.84 10.165V8.214c0-.025 0-.05.025-.05l4.025-2.32A3.73 3.73 0 0 1 19 7.226c.445.741.593 1.63.445 2.494M8.927 13.177l-1.68-.963c-.024 0-.024-.025-.024-.05v-4.64a3.75 3.75 0 0 1 3.753-3.753a3.66 3.66 0 0 1 2.395.864a.5.5 0 0 1-.123.074L9.273 7.004a.65.65 0 0 0-.321.568v5.605zm.913-1.975l2.173-1.26l2.173 1.26v2.493l-2.173 1.26l-2.173-1.26z"/></svg>,
@@ -235,7 +238,7 @@ export default function Home({showPdf=true, ...props }) {
                     className="skillzFieldSet"
                 >
                     {!pdfMode && <legend className="legend badge badge-lg">Front</legend>}
-                    {['JS', 'TS', 'HTML', 'CSS','Tailwind', 'faReact','Radix','Shadcn','daisyUI','MUI','Ant'].map((item, indx) => (
+                    {['JS', 'TS', 'Tailwind', 'Next.js', 'faReact','Radix','Shadcn','daisyUI','MUI','Ant'].map((item, indx) => (
                         skillsDict[item] && (
                             <div
                                 key={indx + item}
@@ -292,7 +295,7 @@ export default function Home({showPdf=true, ...props }) {
                     className="skillzFieldSet"
                 >
                     {!pdfMode && <legend className="legend badge  badge-lg">Cloud & API</legend>}
-                    {['Firebase','Supabase', 'Open AI','Anthropic','faGithub', 'Auth', 'Payment', 'Google'].map(
+                    {['Firebase','Supabase', 'Open AI','Anthropic','faGithub', 'Auth', 'Payment', 'GCP', 'AWS', 'Whatsapp'].map(
                         (item, indx) =>
                            
                                 <div
@@ -324,7 +327,7 @@ export default function Home({showPdf=true, ...props }) {
             transition={{ duration: 0.4 , ease: 'circInOut'}}
             key={2} className="overflow-hidden* card* w-full flex justify-center relative"> {/* Carousel container */}
                 <div className="flex justify-between w-full whitespace-nowrap animate-scroll"> {/* Adjust duration */}
-                {['HTML','CSS', 'JS','TS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','Google','faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI','Radix', 'Ant', 'MUI','faBootstrap', 'Auth','faGithub','Payment']
+                {['HTML','CSS', 'JS','TS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','GCP','AWS','faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI','Radix', 'Ant', 'MUI', 'Auth','faGithub','Payment']
                 .map(
                     (item, indx) =>
                         skillsDict[item] && (
@@ -609,13 +612,13 @@ export default function Home({showPdf=true, ...props }) {
     first2: {
     head: (
         <p className="font-medium !text-base-content">
-            Full-Stack Engineer &nbsp;|
+            Application Engineer &nbsp;|
             <i className="subTitle"> Self-Employed, 2023–Present </i>
         </p>
     ),
     body: (
         <p className="">
-            Designing and developing modern web applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure includes cloud services and functions, database, authentication and integrations of data pipelines. Leveraging automation with AI, APIs and cloud platforms to speed up development and optimize workflows. Proficient in 
+            Designing and developing full-stack, modern applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure includes cloud services and functions, database, authentication and integrations of data pipelines. Leveraging automation with AI, APIs and cloud platforms to speed up development and optimize workflows. Proficient in 
             <i className="detailH"><code>Node.js</code></i>, 
             <i className="detailH"><code>TS & JS</code></i>, 
             <i className="detailH"><code>React</code></i>, 

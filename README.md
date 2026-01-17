@@ -27,7 +27,7 @@ This project is a React-based about page for Adi Yehuda. It showcases my skills,
 *   CSS
 
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=30&pause=1000&color=36BCF7&center=true&vCenter=true&random=false&width=600&height=100&lines=Hi%2C+I'm+Adi+%F0%9F%91%8B;Full+Stack+Developer;Web and mobile Applications;AI integration" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=700&size=30&pause=1000&color=36BCF7&center=true&vCenter=true&random=false&width=600&height=100&lines=Hi%2C+I'm+Adi+%F0%9F%91%8B;Full+Stack+Developer;Web and mobile Applications;AI integration;" alt="Typing SVG" />
 </div>
 
 ## 👨‍💻 About Me
