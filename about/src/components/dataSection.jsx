@@ -34,20 +34,25 @@ function DataSection({
     return (
         <div key={title} className="dataContainer">
             <div className={`text-start ${!isPDF ? 'dataWrapper' : ''}`}>
-                <div onClick={extentedMenu && !isPDF ? () => { setActive(p => !p); callBack(p => !p) } : undefined} className='flex cursor-pointer w-fit'>
-                    {<h3 className='mx-2 mb-2'>{title}</h3>}
+                <div onClick={extentedMenu && !isPDF ? () => { setActive(p => !p); callBack(p => !p) } : undefined} className='flex items-center gap-3 justify-between cursor-pointer'>
+                    {<h3 className='mx-2 mb-2 flex items-center gap-1'>{title}
+                    {extentedMenu && !isPDF &&
+                    <div
+                        className={`moreDetails  ${isActive ? 'rotate-180' : ''}`}
+                        title={isActive ? 'Less skills' : 'More skills'}>
+                        {arrDown}
+                    </div>}
+                    </h3>}
                     {(extentedMenu && !isPDF) &&
-                        <div className='flex gap-0 flex-row-reverse'>
-                            <span className='text-xs place-self-center'>
-                                {isActive ? '' : '(Click for the full Tech Stack)'}
-                            </span>
-                            <a
-                                // href="#"
-                                className={`moreDetails  ${isActive ? 'rotate-180' : ''}`}
+                        <div className='btn btn-sm  text-xs flex items-center rounded-md select-none text-center'>
+                            {isActive ? 'See less' : 'See more'}
+                            <div
+                                className={`moreDetails relative -top-0.5 ${isActive ? 'rotate-180' : ''}`}
                                 title={isActive ? 'Less skills' : 'More skills'}>
                                 {arrDown}
-                            </a>
-                        </div>}
+                            </div>
+                        </div>
+                        }
                 </div>
                 {isPDF ? childrens :<motion.div
                     ref={ref}
