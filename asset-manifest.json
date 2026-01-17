@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/About/static/css/main.b8d97dca.css",
-    "main.js": "/About/static/js/main.122d59ff.js",
+    "main.css": "/About/static/css/main.75c98c8d.css",
+    "main.js": "/About/static/js/main.112db8bc.js",
     "static/media/AdiYd2.jpeg": "/About/static/media/AdiYd2.62873d15f3013e741e9f.jpeg",
     "static/media/TAU_Logo.png": "/About/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
     "static/media/TAU_university_logo_ENG.png": "/About/static/media/TAU_university_logo_ENG.5ef15378a02fb175a967.png",
     "static/media/sedg.svg": "/About/static/media/sedg.db32b605123b724bd40ae6f0bbb62963.svg",
     "index.html": "/About/index.html",
-    "main.b8d97dca.css.map": "/About/static/css/main.b8d97dca.css.map",
-    "main.122d59ff.js.map": "/About/static/js/main.122d59ff.js.map"
+    "main.75c98c8d.css.map": "/About/static/css/main.75c98c8d.css.map",
+    "main.112db8bc.js.map": "/About/static/js/main.112db8bc.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8d97dca.css",
-    "static/js/main.122d59ff.js"
+    "static/css/main.75c98c8d.css",
+    "static/js/main.112db8bc.js"
   ]
 }
