@@ -229,7 +229,6 @@ export default function Home({showPdf=true, ...props }) {
     if (skillMode || pdfMode) {
         skillSet = (
             <motion.div
-            
             initial={{ opacity: pdfMode ? 1 : 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration:  0.8 , ease: 'circInOut'}}
@@ -921,7 +920,7 @@ second: {
             </a> */}
 
             <div 
-                className="btn btn-square btn-sm mx-auto btn-primary backdrop-blur-lg btn-outline transition-all duration-300 hover:scale-105" 
+                className="btn mx-auto btn-primary scale-90 backdrop-blur-lg btn-outline btn-square transition-all duration-300 hover:scale-105" 
                 onClick={()=>setMinimizeButtons(!minimizeButtons)} 
                 title={!minimizeButtons ? 'Expand' : 'Minimize'}
             >
