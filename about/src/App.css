@@ -34,6 +34,16 @@ body {
 #blur_glow{
   animation: blur 20s linear alternate infinite;
 }
+/* Add to your CSS */
+html, body {
+    overflow-y: auto;   /* Allow vertical scrolling */
+}
+
+.home-page {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overflow: visible !important; /* Ensure this doesn't clip sticky */
+}
 
 @keyframes blur {
   0% {
@@ -104,7 +114,7 @@ h6 {
 
 p {
   font-family: 'Inter', 'Roboto', sans-serif;
-  @apply text-base-content/80 !mx-0;
+  @apply text-start text-base-content/80 !mx-0;
 }
 
 span {
@@ -114,6 +124,7 @@ span {
 a {
   @apply text-primary hover:text-primary transition-colors;
 }
+
 
 /* Responsive typography */
 @screen sm {

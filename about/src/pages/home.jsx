@@ -1,35 +1,35 @@
-import { useEffect, useRef, useState } from "react";
-// import { usePDF } from 'react-to-pdf';
-import DataSection from "../components/dataSection";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import '../App.css';
 import '../components/components.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-    faGithub, faReact, faPython, faInstagram, faHtml5, faAppStore,
-    faCss3, faJs,faGooglePay, faNodeJs, faBootstrap, faNpm, faWhatsapp,
-    faGoogle,
+    faGithub, faReact, faPython,
+    faCss3, faJs, faNodeJs, faWhatsapp,
     faLinkedin
 } from '@fortawesome/free-brands-svg-icons';
 import {
     faBrain, faWallet, faDatabase,
     faEnvelope, faRightLeft,
     faLock, faServer, faCode,
-    faUser,
     faLocationDot,
     faDice,
     faEarthAmerica,
     faPassport,
     faMinus,
     faPlus,
-    faFileDownload
+    faFileDownload,
+    faRocket,
+    faLayerGroup,
+    faGraduationCap,
+    faBriefcase,
+    faAddressCard,
+    faChevronDown,
+    faArrowUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 import selfie from '../img/AdiYd2.jpeg';
-import tau from '../img/TAU_university_logo_ENG.png';
-import tau2 from '../img/TAU_Logo.png';
-// import udemyLogo from '../img/udemyLogo.svg';
 import sedg from '../img/sedg.svg';
-// import coursera from '../img/coursera.svg';
-import { AnimatePresence, motion } from "framer-motion";
+import tau2 from '../img/TAU_Logo.png';
+import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
 
 export const themeIconify = {
@@ -61,32 +61,134 @@ export const themeIconify = {
     night: 'mdi:weather-night',
     winter: 'mdi:snowflake',
     dracula: 'game-icons:vampire-dracula',
-  };
+};
 
-/**
- * A refined "About Me" / About page for showcasing skills, education, and work experience.
- * 
- * Updated content focuses on clarity and precision, describing a background in hardware engineering,
- * extensive software expertise, and strong passion for developing innovative solutions.
- */
+// ─── Reusable animated section wrapper ─────────────────────────────────────────
+function Section({ children, className = '', id }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
+    return (
+        <motion.section
+            id={id}
+            ref={ref}
+            initial={{ opacity: 0, y: 32 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            className={`${className}`}
+        >
+            {children}
+        </motion.section>
+    );
+}
 
-export default function Home({showPdf=true, ...props }) {
-    const [reactSpin] = useState(true);
-    const [pdfMode, ] = useState(false);
+// ─── Section heading ───────────────────────────────────────────────────────────
+function SectionHeading({ icon, label }) {
+    return (
+        <div className="flex items-center gap-3 mb-6">
+            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 text-primary">
+                <FontAwesomeIcon icon={icon} />
+            </span>
+            <h2 className="!text-xl !font-semibold text-primary tracking-tight">{label}</h2>
+            <div className="flex-1 h-px bg-base-content/10 ml-2" />
+        </div>
+    );
+}
+
+// ─── Skill pill ────────────────────────────────────────────────────────────────
+function SkillPill({ label, icon, color = '' }) {
+    return (
+        <div className={`skill-pill ${color}`}>
+            <span className="skill-pill-icon">{icon}</span>
+            <span className="skill-pill-label">{label}</span>
+        </div>
+    );
+}
+
+// ─── Timeline entry ────────────────────────────────────────────────────────────
+function TimelineEntry({ title, place, period, children, logo, isLast = false }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+    return (
+        <motion.div
+            ref={ref}
+            initial={{ opacity: 0, x: -20 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            className="relative"
+        >
+            {/* Timeline line */}
+            {/* {!isLast && <div className="absolute left-[11px] top-6 bottom-0 w-px bg-base-content/10" />} */}
+            {/* Dot */}
+            {/* <div className="absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center">
+                <div className="w-2 h-2 rounded-full bg-primary" />
+            </div> */}
+
+            <div className="card text-start mb-6 p-5">
+                <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+                    <div className="flex flex-col items-start gap-3">
+                        {logo && <img src={logo} alt={place} className="h-6 w-auto min-w-10 object-cover opacity-80" />}
+                        <div>
+                            <p className="font-semibold !text-base-content text-sm leading-tight">{title}</p>
+                            <p className="text-xs text-base-content/50 mt-0.5">{place}</p>
+                        </div>
+                    </div>
+                    <span className="badge badge-sm badge-outline text-primary border-primary/40 whitespace-nowrap">{period}</span>
+                </div>
+                <div className="flex flex-col text-sm text-base-content/70 leading-relaxed">{children}</div>
+            </div>
+        </motion.div>
+    );
+}
+
+// ─── Product card ──────────────────────────────────────────────────────────────
+function ProductCard({ name, desc, tags = [], icon, link }) {
+    const ref = useRef(null);
+    const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+    return (
+        <motion.a
+            ref={ref}
+            href={link || '#'}
+            target={link ? '_blank' : undefined}
+            rel="noopener noreferrer"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            className="card p-5 flex flex-col gap-3 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer no-underline"
+        >
+            <div className="flex items-center justify-between">
+                <span className="text-2xl">{icon}</span>
+                {link && (
+                    <FontAwesomeIcon
+                        icon={faArrowUpRightFromSquare}
+                        className="text-xs text-base-content/30 group-hover:text-primary transition-colors"
+                    />
+                )}
+            </div>
+            <div className="text-left">
+                <p className="font-bold !text-base-content text-base">{name}</p>
+                <p className="text-sm* text-base-content/70 mt-1.5 leading-relaxed text-left">{desc}</p>
+            </div>
+            <div className="flex flex-wrap gap-1.5 mt-auto">
+                {tags.map(t => (
+                    <span key={t} className="badge badge-xs badge-outline opacity-70">{t}</span>
+                ))}
+            </div>
+        </motion.a>
+    );
+}
+
+// ─── Main component ────────────────────────────────────────────────────────────
+export default function Home({ showPdf = true }) {
     const [isRolling, setIsRolling] = useState(false);
-    const [showDice, setShowDice] = useState(false); 
+    const [showDice, setShowDice] = useState(false);
     const [themeName, setThemeName] = useState(null);
-    const [skillMode, setSkillMode] = useState(false);
     const [minimizeButtons, setMinimizeButtons] = useState(false);
-    const [, setIsMobile] = useState(window.innerWidth <= 768);
-    const usedThemes = useRef(new Set(['night']));
- 
+    const [activeNav, setActiveNav] = useState('about');
+    const usedThemes = useRef(new Set(['dracula'])); // Start with these as "used" to ensure they show up first
+
     useEffect(() => {
-        // update is mobile state on resize
-        const handleResize = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
         debugFunction();
+        const handleResize = () => {};
         window.addEventListener('resize', handleResize);
         return () => window.removeEventListener('resize', handleResize);
     }, []);
@@ -96,995 +198,512 @@ export default function Home({showPdf=true, ...props }) {
         await new Promise(resolve => setTimeout(resolve, 800));
         const preferThemeMode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const currentTheme = document.documentElement.getAttribute('data-theme') || preferThemeMode;
-
         const themesByMode = {
-            light: ['light', 'cupcake', 'retro', 'autumn', 'winter','light', 'fantasy'],
-            dark: ['halloween', 'synthwave',  'dracula', 'night' ,'forest'],
-        }
-
+            light: ['light', 'cupcake', 'retro', 'autumn', 'winter', 'fantasy'],
+            dark: ['halloween', 'synthwave', 'dracula', 'night', 'forest'],
+        };
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
         const nextThemeMode = currentThemeMode === 'light' ? 'dark' : 'light';
         if (!themeName && nextThemeMode === 'dark') {
-        setThemeName('night');
-        usedThemes.current.add('night');
-        document.documentElement.setAttribute('data-theme', 'night');
-        setIsRolling(false);
-        return;
+            setThemeName('dracula'); usedThemes.current.add('dracula');
+            document.documentElement.setAttribute('data-theme', 'dracula');
+            setIsRolling(false); return;
+        } else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
+            setThemeName('autumn'); usedThemes.current.add('autumn');
+            document.documentElement.setAttribute('data-theme', 'autumn');
+            setIsRolling(false); return;
         }
-        else if ((!themeName && nextThemeMode === 'light') || (themeName === 'night' && nextThemeMode === 'light')) {
-            setThemeName('light');
-            usedThemes.current.add('light');
-            document.documentElement.setAttribute('data-theme', 'light');
-            setIsRolling(false);
-            return;
-        }
-        // else if ((themeName === 'light' && nextThemeMode === 'dark')) {
-        //     setThemeName('forest');
-        //     usedThemes.current.add('forest');
-        //     document.documentElement.setAttribute('data-theme', 'forest');
-        //     setIsRolling(false);
-        //     return;
-        // }
-        let availableThemes = themesByMode[nextThemeMode].filter(theme => !usedThemes.current.has(theme));
-        if (availableThemes.length === 0) {
-            availableThemes = themesByMode[nextThemeMode].filter(theme => theme !== themeName);
-        }
+        let availableThemes = themesByMode[nextThemeMode]?.filter(t => !usedThemes.current.has(t));
+        if (availableThemes.length === 0) availableThemes = themesByMode[nextThemeMode].filter(t => t !== themeName);
         const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
-        if (themeName === randomTheme) {
-            changeRandomTheme();
-            return;
-        }
-        setThemeName(randomTheme);
-        usedThemes.current.add(randomTheme);
+        if (themeName === randomTheme) { changeRandomTheme(); return; }
+        setThemeName(randomTheme); usedThemes.current.add(randomTheme);
         document.documentElement.setAttribute('data-theme', randomTheme);
         setIsRolling(false);
-    }
-
-
-    // PDF creation references
-    // const { toPDF, targetRef } = usePDF({
-    //     filename: 'AdiYehuda-CVS.pdf',
-    //     page: { margin: 8 }
-    // });
-
-    const skillsDict = {
-        CSS: faCss3,
-        faPython,
-        faGithub,
-        HTML: faHtml5,
-        faInstagram,
-        JS: faJs,
-        faReact,
-        faGooglePay,
-        faBootstrap,
-        faNodeJs,
-        Google: faGoogle,
-        AWS: <Icon icon="mdi:aws" className="mx-auto size-5" />,
-        GCP: <Icon icon="devicon-plain:googlecloud" className="mx-auto size-5" />,
-        Whatsapp: faWhatsapp,
-        faNpm,
-        faLock,
-        faServer,
-        faAppStore,
-        faCode,
-        Payment: faWallet,
-        faDatabase,
-        AI: faBrain,
-        Auth: <Icon icon="mdi:shield-key-outline" className="mx-auto size-5"/>,
-        'REST API': faRightLeft,
-        'TS': <Icon icon="akar-icons:typescript-fill" color="currentColor" className="mx-auto" width="1.2em" height="1.2em" />,
-        'Open AI': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 25"><path fill="currentColor" d="M20.557 10.634a5.07 5.07 0 0 0-.42-4.099c-1.087-1.901-3.284-2.864-5.432-2.42c-.939-1.061-2.321-1.654-3.754-1.654a5.07 5.07 0 0 0-4.814 3.481a5 5 0 0 0-3.334 2.42a5.07 5.07 0 0 0 .618 5.901a5.06 5.06 0 0 0 .444 4.1a5.025 5.025 0 0 0 5.432 2.419a5.07 5.07 0 0 0 3.753 1.679a5.07 5.07 0 0 0 4.815-3.481a5 5 0 0 0 3.333-2.42a5.07 5.07 0 0 0-.642-5.926M13.05 21.152a3.66 3.66 0 0 1-2.395-.864c.025-.025.099-.05.124-.074l3.975-2.296a.65.65 0 0 0 .321-.568v-5.605l1.679.963c.025 0 .025.024.025.05v4.641a3.716 3.716 0 0 1-3.729 3.753M5 17.72c-.444-.765-.592-1.654-.444-2.518c.025.024.075.05.124.074l3.975 2.296a.6.6 0 0 0 .642 0l4.864-2.815v1.95c0 .026 0 .05-.024.05l-4.025 2.321c-1.778 1.037-4.074.42-5.111-1.358M3.965 9.03a3.88 3.88 0 0 1 1.95-1.654v4.74c0 .223.124.445.321.568l4.865 2.815l-1.68.963c-.024 0-.049.025-.049 0L5.347 14.14a3.714 3.714 0 0 1-1.383-5.111m13.827 3.21l-4.864-2.815l1.679-.963c.024 0 .05-.025.05 0l4.024 2.32a3.727 3.727 0 0 1 1.358 5.112a3.72 3.72 0 0 1-1.95 1.63v-4.716a.61.61 0 0 0-.297-.568m1.654-2.519a.5.5 0 0 0-.123-.074L15.347 7.35a.6.6 0 0 0-.642 0L9.84 10.165V8.214c0-.025 0-.05.025-.05l4.025-2.32A3.73 3.73 0 0 1 19 7.226c.445.741.593 1.63.445 2.494M8.927 13.177l-1.68-.963c-.024 0-.024-.025-.024-.05v-4.64a3.75 3.75 0 0 1 3.753-3.753a3.66 3.66 0 0 1 2.395.864a.5.5 0 0 1-.123.074L9.273 7.004a.65.65 0 0 0-.321.568v5.605zm.913-1.975l2.173-1.26l2.173 1.26v2.493l-2.173 1.26l-2.173-1.26z"/></svg>,
-        'Shadcn': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M22.219 11.784L11.784 22.219a1.045 1.045 0 0 0 1.476 1.476L23.695 13.26a1.045 1.045 0 0 0-1.476-1.476M20.132.305L.305 20.132a1.045 1.045 0 0 0 1.476 1.476L21.608 1.781A1.045 1.045 0 0 0 20.132.305"/></svg>,
-        'daisyUI': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 0C7.828.001 4.396 3.433 4.395 7.605c.001 4.172 3.433 7.604 7.605 7.605c4.172-.001 7.604-3.433 7.605-7.605C19.604 3.433 16.172.001 12 0m0 .286c4.016 0 7.32 3.304 7.32 7.32c-.001 4.015-3.305 7.318-7.32 7.318S4.681 11.62 4.68 7.605c0-4.016 3.304-7.32 7.32-7.32zm0 4.04a3.294 3.294 0 0 0-3.279 3.279v.001A3.296 3.296 0 0 0 12 10.884a3.294 3.294 0 0 0 3.279-3.279A3.294 3.294 0 0 0 12 4.326M8.34 16.681h-.008a3.67 3.67 0 0 0-3.652 3.652v.015A3.67 3.67 0 0 0 8.332 24h7.336a3.67 3.67 0 0 0 3.652-3.652v-.016a3.67 3.67 0 0 0-3.652-3.652h-.008Z"/></svg>,
-        'Ant': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M17.451 6.68c.51-.506.51-1.33 0-1.837L15.578 2.97l.003.002l-2.554-2.55a1.463 1.463 0 0 0-2.05.013L.427 10.98a1.443 1.443 0 0 0 0 2.047l10.549 10.54a1.45 1.45 0 0 0 2.05 0l4.423-4.42a1.297 1.297 0 0 0 0-1.838a1.305 1.305 0 0 0-1.84 0l-3.35 3.354a.346.346 0 0 1-.495 0l-8.427-8.419a.346.346 0 0 1 0-.495l8.424-8.42l.035-.029a.34.34 0 0 1 .46.03l3.354 3.35a1.3 1.3 0 0 0 1.841 0m-8.244 5.376a2.848 2.846 0 1 0 5.696 0a2.848 2.846 0 1 0-5.696 0m14.367-1.034L20.28 7.743a1.303 1.303 0 0 0-1.841.003a1.297 1.297 0 0 0 0 1.838l2.224 2.222c.14.139.14.356 0 .495l-2.192 2.19a1.297 1.297 0 0 0 0 1.837a1.305 1.305 0 0 0 1.84 0l3.264-3.26a1.445 1.445 0 0 0-.002-2.047"/></svg>,
-        'MUI': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M20.229 15.793a.7.7 0 0 0 .244-.243a.7.7 0 0 0 .09-.333l.012-3.858a.7.7 0 0 1 .09-.333a.7.7 0 0 1 .245-.243L23 9.58a.7.7 0 0 1 .333-.088a.7.7 0 0 1 .333.09a.7.7 0 0 1 .244.243a.7.7 0 0 1 .089.333v7.014a.67.67 0 0 1-.335.578l-7.893 4.534a.67.67 0 0 1-.662 0l-6.194-3.542a.67.67 0 0 1-.246-.244a.67.67 0 0 1-.09-.335v-3.537q.001-.007.008-.004q.01.003.008-.005v-.004q0-.004.004-.007l5.102-2.93c.004-.003.002-.01-.003-.01l-.004-.002l-.001-.004l.01-3.467a.67.67 0 0 0-.333-.58a.67.67 0 0 0-.667 0L8.912 9.799a.67.67 0 0 1-.665 0l-3.804-2.19a.667.667 0 0 0-.999.577v6.267a.67.67 0 0 1-.332.577a.7.7 0 0 1-.332.09a.7.7 0 0 1-.333-.088L.336 13.825a.67.67 0 0 1-.246-.244a.67.67 0 0 1-.09-.336L.019 2.292a.667.667 0 0 1 .998-.577l7.23 4.153a.67.67 0 0 0 .665 0l7.228-4.153a.7.7 0 0 1 .333-.088a.7.7 0 0 1 .333.09a.7.7 0 0 1 .244.244a.7.7 0 0 1 .088.333V13.25c0 .117-.03.232-.089.334a.67.67 0 0 1-.245.244l-3.785 2.18a.67.67 0 0 0-.245.245a.67.67 0 0 0-.089.334a.67.67 0 0 0 .09.334a.67.67 0 0 0 .247.244l2.088 1.189a.7.7 0 0 0 .33.087a.7.7 0 0 0 .332-.089zm.438-9.828a.67.67 0 0 0 .09.335a.67.67 0 0 0 .248.244a.67.67 0 0 0 .67-.008l2.001-1.2a.7.7 0 0 0 .237-.243a.7.7 0 0 0 .087-.329V2.32a.67.67 0 0 0-.091-.335a.67.67 0 0 0-.584-.33a.67.67 0 0 0-.334.094l-2 1.2a.7.7 0 0 0-.238.243a.7.7 0 0 0-.086.329z"/></svg>,
-        'Radix': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M11.52 24a7.68 7.68 0 0 1-7.68-7.68a7.68 7.68 0 0 1 7.68-7.68zm0-24v7.68H3.84V0zm4.8 7.68a3.84 3.84 0 1 1 0-7.68a3.84 3.84 0 0 1 0 7.68"/></svg>,
-        'Next.js': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 15V9l7.745 10.65A9 9 0 1 1 19 17.657M15 12V9"/></svg>,
-        'Tailwind': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.31.74 1.91 1.35c.98 1 2.09 2.15 4.59 2.15c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C15.61 7.15 14.5 6 12 6m-5 6c-2.67 0-4.33 1.33-5 4c1-1.33 2.17-1.83 3.5-1.5c.76.19 1.3.74 1.91 1.35C8.39 16.85 9.5 18 12 18c2.67 0 4.33-1.33 5-4c-1 1.33-2.17 1.83-3.5 1.5c-.76-.19-1.3-.74-1.91-1.35C10.61 13.15 9.5 12 7 12"/></svg>,
-        'Firebase': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M19.455 8.369c-.538-.748-1.778-2.285-3.681-4.569a447 447 0 0 0-1.884-2.245l-.488-.576l-.207-.245l-.113-.133l-.022-.032l-.01-.005L12.57 0l-.609.488a13.34 13.34 0 0 0-3.681 4.64a11.4 11.4 0 0 0-1.043 3.176a12 12 0 0 0-.121.738a11 11 0 0 0-.632-.033l-.059-.003a7.5 7.5 0 0 0-2.28.274l-.317.089l-.163.286a9.6 9.6 0 0 0-1.252 4.416a9.53 9.53 0 0 0 1.583 5.625a9.57 9.57 0 0 0 4.42 3.611l.236.095l.071.025l.003-.001a9.6 9.6 0 0 0 2.941.568q.171.006.342.006a9.5 9.5 0 0 0 3.69-.742l.008.004l.313-.145a9.63 9.63 0 0 0 3.927-3.335a9.6 9.6 0 0 0 1.641-5.042c.075-2.161-.643-4.304-2.133-6.371m-7.083 6.695c.328 1.244.264 2.44-.191 3.558c-1.135-1.12-1.967-2.352-2.475-3.665c-.543-1.404-.87-2.74-.974-3.975c.48.157.922.366 1.315.622c1.132.737 1.914 1.902 2.325 3.461zm.207 6.022c.482.368.99.712 1.513 1.028a7.9 7.9 0 0 1-2.369.273a8 8 0 0 1-.373-.022a9 9 0 0 0 1.228-1.279zm1.347-6.431c-.516-1.957-1.527-3.437-3.002-4.398a7.4 7.4 0 0 0-2.194-.95a9 9 0 0 1 .089-.713a11.6 11.6 0 0 1 .91-2.765l.004-.008c.177-.358.376-.719.61-1.105l.092-.152l-.003-.001a11.7 11.7 0 0 1 1.942-2.311l.288.341c.672.796 1.304 1.548 1.878 2.237c1.291 1.549 2.966 3.583 3.612 4.48c1.277 1.771 1.893 3.579 1.83 5.375a7.97 7.97 0 0 1-3.995 6.641a15.5 15.5 0 0 1-2.539-1.599c.79-1.575.952-3.28.479-5.072zm-2.575 5.397a7.9 7.9 0 0 1-2.09 1.856a6 6 0 0 1-.243-.093l-.065-.026a7.97 7.97 0 0 1-3.635-3.01a7.94 7.94 0 0 1-1.298-4.653a7.9 7.9 0 0 1 .882-3.379q.476-.105.96-.131l.084-.002q.245-.005.478 0q.341.017.677.07c.073 1.513.445 3.145 1.105 4.852c.637 1.644 1.694 3.162 3.144 4.515z"/></svg>,
-        'Supabase': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M3.084 15.25c-1.664 0-2.6-1.912-1.58-3.226L10.21.806C10.794.054 12 .466 12 1.42v7.33h8.916c1.663 0 2.6 1.912 1.58 3.226L13.79 23.194c-.584.752-1.79.34-1.79-.613V15.25z"/></svg>,
-        'Postgres': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M16.805 1a10 10 0 0 0-2.603.37l-.06.018a10.6 10.6 0 0 0-1.615-.151c-1.113-.019-2.07.243-2.84.68c-.76-.256-2.336-.697-3.997-.609c-1.157.061-2.419.402-3.354 1.36c-.933.958-1.426 2.44-1.322 4.457c.028.557.191 1.464.463 2.64c.27 1.175.652 2.55 1.127 3.805s.996 2.384 1.81 3.15c.406.384.965.707 1.624.68c.463-.018.882-.215 1.243-.506c.176.225.364.323.535.414c.215.114.425.192.642.244a4.6 4.6 0 0 0 1.84.091c.267-.043.548-.127.828-.247c.01.302.022.598.035.898c.038.95.063 1.827.357 2.596c.047.126.176.773.687 1.344c.51.572 1.51.928 2.648.692c.803-.167 1.825-.468 2.503-1.404c.67-.926.973-2.254 1.033-4.409c.015-.116.033-.215.052-.308l.16.014h.018c.857.038 1.787-.08 2.564-.43c.688-.31 1.208-.622 1.587-1.177c.095-.137.199-.303.227-.59c.028-.285-.14-.733-.421-.939c-.563-.414-.916-.257-1.295-.18q-.56.12-1.136.133c1.093-1.784 1.876-3.68 2.323-5.358c.264-.99.413-1.903.425-2.701s-.055-1.505-.548-2.117c-1.541-1.91-3.708-2.438-5.384-2.456q-.078-.002-.156-.001zm-.044.587c1.585-.015 3.611.417 5.065 2.22c.327.405.424.997.413 1.727c-.012.729-.151 1.601-.405 2.557c-.493 1.852-1.425 4.01-2.738 5.948a.7.7 0 0 0 .15.079c.274.11.898.204 2.145-.044c.313-.065.543-.108.781.068a.48.48 0 0 1 .173.39a.64.64 0 0 1-.123.308c-.24.351-.716.684-1.326.958c-.539.244-1.313.371-1.999.379c-.344.003-.661-.023-.93-.104l-.018-.006c-.104.971-.343 2.89-.498 3.765c-.125.706-.343 1.267-.76 1.687c-.416.42-1.004.673-1.796.838c-.981.204-1.696-.016-2.157-.393c-.46-.375-.671-.874-.798-1.18c-.087-.21-.132-.483-.176-.848a18 18 0 0 1-.097-1.315a46 46 0 0 1-.028-2.312c-.41.363-.92.605-1.467.696c-.65.107-1.232.002-1.579-.082a2.2 2.2 0 0 1-.49-.185c-.162-.083-.315-.177-.417-.363a.5.5 0 0 1-.054-.35a.56.56 0 0 1 .206-.303c.188-.148.435-.23.808-.306c.68-.135.917-.228 1.061-.339c.123-.095.262-.287.508-.57l-.003-.037a2.9 2.9 0 0 1-1.257-.328c-.141.144-.865.887-1.748 1.917c-.371.431-.781.678-1.214.696s-.824-.194-1.156-.506c-.665-.626-1.195-1.703-1.657-2.92c-.46-1.218-.836-2.574-1.102-3.729c-.268-1.155-.426-2.086-.448-2.535c-.1-1.909.36-3.195 1.15-4.006S4.652 1.94 5.708 1.882c1.894-.106 3.693.535 4.057.673c.701-.462 1.604-.75 2.733-.732a7.2 7.2 0 0 1 1.588.2l.019-.008q.344-.117.698-.196a9.4 9.4 0 0 1 1.957-.23zm.143.614h-.137a8.5 8.5 0 0 0-1.61.176a7.05 7.05 0 0 1 2.692 2.062a7.7 7.7 0 0 1 1.07 1.76c.104.242.174.447.213.605c.02.08.034.147.038.217a.4.4 0 0 1-.011.132l-.006.012c.029.803-.176 1.347-.201 2.113c-.019.556.127 1.209.163 1.92c.034.67-.049 1.405-.497 2.127q.056.066.108.132c1.185-1.81 2.04-3.814 2.495-5.521c.243-.92.373-1.753.384-2.413c.01-.66-.117-1.139-.279-1.338c-1.268-1.573-2.983-1.974-4.422-1.985m-4.525.235c-1.117.002-1.919.33-2.526.82c-.627.507-1.047 1.2-1.323 1.911a7.9 7.9 0 0 0-.485 2.213l.013-.007c.337-.184.78-.367 1.254-.473c.475-.106.986-.139 1.449.035s.846.584.985 1.206c.665 2.986-.207 4.096-.529 4.933a9 9 0 0 0-.312.929q.06-.017.121-.024a1.06 1.06 0 0 1 .51.1c.324.13.546.402.666.714q.047.124.067.26q.02.057.019.117a49 49 0 0 0 .012 3.426c.022.494.054.928.095 1.271c.04.342.098.602.135.69c.12.294.297.678.617.939s.777.434 1.614.26c.726-.151 1.174-.36 1.474-.663c.298-.301.477-.72.591-1.363c.171-.963.515-3.754.556-4.28c-.018-.395.042-.7.172-.932c.135-.238.343-.384.522-.463c.09-.04.174-.066.243-.085a6 6 0 0 0-.23-.298a4 4 0 0 1-.629-1.007a8 8 0 0 0-.243-.443c-.125-.22-.284-.495-.45-.804c-.333-.619-.695-1.369-.883-2.1c-.187-.729-.215-1.484.265-2.017c.426-.473 1.172-.669 2.293-.559c-.033-.096-.053-.176-.109-.304a7 7 0 0 0-.983-1.617c-.95-1.178-2.487-2.346-4.863-2.384h-.108zm-6.276.047q-.18 0-.36.01c-.954.053-1.856.322-2.501.986c-.647.663-1.072 1.751-.98 3.553c.019.34.172 1.296.434 2.43c.262 1.136.634 2.471 1.08 3.65c.446 1.18.988 2.207 1.502 2.693c.259.243.484.341.688.333c.205-.01.451-.124.753-.475a40 40 0 0 1 1.71-1.877a3.2 3.2 0 0 1-.932-1.307a3.1 3.1 0 0 1-.17-1.58c.097-.678.11-1.312.099-1.812c-.012-.488-.048-.812-.048-1.015v-.028a8.8 8.8 0 0 1 .559-3.095c.264-.682.658-1.375 1.249-1.936c-.58-.185-1.61-.467-2.725-.52a7 7 0 0 0-.36-.01zm11.714 4.842c-.641.008-1.001.169-1.19.379c-.268.298-.293.82-.127 1.464s.507 1.365.829 1.963c.16.3.316.57.442.788c.127.22.22.376.276.51q.08.181.168.331c.248-.509.293-1.008.267-1.529c-.033-.644-.187-1.303-.164-1.97c.025-.78.184-1.289.198-1.892a6 6 0 0 0-.699-.044m-7.78.105a2.7 2.7 0 0 0-.582.068a4.5 4.5 0 0 0-1.09.412q-.173.09-.33.209l-.02.018c.006.134.033.459.045.936c.01.523-.002 1.19-.106 1.91c-.226 1.568.946 2.866 2.324 2.868c.08-.322.213-.648.345-.992c.384-1.003 1.139-1.734.503-4.589c-.104-.467-.31-.656-.594-.763a1.4 1.4 0 0 0-.495-.077m7.48.187h.048q.094.003.17.02a.4.4 0 0 1 .13.051a.15.15 0 0 1 .071.1v.008a.2.2 0 0 1-.034.124a.6.6 0 0 1-.104.137a.65.65 0 0 1-.364.195a.57.57 0 0 1-.388-.095a.6.6 0 0 1-.123-.108a.24.24 0 0 1-.06-.116a.15.15 0 0 1 .04-.118a.4.4 0 0 1 .111-.082a1.3 1.3 0 0 1 .504-.118zm-7.388.154q.075 0 .157.012c.144.02.273.057.371.112q.072.037.126.097q.028.033.042.073t.009.083a.27.27 0 0 1-.071.141a.6.6 0 0 1-.135.12a.62.62 0 0 1-.424.103a.7.7 0 0 1-.396-.209a.7.7 0 0 1-.112-.15a.25.25 0 0 1-.039-.162c.014-.1.099-.15.18-.18a.8.8 0 0 1 .29-.036zm8.56 6.732h-.003c-.139.05-.253.07-.35.11a.42.42 0 0 0-.225.197c-.06.105-.11.292-.095.61a.5.5 0 0 0 .14.064c.161.048.432.08.735.075c.602-.007 1.344-.143 1.738-.321c.323-.146.623-.336.891-.564c-1.317.264-2.06.194-2.517.011a1.3 1.3 0 0 1-.314-.183m-7.588.086h-.02c-.05.004-.123.02-.263.172c-.33.358-.444.582-.716.792c-.27.21-.623.321-1.327.461c-.223.044-.35.093-.436.132c.028.022.025.028.066.049c.103.055.236.103.342.13c.303.073.8.159 1.319.073s1.058-.327 1.518-.953c.08-.108.088-.268.023-.44c-.067-.17-.211-.318-.313-.36a.6.6 0 0 0-.193-.054z"/>
-                    </svg>,
-        'Anthropic': <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto" width="1.5em" height="1.5em" viewBox="0 0 24 24"><path fill="currentColor" d="M16.765 5h-3.308l5.923 15h3.23zM7.226 5L1.38 20h3.308l1.307-3.154h6.154l1.23 3.077h3.309L10.688 5zm-.308 9.077l2-5.308l2.077 5.308z"/></svg>,
-
     };
 
-    /**
-     * Creates a styled list component to display various data in bullet points.
-     */
-    const list = ({ key, dictList = {}, style = {}, arrow = true } = {}) => (
-        <ul key={key ? key : Math.random() * 1000} style={style} className={`card max-w-full`}>
-            {Object.keys(dictList).map((item, index) => (
-                <li
-                    key={index + item + key}
-                    id={`${arrow ? 'arrow' : ''}`}
-                    className='list list-none'
-                >
-                    <span className="listContainer* flex flex-col gap-0">
-                        <div className="listHeaderDiv mb-1">
-                            {dictList[item].head}
-                        </div>
-                        <div className="listTextDiv self-start">
-                            {dictList[item].body}
-                        </div>
-                    </span>
-                </li>
-            ))}
-        </ul>
-    );
+    // ── skill icon helpers ──
+    const si = (iconName) => <Icon icon={iconName} className="w-4 h-4" />;
+    const fa = (icon) => <FontAwesomeIcon icon={icon} className="w-4 h-4" />;
 
-    // const preloadIcons = async () => {
-    //     await new Promise(resolve => setTimeout(resolve, 500));
-    //     setPdfMode(true);
-    //     };
-
-    // function downloadPdf() {
-    //     setSkillMode(false);
-    //     preloadIcons(true);
-    // }
-
-    // Determine the skill sets to display (expanded vs. condensed)
-    let skillSet;
-    if (skillMode || pdfMode) {
-        skillSet = (
-            <motion.div
-            initial={{ opacity: pdfMode ? 1 : 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration:  0.8 , ease: 'circInOut'}}
-             key={1}>
-                <fieldset
-                    className="skillzFieldSet"
-                >
-                    {!pdfMode && <legend className="legend badge badge-lg">Front</legend>}
-                    {['JS', 'TS', 'Tailwind', 'Next.js', 'faReact','Radix','Shadcn','daisyUI','MUI','Ant'].map((item, indx) => (
-                        skillsDict[item] && (
-                            <div
-                                key={indx + item}
-                                title={item.startsWith('fa') ? item.slice(2) : item}
-                                className='skill-box text-primary-focus'
-                            >
-                                 {skillsDict[item]?.type ? skillsDict[item]  :
-                                <FontAwesomeIcon
-                                    id={item}
-                                    className={`fontAwsome  ${
-                                        !pdfMode && reactSpin && item === 'faReact' ? 'rotate react' : ''
-                                    }`}
-                                    size="lg"
-                                    icon={skillsDict[item]}
-                                />}
-                                <span className="skillName">
-                                    {item.startsWith('fa') ? item.slice(2) : item}
-                                </span>
-                            </div>
-                        )
-                    ))}
-                </fieldset>
-
-                <fieldset
-                    className="skillzFieldSet"
-                >
-                    {!pdfMode && <legend className="legend badge badge-lg">Back</legend>}
-                    {['Postgres', 'faServer','Next.js', 'faNodeJs',  'faPython','faCode'].map(
-                        (item, indx) => (
-                            <div
-                                key={indx + item}
-                                title={item.startsWith('fa') ? item.slice(2) : item}
-                                className="skill-box text-secondary-focus"
-                            >
-                               {skillsDict[item]?.type ? skillsDict[item]  :
-                                <FontAwesomeIcon
-                                    id={item}
-                                    className="fontAwsome"
-                                    size="lg"
-                                    icon={skillsDict[item]}
-                                />}
-                                <span
-                                    id={item === 'REST API' ? 'restAPI' : ''}
-                                    className="skillName"
-                                >
-                                    {item.startsWith('fa') ? item.slice(2) : item}
-                                </span>
-                            </div>
-                        )
-                    )}
-                </fieldset>
-
-                <fieldset
-                    className="skillzFieldSet"
-                >
-                    {!pdfMode && <legend className="legend badge  badge-lg">Cloud & API</legend>}
-                    {['Firebase','Supabase', 'Open AI','Anthropic','faGithub', 'Auth', 'Payment', 'GCP', 'AWS', 'Whatsapp'].map(
-                        (item, indx) =>
-                           
-                                <div
-                                    key={indx + item}
-                                    title={item.startsWith('fa') ? item.slice(2) : item}
-                                    className="skill-box text-accent-focus"
-                                >
-                                      {skillsDict[item]?.type ? skillsDict[item]  :
-                                <FontAwesomeIcon
-                                    id={item}
-                                    className="fontAwsome"
-                                    size="lg"
-                                    icon={skillsDict[item]}
-                                />}
-                                    <span className="skillName text-accent-focus">
-                                        {item.startsWith('fa') ? item.slice(2) : item}
-                                    </span>
-                                </div>
-                           
-                    )}
-                </fieldset>
-            </motion.div>
-        );
-    } else {
-        skillSet = (
-            <motion.div 
-            initial={{ opacity: pdfMode ? 1 : 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.4 , ease: 'circInOut'}}
-            key={2} className="overflow-hidden* card* w-full flex justify-center relative"> {/* Carousel container */}
-                <div className="flex justify-between w-full whitespace-nowrap animate-scroll"> {/* Adjust duration */}
-                {['HTML','CSS', 'JS','TS','Postgres', 'faServer','Next.js', 'faReact','Tailwind', 'Shadcn','GCP','AWS','faPython','Firebase','Supabase', 'Open AI', 'Anthropic', 'faNodeJs', 'daisyUI','Radix', 'Ant', 'MUI', 'Auth','faGithub','Payment']
-                .map(
-                    (item, indx) =>
-                        skillsDict[item] && (
-                            <div
-                                key={indx + item}
-                                title={item.startsWith('fa') ? item.slice(2) : item}
-                                className={`skill-box ${pdfMode ? '' : ''}`}
-                            >
-                               { skillsDict[item]?.type ? skillsDict[item] : 
-                              <FontAwesomeIcon
-                                    id={item}
-                                    className={`fontAwsome  ${
-                                        !pdfMode && reactSpin && item === 'faReact' ? 'rotate react' : ''
-                                    }`}
-                                    size="lg"
-                                    icon={skillsDict[item]}
-                                /> 
-                                }
-                                <span
-                                    id={item === 'REST API' ? 'restAPI' : ''}
-                                    className="skillName"
-                                >
-                                    {item.startsWith('fa') ? item.slice(2) : item}
-                                </span>
-                            </div>
-                        )
-                )}
-                </div>
-            </motion.div>
-          
-        );
-    }
-
-    // Skills container
-    let skills = skillSet && <div key="Skillz" className="skills-container"><AnimatePresence>{skillSet}</AnimatePresence></div>;
-
-    // Education data
-    let edDict = {
-        first: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    B.Sc. Electrical & Electronics Engineering &nbsp;|
-                    <i className="subTitle"> Tel Aviv University, 2014-2019 </i>
-                </p>
-            ),
-            body: (
-                <section className="max-w-[95%] mt-2 text-base-content/80 text-wrap">
-                    Majors in computers, control systems, and EM waves:
-                    <div>
-                        <ul className="majorsList list-none text-wrap border-l-2 border-accent-focus/50 pl-4">
-                            <li className="my-2">
-                                <i className="majors">Computers & Programming – </i> 
-                                In-depth computer science courses in:   
-                                <div className="detailH flex flex-wrap">
-                                    <code>Python</code>,
-                                    <code>C++</code>,
-                                    <code>JS & TS</code>,
-                                    <code>Computer organization</code>,
-                                    <code>HW-SW interfaces</code>,
-                                    <code>Algorithms</code>,
-                                    <code>Data models</code>,
-                                    <code>OS</code>,
-                                    <code>encryption</code>,
-                                    <code>network protocols.</code>
-                                </div>
-                            </li>
-                            <div className="w-full h-2"/>
-                            <li className="my-2">
-                                <i className="majors">Electromagnetic Radiation –</i> Waves propagation,Radiation and Transmissions.
-                            </li>
-                            <div className="w-full h-2"/>
-                            <li className="my-2">
-                                <i className="majors">Controlled Systems –</i> Feedback loops,
-                                logic blocks, and control theory fundamentals.
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-            )
+    const skillGroups = {
+        'Frontend': {
+            color: 'text-primary',
+            items: [
+                { label: 'React', icon: fa(faReact) },
+                { label: 'Next.js', icon: si('akar-icons:nextjs-fill') },
+                { label: 'TypeScript', icon: si('akar-icons:typescript-fill') },
+                { label: 'JavaScript', icon: fa(faJs) },
+                { label: 'Tailwind', icon: si('devicon:tailwindcss') },
+                { label: 'Shadcn', icon: si('simple-icons:shadcnui') },
+                { label: 'daisyUI', icon: si('simple-icons:daisyui') },
+                { label: 'Radix UI', icon: si('simple-icons:radixui') },
+                { label: 'MUI', icon: si('devicon:materialui') },
+            ]
         },
-        second: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    AI engineering for developers &nbsp;|
-                    <i className="subTitle"> Microsoft & Coursera, 2024 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    In-depth course on AI engineering, covering advanced topics in AI models, prompt engineering, AI params, optimization, caching and other methods to improve performance. Focused on practical applications and real-world scenarios.
-                    {` `} Hands on experience with various AI tools and platforms, including:
-                   <i className="detailH">
-                        <code>Open AI</code>,{` `}
-                        <code>Claude/Anthropic</code>,{` `}
-                        <code>Azure AI</code>,{` `}
-                        <code>Gemini</code>,{` `}
-                        <code>Co-pilots</code>,{` `}
-                        <code>AI Agents</code>,{` `}
-                        <code>MCPs</code>.{` `}
-                    </i>
-                    <br/>
-                    On top of that I participated in a microsoft Webinar on AI engineering, where I learned about the latest trends and best practices in the field, including co-pilot mastering.
-                    In addition, built and deployed multiple projects using various AI tools and platforms, Agents and top AI models.
-                </p>
-            )
+        'Backend & Cloud': {
+            color: 'text-secondary',
+            items: [
+                { label: 'Node.js', icon: fa(faNodeJs) },
+                { label: 'Python', icon: fa(faPython) },
+                { label: 'REST API', icon: fa(faRightLeft) },
+                { label: 'Firebase', icon: si('simple-icons:firebase') },
+                { label: 'Supabase', icon: si('ri:supabase-line') },
+                { label: 'PostgreSQL', icon: fa(faDatabase) },
+                { label: 'AWS', icon: si('mdi:aws') },
+                { label: 'GCP', icon: si('devicon-plain:googlecloud') },
+                { label: 'Auth', icon: fa(faLock) },
+            ]
         },
-        third: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Advanced React & Next.js Development &nbsp;|
-                    <i className="subTitle"> Udemy, 2023-2024 </i>
-                </p>
-            ),
-            body: (
-                <div className="mt-2 text-base-content/80 text-wrap">
-                    In-depth web development, with a focus on modern frameworks like
-                    <i className="detailH">
-                        <code>React</code>
-                        and {` `}       
-                        <code>Next.js</code>.
-                    </i>
-                    Strong API and cloud frameworks, database, authentication, server-side rendering, and scalable apps. {` `}
-                    Also covered advanced topics and best practices in web development, including professional UI/UX design, performance optimization, and security measures.
-                    <div className="detailH flex flex-wrap">
-                        <code>Tailwind</code>,
-                        <code>Radix UI</code>,
-                        <code>ShadCN</code>,
-                        <code>daisyUI</code>,
-                        <code>Ant design</code>,
-                        <code>MUI</code>,
-                        <code>Bootstrap</code>.
-                    </div>
-                </div>
-            )
-        },
-        fourth: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    UI/UX and Web design &nbsp;|
-                    <i className="subTitle"> Udemy course 2023 </i>
-                </p>
-            ),
-            body: (
-                <div className="mt-2 text-base-content/80 text-wrap">
-                    multiple courses on UI/UX design and web development including various tools and techniques.
-                    <div className="detailH flex flex-wrap">
-                        {/* <code>Layout and Grid systems</code>, */}
-                        <code>Figma</code>,
-                        <code>Typhography</code>,
-                        <code>Color theory</code>,
-                        <code>Design patterns</code>,
-                        <code>UI/UX</code>,
-                        <code>Responsive design</code>.
-                    </div>
-
-                </div>
-            )
-        },
-        fifth: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    The Complete Web Development Bootcamp &nbsp;|
-                    <i className="subTitle"> Udemy, Dr. Angela Yu</i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Comprehensive coverage of &nbsp;
-                    <i className="detailH">
-                        <code>HTML</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
-                        <code>CSS</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
-                        <code>JavaScript</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
-                        <code>Node.js</code>
-                    </i>
-                    , databases, and DOM manipulation. Built real-world projects to master
-                    front-end and back-end concepts.
-                </p>
-            )
-        },
-        sixth: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Python Developer: Zero to Mastery &nbsp;|
-                    <i className="subTitle"> Udemy, Andrei Neagoie</i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Advanced Python programming for automation, web scraping, data analysis,
-                    and basic machine learning. Gained solid understanding of libraries like
-                    &nbsp;
-                    <i className="detailH">
-                        <code>NumPy</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
-                        <code>Pandas</code>
-                    </i>
-                    ,&nbsp;
-                    <i className="detailH">
-                        <code>Selenium</code>
-                    </i>
-                    , and more.
-                </p>
-            )
-        },
-        
-    };
-
-    let education = (
-        <div key="Education" className="eduContainer">
-            {false && (
-                <span className="educationImg max-sm:hidden">
-                    <a
-                        href="https://english.tau.ac.il/"
-                        className="card"
-                        title="Tel Aviv University"
-                    >
-                        <img
-                            src={tau}
-                            id={pdfMode ? 'pdfImg' : ''}
-                            alt="Tel-Aviv university Logo"
-                            className="p-2 aspect-video"
-                        />
-                    </a>
-                    {/* <a
-                        href="https://www.udemy.com/"
-                        className="card"
-                        title="Udemy"
-                    >
-                        <img
-                            src={udemyLogo}
-                            id={pdfMode ? 'pdfImg' : ''}
-                            alt="Udemy Logo"
-                            className="p-2 aspect-video"
-                        />
-                    </a> */}
-                    {/* <a
-                        href="https://www.coursera.com/"
-                        className="card"
-                        title="Coursera"
-                    >
-                        <img
-                            src={coursera}
-                            id={pdfMode ? 'pdfImg' : ''}
-                            alt="Coursera Logo"
-                            className="p-2 aspect-video"
-                        />
-                    </a> */}
-                </span>
-            )}
-            {list({ key: 'EducationList', style: { marginTop: '0px' }, dictList: edDict })}
-        </div>
-    );
-
-    // Professional experience data
-    let experienceDict = {
-        // first: {
-        //     head: (
-        //         <p className="font-medium !text-base-content">
-        //             Tech lead and co-founder &nbsp;|
-        //             <i className="subTitle"> Webly / Taskomatic, 2024-2025 </i>
-        //         </p>
-        //     ),
-        //     body: (
-        //         <p className="">
-        //             Co-founded Webly, a digital agency specializing in AI powered website engine. 
-        //             Developed and maintained multiple SaaS applications, including Taskomatic, a task management tool that integrates with various platforms. 
-        //             Focused on delivering high-quality solutions that enhance productivity and streamline processes.
-        //         </p>
-        //     )
-        // },
-    first2: {
-    head: (
-        <p className="font-medium !text-base-content">
-            Application Engineer &nbsp;|
-            <i className="subTitle"> Self-Employed, 2023–Present </i>
-        </p>
-    ),
-    body: (
-        <p className="">
-            Designing and developing full-stack, modern applications and SaaS platforms with a strong focus on scalability, clean user experience, and cloud-native architecture. Balancing both front-end interfaces and backend infrastructure includes cloud services and functions, database, authentication and integrations of data pipelines. Leveraging automation with AI, APIs and cloud platforms to speed up development and optimize workflows. Proficient in 
-            <i className="detailH"><code>Node.js</code></i>, 
-            <i className="detailH"><code>TS & JS</code></i>, 
-            <i className="detailH"><code>React</code></i>, 
-            <i className="detailH"><code>Next.js</code></i>, 
-            <i className="detailH"><code>Firebase</code></i>, 
-            <i className="detailH"><code>Postgres</code></i>, 
-            <i className="detailH"><code>MongoDB</code></i>, 
-            <i className="detailH"><code>Supabase</code></i>, 
-            <i className="detailH"><code>AWS</code></i>, 
-            <i className="detailH"><code>Python</code></i>,
-            <i className="detailH"><code>AI integrations</code></i>.
-        </p>
-    )
-},
-second: {
-    head: (
-        <p className="font-medium !text-base-content">
-            Hardware & Product Engineer &nbsp;|
-            <i className="subTitle"> SolarEdge R&D, 2019–2023 </i>
-        </p>
-    ),
-    body: (
-        <p className="">
-            Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy products. Responsible for full product cycle - from early design and prototyping, Board design and architecture to validation and mass production. Collaborated with firmware, QA, and manufacturing teams to ensure system-level reliability. Built automated test frameworks and real-time data tools using
-            python and C# to streamline validation processes. Experience with DSPs, wireless communication, power electronics, and system-level debugging. Known for hands-on problem solving and cross-domain coordination.
-        </p>
-    )
-}
-,
-        third: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Teaching Assistant &nbsp;|
-                    <i className="subTitle"> Tel Aviv University, 2019-2020 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Frontal lectures for TAU engineering students in mathematics
-                    and physics. lessons and marathons to practice complex topics, driving higher exam
-                    success rates. Focusing on problem solving skills, out of the box thinking and creative approaches.
-                </p>
-            )
-        },
-        fourth: {
-            head: (
-                <p className="font-medium !text-base-content">
-                    Senior Math & Physics Tutor &nbsp;| 
-                    <i className="subTitle">Archimedes LTD, 2016-2019 </i>
-                </p>
-            ),
-            body: (
-                <p className="">
-                    Frontal lectures for high school students in math and physics.
-                    Including Marathon sessions for Bagrut.
-                </p>
-            )
+        'AI & Tools': {
+            color: 'text-accent',
+            items: [
+                { label: 'OpenAI', icon: si('simple-icons:openai') },
+                { label: 'Anthropic', icon: si('simple-icons:anthropic') },
+                { label: 'AI Agents', icon: fa(faBrain) },
+                { label: 'GitHub', icon: fa(faGithub) },
+                { label: 'Payments', icon: fa(faWallet) },
+                { label: 'Whatsapp API', icon: fa(faWhatsapp) },
+                { label: 'Server', icon: fa(faServer) },
+                { label: 'CSS3', icon: fa(faCss3) },
+                { label: 'Code', icon: fa(faCode) },
+            ]
         }
     };
 
-    let experience = (
-        <div key="Experience" className="expContainer">
-            {false && (
-                <span className="educationImg">
-                    <a
-                        href="https://investors.solaredge.com/"
-                        className="card"
-                        title="SolarEdge"
-                    >
-                        <img
-                            src={sedg}
-                            id={pdfMode ? 'pdfImg' : ''}
-                            alt="SolarEdge Logo"
-                            className="p-2 aspect-video"
-                        />
-                    </a>
-                    <a
-                        href="https://english.tau.ac.il/"
-                        className="card"
-                        title="Tel-Aviv University"
-                    >
-                        <img
-                            src={tau2}
-                            id={pdfMode ? 'pdfImg' : ''}
-                            className="tauLogo* p-2 aspect-video"
-                            alt="Tel-Aviv university Logo"
-                        />
-                    </a>
-                    {/* <a
-                        href="#"
-                        className="card"
-                        title="Math Mentor">
-                        <img
-                            src={mathMentor}
-                            id={pdfMode ? 'pdfImg' : ''}
-                            className="mathMentorLogo p-2"
-                            alt="Math Mentor Logo"
-                        />
-                    </a> */}
-                </span>
-            )}
-            {list({ key: 'ExperienceList', style: { marginTop: '0px' }, dictList: experienceDict })}
-        </div>
-    );
-
-    // About Me content
-    let aboutMe = (
-        <div key="About me" className="aboutMe relative ">
-            <div className={`${pdfMode ? '': 'card'} !block p-2`}>
-                <div style={{animationDuration: '4s'}} className="absolute max-sm:left-4 max-sm:-top-4 overflow-hidden top-3 right-2 w-[12%] h-[20%] blur-[60px] bg-gradient-to-r animate-pulse from-yellow-200 to-orange-400 opacity-60"/>
-              {!pdfMode && (
-                    <div id="profileImg" className="w-fit relative transition-all shadow-lg shadow-accent float-right avatar mask mask-squircle rounded-3xl overflow-hidden">
-                        <img
-                            src={selfie}
-                            alt="Portrait of Adi Yehuda"
-                            title="Adi Yehuda"
-                            className="hover:scale-110 !w-24 !h-24 rotate-[-5deg] transition-all"
-                        />
-                    </div>
-                )}
-
-                <div
-                    className="flex flex-wrap my-4 items-center">
-                    <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
-                        <FontAwesomeIcon icon={faUser} size="sm" />
-                        <p>36 y/o, Male</p>
-                    </div>
-                    <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                    <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
-                        <FontAwesomeIcon icon={faLocationDot} size="sm" />
-                        <p>Tel-Aviv, Israel</p>
-                    </div>
-                    <p style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                    <div className="flex flex-nowrap justify-center badge bg-transparent hover:glass border-none gap-2">
-                        <FontAwesomeIcon icon={faEarthAmerica} size="sm" />
-                        <p>EN, HE</p>
-                    </div>
-                    <p className="max-sm:hidden" style={{ margin: '0em 0.8em', fontWeight: 'bold' }}>|</p>
-                    <div title="Passport" className="flex flex-nowrap max-sm:hidden justify-center badge bg-transparent hover:glass border-none gap-2">
-                        <FontAwesomeIcon icon={faPassport} size="sm" />
-                        <p>EU, IL</p>
-                    </div>
-                </div>
-              
-                <p className="text-base mb-3 max-sm:max-w-[95%] max-sm:!ml-2">
-                    I'm a Passionate developer with strong technical background in Web applications, Product R&D and HW.  I focus on creating innovative, high-quality solutions. My journey began at Tel Aviv University, where I balanced SW & HW engineering studies with an ever-growing interest in programming and web apps.
-                </p>
-                <p className="text-base mb-3 max-sm:max-w-[95%] max-sm:!ml-2">
-                    After several years leading product R&D in the energy sector as an HW engineer, I focused on full-stack web development and started building interactive, scalable applications that streamline innovation and user experiences. My background in hardware and embedded systems equips me with a unique perspective in bridging the gap between HW and SW solutions together with strong project management skills.
-                </p>
-                <p className="text-base mb-3 max-sm:max-w-[95%] max-sm:!ml-2">
-                  I am driven by a desire to push boundaries, explore cutting-edge tech and collaborate on impactful ideas. Whether it's a dynamic application, platform, product or any other AI driven Ideas - I'm always ready to deliver a professional, meaningful and future-proof development.
-                </p>
-            </div>
-        </div>
-    );
-
-    // Contact data
-    let contactMeDict = {
-        Email: {
-            icon: faEnvelope,
-            color: 'currentColor',
-            data: 'Admin@webly.digital',
-            link: 'mailto: Admin@webly.digital'
-        },
-        github: {
-            icon: faGithub,
-            color: 'currentColor',
-            data: 'Github - AdiY',
-            link: 'https://github.com/AdiYd' // Add your GitHub link here
-        },
-        Linkedin: {
-            icon: faLinkedin,
-            color: 'currentColor',
-            data: 'LinkedIn Profile',
-            link: 'https://www.linkedin.com/in/adiyd'
-        },
-        // Website: {
-        //     icon: faEarthAmerica,
-        //     color: 'currentColor',
-        //     data: 'webly.digital',
-        //     link: 'https://webly.digital/'
+    const products = [
+        // {
+        //     name: 'Webly',
+        //     desc: 'AI-powered website engine & digital agency platform. End-to-end from design to deployment.',
+        //     tags: ['Next.js', 'AI', 'SaaS'],
+        //     icon: '🌐',
+        //     link: 'https://webly.digital'
         // },
-        Whatsapp: {
-            icon: faWhatsapp,
-            color: 'currentColor',
-            data: '+972-527242775',
-            link: 'https://wa.me/972527242775'
-        }
+        {
+            name: 'Taskomatic',
+            desc: 'Smart task management with AI automation, multi-platform integrations and team workflows.',
+            tags: ['React', 'Firebase', 'AI'],
+            icon: '⚡',
+            link: 'https://taskomatic.net'
+        },
+        // {
+        //     name: 'Math Mentor',
+        //     desc: 'Interactive tutoring platform for high school mathematics with real-time feedback.',
+        //     tags: ['React', 'Education', 'AI'],
+        //     icon: '📐',
+        // },
+        {
+            name: 'Custom Apps & SaaS',
+            desc: 'Multiple client-facing AI SaaS tools spanning fintech, edtech and productivity - built & shipped.',
+            tags: ['Full-stack', 'Cloud', 'Architecture'],
+            icon: '🚀',
+        },
+    ];
+
+    const navItems = useMemo(() => [
+        { id: 'about', label: 'About', icon: faAddressCard },
+        { id: 'products', label: 'Products', icon: faRocket },
+        { id: 'experience', label: 'Experience', icon: faBriefcase },
+        { id: 'skills', label: 'Skills', icon: faLayerGroup },
+        { id: 'education', label: 'Education', icon: faGraduationCap },
+    ], []);
+
+    const scrollTo = (id) => {
+        setActiveNav(id);
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
 
-
-    let contactMe = (
-        <div key="Contact me" className={`${pdfMode ? '': 'card'} !block p-2 pt-0`}>
-            <ul className="menu* p-4 rounded-box">
-                {Object.keys(contactMeDict).map((item, indx) => (
-                    <li key={item + indx} className=" my-1">
-                        <a
-                            href={contactMeDict[item].link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="flex text-base max-sm:text-base text-base-content items-center gap-3 px-4 py-2 "
-                        >
-                            <div className="">
-                                <FontAwesomeIcon
-                                    icon={contactMeDict[item].icon}
-                                />
-                            </div>
-                            {contactMeDict[item].data}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    );
-
-    // Floating contact panel (right corner)
-    let floatingContact = (
-        <div className="floatingContact">
-            <AnimatePresence>
-                {minimizeButtons && (
-                    <motion.div
-                        className="flex flex-col gap-2"
-                        initial={{ x: 120, scale: 0.7, opacity: 0 }}
-                        animate={{ x: 0, scale: 1, opacity: 1 }}
-                        exit={{ x: 120, scale: 0.7, opacity: 0 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 400,
-                            damping: 30,
-                            duration: 0.35,
-                            staggerChildren: 0.15
-                        }}
-                    >
-                        <a
-                            href={contactMeDict.Linkedin.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-circle btn-secondary backdrop-blur-lg  btn-outline"
-                            title="LinkedIn"
-                        >
-                            <FontAwesomeIcon
-                                size="lg"
-                                icon={contactMeDict.Linkedin.icon}
-                            />
-                        </a>
-                        <a
-                            href={contactMeDict.github.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-circle btn-accent backdrop-blur-lg btn-outline shakeHover"
-                            title="My Github"
-                        >
-                            <FontAwesomeIcon
-                                size="lg"
-                                icon={contactMeDict.github.icon}
-                            />
-                        </a>
-                        <a
-                            href={contactMeDict.Whatsapp.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-circle btn-success* border-success text-success backdrop-blur-lg btn-outline shakeHover"
-                            title="WhatsApp me"
-                        >
-                            <FontAwesomeIcon
-                                size="lg"
-                                icon={contactMeDict.Whatsapp.icon}
-                            />
-                        </a>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-       
-            <div
-                className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
-                title={themeName || 'Roll the Dice'}
-                onClick={changeRandomTheme}
-                onMouseEnter={() => setShowDice(true)}
-                onMouseLeave={() => setShowDice(false)}
-            >
-                { (isRolling || showDice ) ? <FontAwesomeIcon
-                        icon={faDice}
-                        size="lg"
-                        style={{animationDuration: '0.5s'}}
-                        className={`${isRolling ? 'animate-spin' : ''}`}
-                    /> :
-                    <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'cupcake']} className="text-xl" />
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY + 100; // Adjust offset as needed
+            navItems.forEach(({ id }) => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const { offsetTop, offsetHeight } = section;
+                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                        setActiveNav(id);
                     }
-            </div>
-            {/* <a
-                href={contactMeDict.Email.link}
-                className="btn btn-circle btn-primary backdrop-blur-lg btn-outline"
-                title="Mail me"
-            >
-                <FontAwesomeIcon
-                    size="lg"
-                    icon={contactMeDict.Email.icon}
-                />
-            </a> */}
+                }
+            });
+        };
 
-            <div 
-                className="btn mx-auto btn-primary scale-90 backdrop-blur-lg btn-outline btn-square transition-all duration-300 hover:scale-105" 
-                onClick={()=>setMinimizeButtons(!minimizeButtons)} 
-                title={!minimizeButtons ? 'Expand' : 'Minimize'}
-            >
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={minimizeButtons ? 'minus' : 'plus'}
-                        initial={{ rotate: -90, opacity: 0 }}
-                        animate={{ rotate: 0, opacity: 1 }}
-                        exit={{ rotate: 90, opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                    >
-                        <FontAwesomeIcon 
-                            icon={minimizeButtons ? faMinus : faPlus} 
-                            size="lg" 
-                        />
-                    </motion.div>
-                </AnimatePresence>
-            </div>
-        </div>
-    );
-
-    // Building the block structure of the page
-    let blockDict = {
-        'About Me': [aboutMe],
-        'Professional Experience': [experience],
-        Education: [education],
-        Skills: [skills],
-        'Contact Me': [contactMe]
-    };
-
-    // Automatic PDF generation once pdfMode is set
-    // if (pdfMode) {
-    //     setTimeout(() => {
-    //         toPDF();
-    //         setTimeout(() => {
-    //             setPdfMode(false);
-    //         }, 10);
-    //     }, 100);
-    // }
-
-
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [navItems]);
 
     return (
-        <div
-            // ref={targetRef}
-            className={`main z-10  py-8 ${pdfMode ? 'pdfContainer pdfCard' : ''}`}
-            // data-theme="light"
-        >
-            <div className="flex justify-center max-sm:gap-0 mb-8" style={{ alignItems: 'center' }}>
-                <h1 className="text-4xl font-bold">
-                    Adi Yehuda 
-                </h1>
-                {!pdfMode && showPdf && (
-                    <>
-                    <a
-                        href='https://adiyd.github.io/About/assets/Adi Yehuda-CV.pdf'
-                        download
-                        id="downloadPdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Download PDF"
-                        // onClick={() => downloadPdf()}
-                        className="btn btn-circle btn-outline btn-primary btn-sm ml-4"
-                    >
-                        <FontAwesomeIcon icon={faFileDownload} />
-                    </a>
-                    {/* <a
-                        href='https://adiyd.github.io/About/assets/Adi Yehuda-CV.docx'
-                        download
-                        id="downloadDoc"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Download Word Document"
-                        // onClick={() => downloadPdf()}
-                        className="btn btn-circle btn-outline btn-primary btn-sm ml-2"
-                    >
-                        <FontAwesomeIcon icon={faFileWord} />
-                    </a> */}
-                    </>
-                )}
-            </div>
+        <div className="home-page z-10 py-8 px-2 sm:px-6 max-w-6xl mx-auto">
 
-            {!pdfMode && 
-            <div onClick={changeRandomTheme} id='roll-the-dice-theme' className="items-center hover:shadow-lg cursor-pointer hover:shadow-accent max-sm:hover:shadow-none after:shadow-none text-base-content justify-center p-4 w-fit min-w-48 mx-auto mb-8 backdrop-blur-3xl border-[1px] badge rounded-lg badge-outline badge-lg hover:border-secondary/40 border-primary/40">
-                <div className="grid-cols-[1fr_1fr_3fr] gap-2 grid w-full text-base font-bold items-center">
-                    <div className="flex flex-col gap-1 relative -right-2 justify-center">
-                        <div className="h-1 w-1 rounded-full bg-primary"/>
-                        <div className="h-1 w-1 rounded-full bg-secondary"/>
-                        <div className="h-1 w-1 rounded-full bg-accent"/>
-                    </div>
-                    <div className="text-lg">
-                    {(!themeName || isRolling) ? <FontAwesomeIcon
-                            icon={faDice}
-                            style={{animationDuration: '0.5s'}}
-                            className={` ${isRolling ? 'animate-spin' : ''}`}
-                        /> : 
-                        <Icon icon={themeIconify[themeName]} className="" />
-                        }
-                    </div>
-                    <div className="flex">
-                    {themeName || 'Roll the Dice'}
-                    </div>
-                    
-                </div>
-            </div>}
-
-            <div className="grid gap-6">
-                {Object.keys(blockDict).map((item, indx) => (
-                    <div key={indx + item} className="transition-all my-2 overflow-x-hidden max-sm:pb-4">
-                        <DataSection
-                            key={item + indx}
-                            extentedMenu={item === 'Skills'}
-                            callBack={setSkillMode}
-                            isPDF={pdfMode}
-                            childrens={blockDict[item]}
-                            title={item}
-                        />
-                    </div>
+            {/* ── Sticky nav ─────────────────────────────────────────────────── */}
+            <nav className="sticky-nav">
+                {navItems.map(({ id, label, icon }) => (
+                    <button
+                        key={id}
+                        onClick={() => scrollTo(id)}
+                        className={`nav-btn ${activeNav === id ? 'nav-btn-active' : ''}`}
+                    >
+                        <FontAwesomeIcon icon={icon} className="text-xs" />
+                        <span className="hidden sm:inline">{label}</span>
+                    </button>
                 ))}
+                {/* Theme roller */}
+                <button
+                    className="nav-btn ml-auto"
+                    onClick={changeRandomTheme}
+                    onMouseEnter={() => setShowDice(true)}
+                    onMouseLeave={() => setShowDice(false)}
+                    title={themeName || 'Change theme'}
+                >
+                    {(isRolling || showDice)
+                        ? <FontAwesomeIcon icon={faDice} className={`text-sm ${isRolling ? 'animate-spin' : ''}`} />
+                        : <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'night']} className="text-sm" />
+                    }
+                </button>
+            </nav>
+
+            {/* ── Hero ───────────────────────────────────────────────────────── */}
+            <motion.div
+                id="about"
+                initial={{ opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                className="hero-card space-y-4 card mb-8 p-7 sm:p-10 relative overflow-hidden scroll-mt-20"
+            >
+                {/* Decorative glow */}
+                <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-primary/15 blur-3xl pointer-events-none" />
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 rounded-full bg-accent/10 blur-3xl pointer-events-none" />
+
+                <div className="flex flex-col sm:flex-row sm:items-start gap-6 relative">
+                    {/* Avatar */}
+                    <div className="avatar shrink-0">
+                        <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl ring-2 hover:ring-amber-600/40 hover:shadow-amber-300/40 ring-primary/30 ring-offset-2 ring-offset-base-200 overflow-hidden shadow-xl">
+                            <img
+                                src={selfie}
+                                alt="Adi Yehuda"
+                                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                            />
+                        </div>
+                    </div>
+
+                    {/* Bio */}
+                    <div className="flex-1 min-w-0">
+                        <div className="flex flex-wrap items-center gap-2 mb-1">
+                            <h1 className="!text-3xl sm:!text-4xl !font-bold tracking-tight">Adi Yehuda</h1>
+                            {showPdf && (
+                                <a
+                                    href="https://adiyd.github.io/About/assets/Adi Yehuda-CV.pdf"
+                                    download
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    title="Download CV"
+                                    className="btn btn-xs btn-outline btn-primary ml-1"
+                                >
+                                    <FontAwesomeIcon icon={faFileDownload} className="" /> CV
+                                </a>
+                            )}
+                        </div>
+
+                        <p className="text-sm* text-base-content/60 font-medium mb-3 tracking-wide uppercase">
+                            Application Engineer · Tech Lead · Entrepreneur
+                        </p>
+
+                        <div className="flex flex-wrap gap-4 text-xs text-base-content/60 mb-4">
+                            <span className="flex items-center gap-1.5">
+                                <FontAwesomeIcon icon={faLocationDot} className="text-primary/70" />
+                                Tel Aviv, Israel
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                                <FontAwesomeIcon icon={faEarthAmerica} className="text-primary/70" />
+                                EN · HE
+                            </span>
+                            <span className="flex items-center gap-1.5">
+                                <FontAwesomeIcon icon={faPassport} className="text-primary/70" />
+                                EU · IL
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                     <p className="text-sm* text-base-content/75 leading-relaxed mb-3">
+                            I build applications from zero to production - full-stack web and native apps, AI-powered platforms and scalable SaaS tools. Background in SW & HW R&D sharpened my systems thinking and architecture skills, turning my applications into clean, fast, scalable and maintainable solutions.
+                        </p>
+                        <p className="text-sm* text-base-content/70 leading-relaxed">
+                            Currently running <strong className="text-base-content">Taskomatic</strong>, an AI marketing agent for SMB and agencies, while developing more products as a founder and tech lead.
+                        </p>
+
+                        {/* Contact badges */}
+                        <div className="flex flex-wrap gap-2.5 mt-5">
+                            {[
+                                { icon: faEnvelope, label: 'Email', href: 'mailto:Admin@webly.digital' },
+                                { icon: faLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/adiyd' },
+                                { icon: faGithub, label: 'GitHub', href: 'https://github.com/AdiYd' },
+                                { icon: faWhatsapp, label: 'WhatsApp', href: 'https://wa.me/972527242775' },
+                            ].map(({ icon, label, href }) => (
+                                <a
+                                    key={label}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-xs btn-outline hover:btn-primary gap-1.5 transition-all"
+                                >
+                                    <FontAwesomeIcon icon={icon} />
+                                    {label}
+                                </a>
+                            ))}
+                        </div>
+                </div>
+
+                {/* Scroll cue */}
+                <motion.div
+                    className="flex justify-center mt-6 text-base-content/25"
+                    animate={{ y: [0, 6, 0] }}
+                    transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+                >
+                    <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
+                </motion.div>
+            </motion.div>
+
+             <div className="space-y-8">
+            {/* ── Products / Ventures ─────────────────────────────────────────── */}
+            <Section id="products" className="section-class">
+                <SectionHeading icon={faRocket} label="Products & Ventures" />
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {products.map(p => <ProductCard key={p.name} {...p} />)}
+                </div>
+            </Section>
+
+            {/* ── Experience ──────────────────────────────────────────────────── */}
+            <Section id="experience" className="section-class">
+                <SectionHeading icon={faBriefcase} label="Experience" />
+
+                <TimelineEntry
+                    title="Founder & Tech Lead"
+                    place="Taskomatic · Self-Employed"
+                    period="2023 – Present"
+                    icon={faRocket}
+                >
+                    Building and shipping full-stack SaaS products and AI-powered platforms. Leading end-to-end: architecture, frontend, backend, cloud, and product strategy. Stack:
+                    <br/>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key="stack"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            className="flex flex-wrap gap-1 mt-2"
+                        >
+                        {['Next.js', 'React', 'Node.js', 'Firebase', 'Supabase', 'AI APIs'].map((tech, index) => (
+                            <React.Fragment key={index}>
+                                <code>{tech}</code>
+                                {index < 5 && <span className="mx-1 opacity-50">·</span>}
+                            </React.Fragment>
+                        ))}
+                        </motion.div>
+                    </AnimatePresence>
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="Hardware & Product Engineer"
+                    place="SolarEdge R&D"
+                    period="2019 – 2023"
+                    logo={sedg}
+                >
+                    Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy. Owned full product cycle: design → prototype → mass production. Built automated test frameworks with
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key="languages"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            className="flex flex-wrap gap-1 mt-2"
+                        >
+                            {['Python', 'C#', 'LabVIEW'].map((lang, index) => (
+                                <React.Fragment key={index}>
+                                    <code>{lang}</code>
+                                    {index < 2 && <span className="mx-1 opacity-50">·</span>}
+                                </React.Fragment>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
+                   Deep cross-team collaboration: firmware, QA, manufacturing.
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="Teaching Assistant - Math & Physics"
+                    place="Tel Aviv University"
+                    period="2019 – 2020"
+                    logo={tau2}
+                >
+                    Frontal lectures for engineering students, marathon sessions, and problem-solving workshops. Drove measurable improvement in exam success rates.
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="Senior Tutor - Math & Physics"
+                    place="Archimedes LTD"
+                    period="2016 – 2019"
+                    isLast
+                >
+                    Group and private sessions for high-school students. Bagrut preparation marathons.
+                </TimelineEntry>
+            </Section>
+
+            {/* ── Skills ──────────────────────────────────────────────────────── */}
+            <Section id="skills" className="section-class">
+                <SectionHeading icon={faLayerGroup} label="Skills" />
+                <div className="flex flex-col gap-5">
+                    {Object.entries(skillGroups).map(([group, { color, items }]) => (
+                        <div key={group}>
+                            <p className={`text-xs font-semibold uppercase tracking-widest mb-3 ${color} opacity-70`}>{group}</p>
+                            <div className="flex flex-wrap gap-2">
+                                {items.map(({ label, icon }) => (
+                                    <SkillPill key={label} label={label} icon={icon} color={color} />
+                                ))}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </Section>
+
+            {/* ── Education ───────────────────────────────────────────────────── */}
+            <Section id="education" className="section-class">
+                <SectionHeading icon={faGraduationCap} label="Education" />
+
+                <TimelineEntry
+                    title="B.Sc. Electrical & Electronics Engineering"
+                    place="Tel Aviv University"
+                    period="2014 – 2019"
+                    logo={tau2}
+                >
+                    Majors in computers, control systems, and EM waves. Core CS: <br/>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key="skills"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            className="flex flex-wrap gap-1 mt-2"
+                        >
+                            {['Python', 'C++', 'Algorithms', 'OS', 'Networks', 'Cryptography'].map((skill, index) => (
+                                <React.Fragment key={skill}>
+                                    <code className="">{skill}</code>
+                                    {index < 5 && <span className="mx-1 opacity-50">·</span>}
+                                </React.Fragment>
+                            ))}
+                        </motion.div>
+                    </AnimatePresence>
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="AI Engineering for Developers"
+                    place="Microsoft · Coursera"
+                    period="2024"
+                >
+                    Prompt engineering, model optimization, caching, AI agents, MCP servers. Hands-on with <br/>
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key="tools"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            className="flex flex-wrap gap-1 mt-2"
+                        >
+                    {['OpenAI', 'Anthropic', 'Azure AI', 'Gemini'].map((tool, index) => (
+                        <React.Fragment key={tool}>
+                            <code className="">{tool}</code>
+                            {index < 3 && <span className="mx-1 opacity-50">·</span>}
+                        </React.Fragment>
+                    ))}
+                        </motion.div>
+                    </AnimatePresence>
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="Advanced React & Next.js"
+                    place="Udemy"
+                    period="2023 – 2024"
+                >
+                    SSR, authentication, databases, performance, and modern UI systems.
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="UI/UX & Web Design"
+                    place="Udemy"
+                    period="2023"
+                    isLast
+                >
+                    Figma, typography, color theory, responsive design, and design systems.
+                </TimelineEntry>
+            </Section>
             </div>
 
-            {!pdfMode && floatingContact}
+            {/* ── Floating action buttons ──────────────────────────────────────── */}
+            <div className="floatingContact">
+                <AnimatePresence>
+                    {minimizeButtons && (
+                        <motion.div
+                            className="flex flex-col gap-2"
+                            initial={{ x: 120, scale: 0.7, opacity: 0 }}
+                            animate={{ x: 0, scale: 1, opacity: 1 }}
+                            exit={{ x: 120, scale: 0.7, opacity: 0 }}
+                            transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                        >
+                            {[
+                                { href: 'https://www.linkedin.com/in/adiyd', icon: faLinkedin, cls: 'btn-secondary' },
+                                { href: 'https://github.com/AdiYd', icon: faGithub, cls: 'btn-accent' },
+                                { href: 'https://wa.me/972527242775', icon: faWhatsapp, cls: 'btn-success' },
+                            ].map(({ href, icon, cls }) => (
+                                <a
+                                    key={href}
+                                    href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`btn btn-circle backdrop-blur-lg btn-outline ${cls}`}
+                                >
+                                    <FontAwesomeIcon size="lg" icon={icon} />
+                                </a>
+                            ))}
+                        </motion.div>
+                    )}
+                </AnimatePresence>  
+
+                <button
+                    className="btn btn-circle btn-primary backdrop-blur-lg btn-outline shakeHover"
+                    title={themeName || 'Change theme'}
+                    onClick={changeRandomTheme}
+                    onMouseEnter={() => setShowDice(true)}
+                    onMouseLeave={() => setShowDice(false)}
+                >
+                    {(isRolling || showDice)
+                        ? <FontAwesomeIcon icon={faDice} size="lg" className={isRolling ? 'animate-spin' : ''} />
+                        : <Icon icon={themeIconify[themeName || document.documentElement.getAttribute('data-theme') || 'night']} className="text-xl" />
+                    }
+                </button>
+
+                <button
+                    className="btn mx-auto btn-primary scale-90 backdrop-blur-lg btn-outline btn-square transition-all duration-300 hover:scale-105"
+                    onClick={() => setMinimizeButtons(p => !p)}
+                >
+                    <AnimatePresence mode="wait">
+                        <motion.div
+                            key={minimizeButtons ? 'minus' : 'plus'}
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                        >
+                            <FontAwesomeIcon icon={minimizeButtons ? faMinus : faPlus} size="lg" />
+                        </motion.div>
+                    </AnimatePresence>
+                </button>
+            </div>
         </div>
     );
 }
 
-// Debug function
-export const debug = (...args) => {
-    console.log(...args);
-};
+export const debug = (...args) => { console.log(...args); };
 
 export const debugFunction = () => {
-    // Futuristic, colorful console log styling
-    const styles = [
-        'font-weight: bold',
-        'font-size: 20px',
-        'color: #FF00FF',
-        'text-shadow: 2px 2px 4px #00DFFF',
-        'background: linear-gradient(90deg, #0D0221 0%, #241734 50%, #0D0221 100%)',
-        'padding: 10px 20px',
-        'border-radius: 5px',
-        'border: 1px solid #7F5AF0',
-        'margin: 20px 0'
-    ].join(';');
-    
-    const styles2 = [
-        'font-weight: bold',
-        'font-size: 20px',
-        'color: #00FFAA',
-        'text-shadow: 2px 2px 4px #FF5500',
-        'background: linear-gradient(90deg, #112211 0%, #224422 50%, #112211 100%)',
-        'padding: 10px 20px',
-        'border-radius: 5px',
-        'border: 1px solid #22AA44',
-        'margin: 20px 0'
-    ].join(';');
-
-
-    // Title with large, bold styling
-    console.log('%c✨ 🙋 ✨', styles2);
-    console.log('%c🚀 Thanks for checking my Logs! 🚀', styles);
-
-    
-    // App state placeholder
-    // console.log('%cReady to inspect application state', 'color: #FF8500; font-weight: bold; font-size: 14px');
-    
+    const s = 'font-weight:bold;font-size:18px;color:#FF00FF;background:#0D0221;padding:8px 16px;border-radius:4px;border:1px solid #7F5AF0';
+    console.log('%c🚀 Thanks for checking my Logs!', s);
 };

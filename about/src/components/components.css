@@ -1,28 +1,62 @@
 
 
-div.dataContainer {
-    @apply m-4 p-1 max-sm:m-0 rounded-box ;
+/* ── Legacy wrappers (kept for any remaining usage) ────────────────── */
+div.dataContainer { @apply m-4 p-1 max-sm:m-0 rounded-box; }
+p { @apply leading-relaxed; }
+div.dataWrapper { @apply cursor-default p-0 max-sm:p-1; }
+span.pdf { @apply cursor-pointer rounded-box mx-8 py-2 px-4 text-primary hover:opacity-70 transition-opacity duration-200; }
+.moreDetails { transition: transform 0.4s ease-in-out; @apply p-0 pl-1 flex self-start text-xs cursor-pointer; }
+
+/* ── Sticky top nav ────────────────────────────────────────────────── */
+.sticky-nav {
+    @apply fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1;
+    @apply bg-base-200/70 backdrop-blur-xl border border-base-content/10 rounded-2xl px-2 py-1.5 shadow-lg;
+    max-width: calc(100% - 2rem);
+    width: fit-content;
+    overflow-x: auto;
+    scrollbar-width: none;
+}
+.sticky-nav::-webkit-scrollbar { display: none; }
+
+.nav-btn {
+    @apply flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-medium text-base-content/60;
+    @apply transition-all duration-200 whitespace-nowrap cursor-pointer;
+    background: transparent;
+    border: none;
+}
+.nav-btn:hover { @apply text-base-content bg-base-content/10; }
+.nav-btn-active { @apply text-primary bg-primary/10 !important; }
+
+/* ── Home page container ───────────────────────────────────────────── */
+.home-page { 
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+    overflow: visible;
+    @apply relative mt-12;
 }
 
-p {
-    @apply leading-relaxed ;
+/* ── Badge improvements ────────────────────────────────────────────── */
+.badge {
+    @apply transition-all duration-200 !p-2;
 }
 
-div.dataWrapper {
-    @apply cursor-default p-0 max-sm:p-1  ;
+/* ── Skill pills ───────────────────────────────────────────────────── */
+.skill-pill {
+    @apply flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium;
+    @apply glass border border-base-content/10 backdrop-blur-sm;
+    @apply transition-all duration-200 hover:border-primary/30 hover:shadow-sm hover:shadow-primary/10;
 }
+.skill-pill-icon { @apply flex items-center justify-center; }
+.skill-pill-label { @apply leading-none; }
 
-span.pdf {
-    @apply cursor-pointer rounded-box mx-8 py-2 px-4 text-primary hover:opacity-70 transition-opacity duration-200;
-}
+/* ── Hero card specific glow on hover ─────────────────────────────── */
+.hero-card { transition: box-shadow 0.4s ease; }
+.hero-card:hover { box-shadow: 0 0 60px -10px color-mix(in srgb, oklch(var(--p)) 20%, transparent); }
 
-.moreDetails {
-    transition: transform 0.4s ease-in-out; 
-    @apply p-0 pl-1 flex self-start text-xs cursor-pointer;
-}
+/* ── Floating contact ──────────────────────────────────────────────── */
 
 .card {
-    @apply backdrop-blur-[8px] bg-base-200/80 border border-zinc-400/20 rounded-box p-6 max-sm:p-2 z-10;
+    @apply backdrop-blur-[8px] cursor-default bg-base-200/80 border border-zinc-400/20 rounded-box p-6 max-sm:p-4 z-10;
     position: relative;
     overflow: hidden;
 }
@@ -322,7 +356,7 @@ li.list#arrow::marker {
 }
 
 div.skills-container {
-    @apply flex justify-around overflow-x-visible flex-wrap mt-4;
+    @apply flex justify-around overflow-x-visible flex-wrap;
 }
 
 div.skill-box {
