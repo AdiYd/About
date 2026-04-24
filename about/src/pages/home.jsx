@@ -147,11 +147,6 @@ function SkillPill({ label, icon, color = '', index = 0 }) {
                 }
             }}
             viewport={{ once: true, margin: '-30px' }}
-            whileHover={{ 
-                scale: 1.15, 
-                rotate: [0, -5, 5, 0],
-                transition: { duration: 0.3 }
-            }}
         >
             <span className="skill-pill-icon">{icon}</span>
             <span className="skill-pill-label">{label}</span>
@@ -210,7 +205,7 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
                         {logo && <img src={logo} alt={place} className="h-6 w-auto min-w-10 object-cover opacity-80" />}
                         <div>
                             <p className="font-semibold !text-base-content text-base leading-tight">{title}</p>
-                            <p className="text-xs text-base-content/50 mt-0.5">{place}</p>
+                            <p className="text-xs text-primary mt-0.5">{place}</p>
                         </div>
                     </div>
                     <span className="badge badge-sm badge-outline text-primary border-primary/40 whitespace-nowrap">{period}</span>
@@ -257,7 +252,7 @@ function ProductCard({ name, desc, tags = [], icon, link }) {
                 filter: 'blur(4px)'
             }}
             whileHover={{ 
-                scale: 1.05,
+                scale: 1.01,
                 rotateY: 5,
                 transition: { duration: 0.3, ease: "easeOut" }
             }}
@@ -308,7 +303,7 @@ function ProductCard({ name, desc, tags = [], icon, link }) {
                                 }
                             }
                         }}
-                        whileHover={{ scale: 1.2, opacity: 1 }}
+                        whileHover={{ scale: 1.02, opacity: 1 }}
                     >
                         {t}
                     </motion.span>
@@ -375,11 +370,11 @@ export default function Home({ showPdf = true }) {
                 { label: 'Next.js', icon: si('akar-icons:nextjs-fill') },
                 { label: 'TypeScript', icon: si('akar-icons:typescript-fill') },
                 { label: 'JavaScript', icon: fa(faJs) },
-                { label: 'Tailwind', icon: si('devicon:tailwindcss') },
+                { label: 'Tailwind', icon: si('teenyicons:tailwind-solid') },
                 { label: 'Shadcn', icon: si('simple-icons:shadcnui') },
                 { label: 'daisyUI', icon: si('simple-icons:daisyui') },
                 { label: 'Radix UI', icon: si('simple-icons:radixui') },
-                { label: 'MUI', icon: si('devicon:materialui') },
+                { label: 'MUI', icon: si('simple-icons:mui') },
             ]
         },
         'Backend & Cloud': {
@@ -473,7 +468,7 @@ export default function Home({ showPdf = true }) {
     }, [navItems]);
 
     return (
-        <div className="home-page z-10 py-8 px-2 sm:px-6 max-w-6xl mx-auto">
+        <div className="home-page z-10 py-8 px-2 sm:px-6 max-w-7xl mx-auto">
 
             {/* ── Sticky nav ─────────────────────────────────────────────────── */}
             <nav className="sticky-nav">
@@ -752,7 +747,7 @@ export default function Home({ showPdf = true }) {
                                             stiffness: 200 
                                         }
                                     }}
-                                    whileHover={{ scale: 1.15, rotate: [0, -3, 3, 0] }}
+                                    whileHover={{ scale: 1.02, y: -3 }}
                                     viewport={{ once: true }}
                                 >
                                     {tech}
@@ -796,7 +791,7 @@ export default function Home({ showPdf = true }) {
                                                 type: "spring" 
                                             }
                                         }}
-                                        whileHover={{ scale: 1.15, y: -3 }}
+                                        whileHover={{ scale: 1.02, y: -3 }}
                                         viewport={{ once: true }}
                                     >
                                         {lang}
@@ -884,7 +879,7 @@ export default function Home({ showPdf = true }) {
                                                 stiffness: 150
                                             }
                                         }}
-                                        whileHover={{ scale: 1.2, rotate: 5 }}
+                                        whileHover={{ scale: 1.02, y: -3 }}
                                         viewport={{ once: true }}
                                     >
                                         {skill}
@@ -898,7 +893,7 @@ export default function Home({ showPdf = true }) {
 
                 <TimelineEntry
                     title="AI Engineering for Developers"
-                    place="Microsoft · Coursera"
+                    place="Microsoft Learn"
                     period="2024"
                 >
                     Prompt engineering, model optimization, caching, AI agents, MCP servers. Hands-on with <br/>
@@ -932,8 +927,8 @@ export default function Home({ showPdf = true }) {
                                     }
                                 }}
                                 whileHover={{ 
-                                    scale: 1.2, 
-                                    rotate: [-5, 5, -5, 0],
+                                    scale: 1.02, 
+                                    y: -2,
                                     transition: { duration: 0.3 }
                                 }}
                                 viewport={{ once: true }}
@@ -949,7 +944,7 @@ export default function Home({ showPdf = true }) {
 
                 <TimelineEntry
                     title="Advanced React & Next.js"
-                    place="Udemy"
+                    place="Udemy · Coursera"
                     period="2023 – 2024"
                 >
                     SSR, authentication, databases, performance, and modern UI systems.

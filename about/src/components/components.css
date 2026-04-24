@@ -42,9 +42,9 @@ span.pdf { @apply cursor-pointer rounded-box mx-8 py-2 px-4 text-primary hover:o
 
 /* ── Skill pills ───────────────────────────────────────────────────── */
 .skill-pill {
-    @apply flex items-center gap-2 px-3.5 py-2 rounded-full text-xs font-medium;
-    @apply glass border border-base-content/10 backdrop-blur-sm;
-    @apply transition-all duration-200 hover:border-primary/30 hover:shadow-sm hover:shadow-primary/10;
+    @apply flex cursor-default items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-medium;
+    @apply glass border border-base-content/10;
+    @apply transition-all duration-200 hover:border-primary/30 hover:shadow-xl hover:shadow-amber-400/30;
 }
 .skill-pill-icon { @apply flex items-center justify-center; }
 .skill-pill-label { @apply leading-none; }
