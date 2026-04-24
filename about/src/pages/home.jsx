@@ -66,15 +66,30 @@ export const themeIconify = {
 // ─── Reusable animated section wrapper ─────────────────────────────────────────
 function Section({ children, className = '', id }) {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '0px 0px -80px 0px' });
+    const isInView = useInView(ref, { once: false, margin: '0px 0px -100px 0px' });
     return (
         <motion.section
             id={id}
             ref={ref}
-            initial={{ opacity: 0, y: 32 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ opacity: 0, y: 50, rotateX: -15, scale: 0.95 }}
+            animate={isInView ? { 
+                opacity: 1, 
+                y: 0, 
+                rotateX: 0, 
+                scale: 1,
+                transition: {
+                    duration: 0.8,
+                    ease: [0.25, 0.46, 0.45, 0.94],
+                    staggerChildren: 0.1
+                }
+            } : {
+                opacity: 0,
+                y: 50,
+                rotateX: -15,
+                scale: 0.95
+            }}
             className={`${className}`}
+            style={{ transformPerspective: 1000 }}
         >
             {children}
         </motion.section>
@@ -84,38 +99,104 @@ function Section({ children, className = '', id }) {
 // ─── Section heading ───────────────────────────────────────────────────────────
 function SectionHeading({ icon, label }) {
     return (
-        <div className="flex items-center gap-3 mb-6">
-            <span className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 text-primary">
+        <motion.div 
+            className="flex items-center gap-3 mb-6"
+            initial={{ opacity: 0, x: -30, rotateZ: -5 }}
+            whileInView={{ 
+                opacity: 1, 
+                x: 0, 
+                rotateZ: 0,
+                transition: {
+                    duration: 0.6,
+                    ease: [0.25, 0.46, 0.45, 0.94]
+                }
+            }}
+            viewport={{ once: false, margin: '-50px' }}
+        >
+            <motion.span 
+                className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 text-primary"
+                whileInView={{ 
+                    rotate: [0, -10, 10, -10, 0],
+                    scale: [1, 1.1, 1]
+                }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: false }}
+            >
                 <FontAwesomeIcon icon={icon} />
-            </span>
+            </motion.span>
             <h2 className="!text-xl !font-semibold text-primary tracking-tight">{label}</h2>
             <div className="flex-1 h-px bg-base-content/10 ml-2" />
-        </div>
+        </motion.div>
     );
 }
 
 // ─── Skill pill ────────────────────────────────────────────────────────────────
-function SkillPill({ label, icon, color = '' }) {
+function SkillPill({ label, icon, color = '', index = 0 }) {
     return (
-        <div className={`skill-pill ${color}`}>
+        <motion.div 
+            className={`skill-pill ${color}`}
+            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            whileInView={{ 
+                opacity: 1, 
+                scale: 1, 
+                rotate: 0,
+                transition: {
+                    delay: index * 0.05,
+                    duration: 0.5,
+                    ease: [0.34, 1.56, 0.64, 1]
+                }
+            }}
+            viewport={{ once: true, margin: '-30px' }}
+            whileHover={{ 
+                scale: 1.15, 
+                rotate: [0, -5, 5, 0],
+                transition: { duration: 0.3 }
+            }}
+        >
             <span className="skill-pill-icon">{icon}</span>
             <span className="skill-pill-label">{label}</span>
-        </div>
+        </motion.div>
     );
 }
 
 // ─── Timeline entry ────────────────────────────────────────────────────────────
 function TimelineEntry({ title, place, period, children, logo, isLast = false }) {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+    const isInView = useInView(ref, { once: false, margin: '0px 0px -60px 0px', amount: 0.3 });
     return (
         <motion.div
             ref={ref}
-            initial={{ opacity: 0, x: -20 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+            initial={{ 
+                opacity: 0, 
+                x: -100,
+                rotateY: -25,
+                scale: 0.9
+            }}
+            animate={isInView ? { 
+                opacity: 1, 
+                x: 0,
+                rotateY: 0,
+                scale: 1,
+                transition: {
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 15,
+                    mass: 0.8
+                }
+            } : {
+                opacity: 0,
+                x: -100,
+                rotateY: -25,
+                scale: 0.9
+            }}
+            whileHover={{ 
+                scale: 1.02,
+                x: 5,
+                transition: { duration: 0.2 }
+            }}
             className="relative"
-        >
+            style={{ transformPerspective: 1200 }}
+        >   
             {/* Timeline line */}
             {/* {!isLast && <div className="absolute left-[11px] top-6 bottom-0 w-px bg-base-content/10" />} */}
             {/* Dot */}
@@ -128,7 +209,7 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
                     <div className="flex flex-col items-start gap-3">
                         {logo && <img src={logo} alt={place} className="h-6 w-auto min-w-10 object-cover opacity-80" />}
                         <div>
-                            <p className="font-semibold !text-base-content text-sm leading-tight">{title}</p>
+                            <p className="font-semibold !text-base-content text-base leading-tight">{title}</p>
                             <p className="text-xs text-base-content/50 mt-0.5">{place}</p>
                         </div>
                     </div>
@@ -143,24 +224,53 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
 // ─── Product card ──────────────────────────────────────────────────────────────
 function ProductCard({ name, desc, tags = [], icon, link }) {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: '0px 0px -40px 0px' });
+    const isInView = useInView(ref, { once: false, margin: '0px 0px -50px 0px', amount: 0.4 });
     return (
         <motion.a
             ref={ref}
             href={link || '#'}
             target={link ? '_blank' : undefined}
             rel="noopener noreferrer"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            className="card p-5 flex flex-col gap-3 group hover:border-primary/40 hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer no-underline"
+            initial={{ 
+                opacity: 0, 
+                y: 60,
+                rotateX: 45,
+                scale: 0.8,
+                filter: 'blur(4px)'
+            }}
+            animate={isInView ? { 
+                opacity: 1, 
+                y: 0,
+                rotateX: 0,
+                scale: 1,
+                filter: 'blur(0px)',
+                transition: {
+                    duration: 0.7,
+                    ease: [0.34, 1.56, 0.64, 1],
+                    filter: { duration: 0.5 }
+                }
+            } : {
+                opacity: 0,
+                y: 60,
+                rotateX: 45,
+                scale: 0.8,
+                filter: 'blur(4px)'
+            }}
+            whileHover={{ 
+                scale: 1.05,
+                rotateY: 5,
+                transition: { duration: 0.3, ease: "easeOut" }
+            }}
+            whileTap={{ scale: 0.98 }}
+            className="card p-5 flex flex-col gap-3 group hover:border-primary/40* hover:shadow-lg hover:shadow-primary/10 transition-all duration-300 cursor-pointer no-underline"
+            style={{ transformPerspective: 1000, transformStyle: 'preserve-3d' }}
         >
             <div className="flex items-center justify-between">
                 <span className="text-2xl">{icon}</span>
                 {link && (
                     <FontAwesomeIcon
                         icon={faArrowUpRightFromSquare}
-                        className="text-xs text-base-content/30 group-hover:text-primary transition-colors"
+                        className="text-xs cursor-pointer text-base-content/30 group-hover:text-primary transition-colors"
                     />
                 )}
             </div>
@@ -168,11 +278,42 @@ function ProductCard({ name, desc, tags = [], icon, link }) {
                 <p className="font-bold !text-base-content text-base">{name}</p>
                 <p className="text-sm* text-base-content/70 mt-1.5 leading-relaxed text-left">{desc}</p>
             </div>
-            <div className="flex flex-wrap gap-1.5 mt-auto">
-                {tags.map(t => (
-                    <span key={t} className="badge badge-xs badge-outline opacity-70">{t}</span>
+            <motion.div 
+                className="flex flex-wrap gap-1.5 mt-auto"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false }}
+                variants={{
+                    visible: {
+                        transition: {
+                            staggerChildren: 0.05
+                        }
+                    }
+                }}
+            >
+                {tags.map((t, idx) => (
+                    <motion.span 
+                        key={t} 
+                        className="badge badge-xs badge-outline opacity-70"
+                        variants={{
+                            hidden: { opacity: 0, scale: 0, y: 10 },
+                            visible: { 
+                                opacity: 0.7, 
+                                scale: 1, 
+                                y: 0,
+                                transition: {
+                                    type: "spring",
+                                    stiffness: 300,
+                                    damping: 20
+                                }
+                            }
+                        }}
+                        whileHover={{ scale: 1.2, opacity: 1 }}
+                    >
+                        {t}
+                    </motion.span>
                 ))}
-            </div>
+            </motion.div>
         </motion.a>
     );
 }
@@ -184,7 +325,7 @@ export default function Home({ showPdf = true }) {
     const [themeName, setThemeName] = useState(null);
     const [minimizeButtons, setMinimizeButtons] = useState(false);
     const [activeNav, setActiveNav] = useState('about');
-    const usedThemes = useRef(new Set(['dracula'])); // Start with these as "used" to ensure they show up first
+    const usedThemes = useRef(new Set(['night'])); // Start with these as "used" to ensure they show up first
 
     useEffect(() => {
         debugFunction();
@@ -205,10 +346,10 @@ export default function Home({ showPdf = true }) {
         const currentThemeMode = themesByMode.light.includes(currentTheme) ? 'light' : 'dark';
         const nextThemeMode = currentThemeMode === 'light' ? 'dark' : 'light';
         if (!themeName && nextThemeMode === 'dark') {
-            setThemeName('dracula'); usedThemes.current.add('dracula');
-            document.documentElement.setAttribute('data-theme', 'dracula');
+            setThemeName('night'); usedThemes.current.add('night');
+            document.documentElement.setAttribute('data-theme', 'night');
             setIsRolling(false); return;
-        } else if ((!themeName && nextThemeMode === 'light') || (themeName === 'dracula' && nextThemeMode === 'light')) {
+        } else if ((!themeName && nextThemeMode === 'light') || (themeName === 'night' && nextThemeMode === 'light')) {
             setThemeName('autumn'); usedThemes.current.add('autumn');
             document.documentElement.setAttribute('data-theme', 'autumn');
             setIsRolling(false); return;
@@ -282,7 +423,7 @@ export default function Home({ showPdf = true }) {
         {
             name: 'Taskomatic',
             desc: 'Smart task management with AI automation, multi-platform integrations and team workflows.',
-            tags: ['React', 'Firebase', 'AI'],
+            tags: ['Next.js', 'TypeScript', 'GCP', 'AWS', 'APIs'],
             icon: '⚡',
             link: 'https://taskomatic.net'
         },
@@ -295,7 +436,7 @@ export default function Home({ showPdf = true }) {
         {
             name: 'Custom Apps & SaaS',
             desc: 'Multiple client-facing AI SaaS tools spanning fintech, edtech and productivity - built & shipped.',
-            tags: ['Full-stack', 'Cloud', 'Architecture'],
+            tags: ['Full-stack', 'Cloud', 'DevOps', 'AI', 'Innovation','Architecture'],
             icon: '🚀',
         },
     ];
@@ -364,10 +505,19 @@ export default function Home({ showPdf = true }) {
             {/* ── Hero ───────────────────────────────────────────────────────── */}
             <motion.div
                 id="about"
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 80, scale: 0.9, rotateX: 20 }}
+                animate={{ 
+                    opacity: 1, 
+                    y: 0, 
+                    scale: 1, 
+                    rotateX: 0,
+                    transition: {
+                        duration: 1,
+                        ease: [0.16, 1, 0.3, 1]
+                    }
+                }}
                 className="hero-card space-y-4 card mb-8 p-7 sm:p-10 relative overflow-hidden scroll-mt-20"
+                style={{ transformPerspective: 1200 }}
             >
                 {/* Decorative glow */}
                 <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full bg-primary/15 blur-3xl pointer-events-none" />
@@ -398,29 +548,55 @@ export default function Home({ showPdf = true }) {
                                     title="Download CV"
                                     className="btn btn-xs btn-outline btn-primary ml-1"
                                 >
-                                    <FontAwesomeIcon icon={faFileDownload} className="" /> CV
+                                    <FontAwesomeIcon icon={faFileDownload} className="" />
                                 </a>
                             )}
                         </div>
 
-                        <p className="text-sm* text-base-content/60 font-medium mb-3 tracking-wide uppercase">
+                        <p className="text-sm* text-base-content/60 font-medium mb-3 tracking-wide uppercase*">
                             Application Engineer · Tech Lead · Entrepreneur
                         </p>
 
-                        <div className="flex flex-wrap gap-4 text-xs text-base-content/60 mb-4">
-                            <span className="flex items-center gap-1.5">
-                                <FontAwesomeIcon icon={faLocationDot} className="text-primary/70" />
-                                Tel Aviv, Israel
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <FontAwesomeIcon icon={faEarthAmerica} className="text-primary/70" />
-                                EN · HE
-                            </span>
-                            <span className="flex items-center gap-1.5">
-                                <FontAwesomeIcon icon={faPassport} className="text-primary/70" />
-                                EU · IL
-                            </span>
-                        </div>
+                        <motion.div 
+                            className="flex flex-wrap gap-4 text-xs text-base-content/60 mb-4"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                visible: {
+                                    transition: {
+                                        staggerChildren: 0.15,
+                                        delayChildren: 0.2
+                                    }
+                                }
+                            }}
+                        >
+                            {[
+                                { icon: faLocationDot, text: 'Tel Aviv, Israel' },
+                                { icon: faEarthAmerica, text: 'EN · HE' },
+                                { icon: faPassport, text: 'EU · IL' }
+                            ].map((item, idx) => (
+                                <motion.span 
+                                    key={idx}
+                                    className="flex items-center gap-1.5"
+                                    variants={{
+                                        hidden: { opacity: 0, x: -20, scale: 0.8 },
+                                        visible: { 
+                                            opacity: 1, 
+                                            x: 0, 
+                                            scale: 1,
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 150,
+                                                damping: 12
+                                            }
+                                        }
+                                    }}
+                                >
+                                    <FontAwesomeIcon icon={item.icon} className="text-primary/70" />
+                                    {item.text}
+                                </motion.span>
+                            ))}
+                        </motion.div>
                     </div>
                 </div>
 
@@ -433,32 +609,71 @@ export default function Home({ showPdf = true }) {
                         </p>
 
                         {/* Contact badges */}
-                        <div className="flex flex-wrap gap-2.5 mt-5">
+                        <motion.div 
+                            className="flex flex-wrap gap-2.5 mt-5"
+                            initial="hidden"
+                            animate="visible"
+                            variants={{
+                                visible: {
+                                    transition: {
+                                        staggerChildren: 0.1,
+                                        delayChildren: 0.3
+                                    }
+                                }
+                            }}
+                        >
                             {[
                                 { icon: faEnvelope, label: 'Email', href: 'mailto:Admin@webly.digital' },
                                 { icon: faLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/adiyd' },
                                 { icon: faGithub, label: 'GitHub', href: 'https://github.com/AdiYd' },
                                 { icon: faWhatsapp, label: 'WhatsApp', href: 'https://wa.me/972527242775' },
                             ].map(({ icon, label, href }) => (
-                                <a
+                                <motion.a
                                     key={label}
                                     href={href}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="btn btn-xs btn-outline hover:btn-primary gap-1.5 transition-all"
+                                    variants={{
+                                        hidden: { opacity: 0, scale: 0, rotate: -90 },
+                                        visible: { 
+                                            opacity: 1, 
+                                            scale: 1, 
+                                            rotate: 0,
+                                            transition: {
+                                                type: "spring",
+                                                stiffness: 200,
+                                                damping: 15
+                                            }
+                                        }
+                                    }}
+                                    whileHover={{ 
+                                        scale: 1.1, 
+                                        rotate: [0, -5, 5, 0],
+                                        transition: { duration: 0.3 }
+                                    }}
+                                    whileTap={{ scale: 0.95 }}
                                 >
                                     <FontAwesomeIcon icon={icon} />
                                     {label}
-                                </a>
+                                </motion.a>
                             ))}
-                        </div>
+                        </motion.div>
                 </div>
 
                 {/* Scroll cue */}
                 <motion.div
                     className="flex justify-center mt-6 text-base-content/25"
-                    animate={{ y: [0, 6, 0] }}
-                    transition={{ repeat: Infinity, duration: 2, ease: 'easeInOut' }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ 
+                        opacity: [0.3, 1, 0.3],
+                        y: [0, 12, 0],
+                        transition: {
+                            repeat: Infinity, 
+                            duration: 2.5, 
+                            ease: 'easeInOut'
+                        }
+                    }}
                 >
                     <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
                 </motion.div>
@@ -468,9 +683,21 @@ export default function Home({ showPdf = true }) {
             {/* ── Products / Ventures ─────────────────────────────────────────── */}
             <Section id="products" className="section-class">
                 <SectionHeading icon={faRocket} label="Products & Ventures" />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    {products.map(p => <ProductCard key={p.name} {...p} />)}
-                </div>
+                <motion.div 
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: false, margin: '-50px' }}
+                    variants={{
+                        visible: {
+                            transition: {
+                                staggerChildren: 0.2
+                            }
+                        }
+                    }}
+                >
+                    {products.map((p, index) => <ProductCard key={p.name} {...p} index={index} />)}
+                </motion.div>
             </Section>
 
             {/* ── Experience ──────────────────────────────────────────────────── */}
@@ -478,25 +705,59 @@ export default function Home({ showPdf = true }) {
                 <SectionHeading icon={faBriefcase} label="Experience" />
 
                 <TimelineEntry
-                    title="Founder & Tech Lead"
-                    place="Taskomatic · Self-Employed"
-                    period="2023 – Present"
+                    title="Co-Founder & CTO"
+                    place="Taskomatic LTD"
+                    period="2025 – Present"
                     icon={faRocket}
                 >
-                    Building and shipping full-stack SaaS products and AI-powered platforms. Leading end-to-end: architecture, frontend, backend, cloud, and product strategy. Stack:
+                    Co-Founding of Taskomatic LTD. Technical leading of a full scale Application for web and mobile with AI automation, multi-platform integrations and team workflows. Responsible for architecture, development, deployment and scaling.
+                    
+                </TimelineEntry>
+
+                <TimelineEntry
+                    title="SW Engineer"
+                    place="Self-Employed"
+                    period="2023 – 2025"
+                    icon={faCode}
+                >
+                    Building and shipping full-stack Applications and AI-powered platforms. Leading end-to-end architecture, data models, frontend, backend, cloud infrastructure, DevOps, and product strategy. Stack:
                     <br/>
                     <AnimatePresence mode="wait">
                         <motion.div
                             key="stack"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            initial={{ opacity: 0, y: 20, rotateX: -30 }}
+                            whileInView={{ 
+                                opacity: 1, 
+                                y: 0, 
+                                rotateX: 0,
+                                transition: { 
+                                    duration: 0.6, 
+                                    ease: [0.22, 1, 0.36, 1],
+                                    staggerChildren: 0.05
+                                }
+                            }}
+                            viewport={{ once: false, margin: '-20px' }}
                             className="flex flex-wrap gap-1 mt-2"
                         >
-                        {['Next.js', 'React', 'Node.js', 'Firebase', 'Supabase', 'AI APIs'].map((tech, index) => (
+                        {['Next.js', 'TypeScript', 'Node.js', 'Python', 'Express' ,'GCP', 'AWS', 'AI', 'APIs'].map((tech, index) => (
                             <React.Fragment key={index}>
-                                <code>{tech}</code>
-                                {index < 5 && <span className="mx-1 opacity-50">·</span>}
+                                <motion.code
+                                    initial={{ opacity: 0, scale: 0 }}
+                                    whileInView={{ 
+                                        opacity: 1, 
+                                        scale: 1,
+                                        transition: { 
+                                            delay: index * 0.08,
+                                            type: "spring",
+                                            stiffness: 200 
+                                        }
+                                    }}
+                                    whileHover={{ scale: 1.15, rotate: [0, -3, 3, 0] }}
+                                    viewport={{ once: true }}
+                                >
+                                    {tech}
+                                </motion.code>
+                                {index < 8 && <span className="mx-1 opacity-50">·</span>}
                             </React.Fragment>
                         ))}
                         </motion.div>
@@ -509,18 +770,37 @@ export default function Home({ showPdf = true }) {
                     period="2019 – 2023"
                     logo={sedg}
                 >
-                    Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy. Owned full product cycle: design → prototype → mass production. Built automated test frameworks with
+                    Led multidisciplinary development of advanced analog/digital hardware systems for renewable energy. Owned full product cycle: design → prototype → mass production. Built automated test frameworks with:
                     <AnimatePresence mode="wait">
                         <motion.div
                             key="languages"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+                            whileInView={{ 
+                                opacity: 1, 
+                                y: 0, 
+                                scale: 1,
+                                transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                            }}
+                            viewport={{ once: false, margin: '-20px' }}
                             className="flex flex-wrap gap-1 mt-2"
                         >
-                            {['Python', 'C#', 'LabVIEW'].map((lang, index) => (
+                            {['Python', 'C#', 'Automation'].map((lang, index) => (
                                 <React.Fragment key={index}>
-                                    <code>{lang}</code>
+                                    <motion.code
+                                        initial={{ opacity: 0, x: -20 }}
+                                        whileInView={{ 
+                                            opacity: 1, 
+                                            x: 0,
+                                            transition: { 
+                                                delay: index * 0.1,
+                                                type: "spring" 
+                                            }
+                                        }}
+                                        whileHover={{ scale: 1.15, y: -3 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        {lang}
+                                    </motion.code>
                                     {index < 2 && <span className="mx-1 opacity-50">·</span>}
                                 </React.Fragment>
                             ))}
@@ -556,8 +836,8 @@ export default function Home({ showPdf = true }) {
                         <div key={group}>
                             <p className={`text-xs font-semibold uppercase tracking-widest mb-3 ${color} opacity-70`}>{group}</p>
                             <div className="flex flex-wrap gap-2">
-                                {items.map(({ label, icon }) => (
-                                    <SkillPill key={label} label={label} icon={icon} color={color} />
+                                {items.map(({ label, icon }, index) => (
+                                    <SkillPill key={label} label={label} icon={icon} color={color} index={index} />
                                 ))}
                             </div>
                         </div>
@@ -579,14 +859,36 @@ export default function Home({ showPdf = true }) {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key="skills"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            initial={{ opacity: 0, y: 20, rotateY: 30 }}
+                            whileInView={{ 
+                                opacity: 1, 
+                                y: 0, 
+                                rotateY: 0,
+                                transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+                            }}
+                            viewport={{ once: false, margin: '-20px' }}
                             className="flex flex-wrap gap-1 mt-2"
                         >
                             {['Python', 'C++', 'Algorithms', 'OS', 'Networks', 'Cryptography'].map((skill, index) => (
                                 <React.Fragment key={skill}>
-                                    <code className="">{skill}</code>
+                                    <motion.code 
+                                        className=""
+                                        initial={{ opacity: 0, rotate: -45, scale: 0 }}
+                                        whileInView={{ 
+                                            opacity: 1, 
+                                            rotate: 0, 
+                                            scale: 1,
+                                            transition: { 
+                                                delay: index * 0.07,
+                                                type: "spring",
+                                                stiffness: 150
+                                            }
+                                        }}
+                                        whileHover={{ scale: 1.2, rotate: 5 }}
+                                        viewport={{ once: true }}
+                                    >
+                                        {skill}
+                                    </motion.code>
                                     {index < 5 && <span className="mx-1 opacity-50">·</span>}
                                 </React.Fragment>
                             ))}
@@ -603,14 +905,41 @@ export default function Home({ showPdf = true }) {
                     <AnimatePresence mode="wait">
                         <motion.div
                             key="tools"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                            initial={{ opacity: 0, x: -50, skewX: 20 }}
+                            whileInView={{ 
+                                opacity: 1, 
+                                x: 0, 
+                                skewX: 0,
+                                transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
+                            }}
+                            viewport={{ once: false, margin: '-20px' }}
                             className="flex flex-wrap gap-1 mt-2"
                         >
                     {['OpenAI', 'Anthropic', 'Azure AI', 'Gemini'].map((tool, index) => (
                         <React.Fragment key={tool}>
-                            <code className="">{tool}</code>
+                            <motion.code 
+                                className=""
+                                initial={{ opacity: 0, y: 20, scale: 0 }}
+                                whileInView={{ 
+                                    opacity: 1, 
+                                    y: 0, 
+                                    scale: 1,
+                                    transition: { 
+                                        delay: index * 0.1,
+                                        type: "spring",
+                                        stiffness: 200,
+                                        damping: 10
+                                    }
+                                }}
+                                whileHover={{ 
+                                    scale: 1.2, 
+                                    rotate: [-5, 5, -5, 0],
+                                    transition: { duration: 0.3 }
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                {tool}
+                            </motion.code>
                             {index < 3 && <span className="mx-1 opacity-50">·</span>}
                         </React.Fragment>
                     ))}
