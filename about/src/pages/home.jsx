@@ -28,6 +28,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import selfie from '../img/AdiYd2.jpeg';
 import sedg from '../img/sedg.svg';
+import taskoamtic from '../img/taskomatic.svg';
 import tau2 from '../img/TAU_Logo.png';
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
@@ -71,11 +72,10 @@ function Section({ children, className = '', id }) {
         <motion.section
             id={id}
             ref={ref}
-            initial={{ opacity: 0, y: 50, rotateX: -15, scale: 0.95 }}
+            initial={{ opacity: 0, y: 50,  scale: 0.95 }}
             animate={isInView ? { 
                 opacity: 1, 
                 y: 0, 
-                rotateX: 0, 
                 scale: 1,
                 transition: {
                     duration: 0.8,
@@ -85,7 +85,7 @@ function Section({ children, className = '', id }) {
             } : {
                 opacity: 0,
                 y: 50,
-                rotateX: -15,
+                rotateY: -15,
                 scale: 0.95
             }}
             className={`${className}`}
@@ -101,26 +101,12 @@ function SectionHeading({ icon, label }) {
     return (
         <motion.div 
             className="flex items-center gap-3 mb-6"
-            initial={{ opacity: 0, x: -30, rotateZ: -5 }}
-            whileInView={{ 
-                opacity: 1, 
-                x: 0, 
-                rotateZ: 0,
-                transition: {
-                    duration: 0.6,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                }
-            }}
+
             viewport={{ once: false, margin: '-50px' }}
         >
             <motion.span 
                 className="flex items-center justify-center w-9 h-9 rounded-xl bg-primary/10 text-primary"
-                whileInView={{ 
-                    rotate: [0, -10, 10, -10, 0],
-                    scale: [1, 1.1, 1]
-                }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: false }}
+              
             >
                 <FontAwesomeIcon icon={icon} />
             </motion.span>
@@ -135,7 +121,7 @@ function SkillPill({ label, icon, color = '', index = 0 }) {
     return (
         <motion.div 
             className={`skill-pill ${color}`}
-            initial={{ opacity: 0, scale: 0, rotate: -180 }}
+            initial={{ opacity: 0, scale: 0, rotate: -45 }}
             whileInView={{ 
                 opacity: 1, 
                 scale: 1, 
@@ -155,7 +141,7 @@ function SkillPill({ label, icon, color = '', index = 0 }) {
 }
 
 // ─── Timeline entry ────────────────────────────────────────────────────────────
-function TimelineEntry({ title, place, period, children, logo, isLast = false }) {
+function TimelineEntry({ title, place, period, children, logo, icon, isLast = false }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: false, margin: '0px 0px -60px 0px', amount: 0.3 });
     return (
@@ -163,14 +149,11 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
             ref={ref}
             initial={{ 
                 opacity: 0, 
-                x: -100,
-                rotateY: -25,
                 scale: 0.9
             }}
             animate={isInView ? { 
                 opacity: 1, 
-                x: 0,
-                rotateY: 0,
+               
                 scale: 1,
                 transition: {
                     type: "spring",
@@ -180,13 +163,12 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
                 }
             } : {
                 opacity: 0,
-                x: -100,
                 rotateY: -25,
                 scale: 0.9
             }}
             whileHover={{ 
                 scale: 1.02,
-                x: 5,
+                y: 5,
                 transition: { duration: 0.2 }
             }}
             className="relative"
@@ -202,7 +184,8 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
             <div className="card text-start mb-6 p-5">
                 <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
                     <div className="flex flex-col items-start gap-3">
-                        {logo && <img src={logo} alt={place} className="h-6 w-auto min-w-10 object-cover opacity-80" />}
+                        {logo && <img src={logo} alt={place} className="h-10 w-auto min-w-10 object-cover opacity-80" />}
+                        {icon && <FontAwesomeIcon icon={icon} className="text-2xl text-primary/80" />}
                         <div>
                             <p className="font-semibold !text-base-content text-base leading-tight">{title}</p>
                             <p className="text-xs text-primary mt-0.5">{place}</p>
@@ -217,7 +200,7 @@ function TimelineEntry({ title, place, period, children, logo, isLast = false })
 }
 
 // ─── Product card ──────────────────────────────────────────────────────────────
-function ProductCard({ name, desc, tags = [], icon, link }) {
+function ProductCard({ name, desc, tags = [], icon, logo, link }) {
     const ref = useRef(null);
     const isInView = useInView(ref, { once: false, margin: '0px 0px -50px 0px', amount: 0.4 });
     return (
@@ -229,14 +212,13 @@ function ProductCard({ name, desc, tags = [], icon, link }) {
             initial={{ 
                 opacity: 0, 
                 y: 60,
-                rotateX: 45,
                 scale: 0.8,
-                filter: 'blur(4px)'
+                filter: 'blur(8px)'
             }}
             animate={isInView ? { 
                 opacity: 1, 
                 y: 0,
-                rotateX: 0,
+                rotateY: 0,
                 scale: 1,
                 filter: 'blur(0px)',
                 transition: {
@@ -246,10 +228,8 @@ function ProductCard({ name, desc, tags = [], icon, link }) {
                 }
             } : {
                 opacity: 0,
-                y: 60,
-                rotateX: 45,
                 scale: 0.8,
-                filter: 'blur(4px)'
+                filter: 'blur(8px)'
             }}
             whileHover={{ 
                 scale: 1.01,
@@ -261,7 +241,8 @@ function ProductCard({ name, desc, tags = [], icon, link }) {
             style={{ transformPerspective: 1000, transformStyle: 'preserve-3d' }}
         >
             <div className="flex items-center justify-between">
-                <span className="text-2xl">{icon}</span>
+                {icon && <span className="text-2xl">{icon}</span>}
+                {logo && <img src={logo} alt={name} className="h-6 w-auto min-w-6 object-cover opacity-80" />}
                 {link && (
                     <FontAwesomeIcon
                         icon={faArrowUpRightFromSquare}
@@ -417,9 +398,10 @@ export default function Home({ showPdf = true }) {
         // },
         {
             name: 'Taskomatic',
-            desc: 'Smart task management with AI automation, multi-platform integrations and team workflows.',
+            desc: 'Smart marketing App based on AI automation, APIs and agents, multi-platform integrations and team workflows.',
             tags: ['Next.js', 'TypeScript', 'GCP', 'AWS', 'APIs'],
-            icon: '⚡',
+            // icon: '⚡',
+            logo: taskoamtic,
             link: 'https://taskomatic.net'
         },
         // {
@@ -630,21 +612,21 @@ export default function Home({ showPdf = true }) {
                                     rel="noopener noreferrer"
                                     className="btn btn-xs btn-outline hover:btn-primary gap-1.5 transition-all"
                                     variants={{
-                                        hidden: { opacity: 0, scale: 0, rotate: -90 },
+                                        hidden: { opacity: 0, scale: 0},
                                         visible: { 
                                             opacity: 1, 
                                             scale: 1, 
-                                            rotate: 0,
+                                           
                                             transition: {
                                                 type: "spring",
-                                                stiffness: 200,
+                                                stiffness: 100,
                                                 damping: 15
                                             }
                                         }
                                     }}
                                     whileHover={{ 
                                         scale: 1.1, 
-                                        rotate: [0, -5, 5, 0],
+                                      
                                         transition: { duration: 0.3 }
                                     }}
                                     whileTap={{ scale: 0.95 }}
@@ -703,7 +685,8 @@ export default function Home({ showPdf = true }) {
                     title="Co-Founder & CTO"
                     place="Taskomatic LTD"
                     period="2025 – Present"
-                    icon={faRocket}
+                    logo={taskoamtic}
+                   
                 >
                     Co-Founding of Taskomatic LTD. Technical leading of a full scale Application for web and mobile with AI automation, multi-platform integrations and team workflows. Responsible for architecture, development, deployment and scaling.
                     
@@ -868,7 +851,7 @@ export default function Home({ showPdf = true }) {
                                 <React.Fragment key={skill}>
                                     <motion.code 
                                         className=""
-                                        initial={{ opacity: 0, rotate: -45, scale: 0 }}
+                                        initial={{ opacity: 0,  scale: 0 }}
                                         whileInView={{ 
                                             opacity: 1, 
                                             rotate: 0, 
