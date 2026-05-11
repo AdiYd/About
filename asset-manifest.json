@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/About/static/css/main.6283f213.css",
-    "main.js": "/About/static/js/main.34c925ed.js",
+    "main.css": "/About/static/css/main.bfdf15ac.css",
+    "main.js": "/About/static/js/main.35524a91.js",
     "static/media/AdiYd2.jpeg": "/About/static/media/AdiYd2.62873d15f3013e741e9f.jpeg",
     "static/media/TAU_Logo.png": "/About/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
     "static/media/taskomatic.svg": "/About/static/media/taskomatic.136803f8d715285c9eaa45e32330700c.svg",
     "static/media/sedg.svg": "/About/static/media/sedg.db32b605123b724bd40ae6f0bbb62963.svg",
     "index.html": "/About/index.html",
-    "main.6283f213.css.map": "/About/static/css/main.6283f213.css.map",
-    "main.34c925ed.js.map": "/About/static/js/main.34c925ed.js.map"
+    "main.bfdf15ac.css.map": "/About/static/css/main.bfdf15ac.css.map",
+    "main.35524a91.js.map": "/About/static/js/main.35524a91.js.map"
   },
   "entrypoints": [
-    "static/css/main.6283f213.css",
-    "static/js/main.34c925ed.js"
+    "static/css/main.bfdf15ac.css",
+    "static/js/main.35524a91.js"
   ]
 }
