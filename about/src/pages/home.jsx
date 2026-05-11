@@ -782,18 +782,17 @@ export default function Home({ showPdf = false }) {
 
         <div>
           <p className="text-sm* text-base-content/75 leading-relaxed mb-3">
-            I build applications from zero to production - full-stack web and
-            mobile apps, AI-powered platforms and scalable SaaS tools. My strong
-            technical background in R&D, software and hardware development
-            upgraded my systems thinking and architecture skills, turning my
-            applications into clean, fast, scalable and maintainable products.
+            I build Full-Stack Applications for Web and Mobile, AI-powered
+            platforms and scalable SaaS tools. With a strong technical
+            background in SW and HW Engineering, combined with architecture and
+            product oriented thinking, I transform my applications into clean,
+            fast, scalable and user-friendly products.
           </p>
           <p className="text-sm* text-base-content/70 leading-relaxed">
             Currently running{" "}
             <strong className="text-base-content">Taskomatic</strong>, an AI
-            marketing agent for SMB and agencies. As well as consulting on AI
-            applications, data pipeline, cloud architecture and implementation
-            for startups and enterprises.
+            marketing agent for SMB and agencies. As well as consulting on data
+            pipelines, cloud architecture and tech strategy for startups.
           </p>
 
           {/* Contact badges */}
