@@ -1,17 +1,27 @@
 {
   "files": {
-    "main.css": "/About/static/css/main.bfdf15ac.css",
-    "main.js": "/About/static/js/main.35524a91.js",
+    "main.css": "/About/static/css/main.3bd90056.css",
+    "main.js": "/About/static/js/main.699b4cec.js",
+    "static/media/pivot1.png": "/About/static/media/pivot1.d346592182ad5ad17cc3.png",
+    "static/media/pivot2.png": "/About/static/media/pivot2.094272689b7310a767c3.png",
+    "static/media/pivot5.png": "/About/static/media/pivot5.97be2030653b0e714f53.png",
+    "static/media/pivot3.png": "/About/static/media/pivot3.7ada265b980d0f9c47a4.png",
+    "static/media/dash2.png": "/About/static/media/dash2.4916089349efadd2a127.png",
+    "static/media/dash1.png": "/About/static/media/dash1.451eef8d8e2ec9339200.png",
+    "static/media/dash3_dark.png": "/About/static/media/dash3_dark.9198ce4bdc83640ebcf0.png",
     "static/media/AdiYd2.jpeg": "/About/static/media/AdiYd2.62873d15f3013e741e9f.jpeg",
+    "static/media/mobileApp2.jpeg": "/About/static/media/mobileApp2.132523b2478d9b4c0a94.jpeg",
     "static/media/TAU_Logo.png": "/About/static/media/TAU_Logo.f43e3441629c91a2ad59.png",
+    "static/media/mobileApp.jpeg": "/About/static/media/mobileApp.13f9c95ef29cdfa79ebf.jpeg",
+    "static/media/mobileApp3.jpeg": "/About/static/media/mobileApp3.f304271c2f3f2c49853f.jpeg",
     "static/media/taskomatic.svg": "/About/static/media/taskomatic.136803f8d715285c9eaa45e32330700c.svg",
     "static/media/sedg.svg": "/About/static/media/sedg.db32b605123b724bd40ae6f0bbb62963.svg",
     "index.html": "/About/index.html",
-    "main.bfdf15ac.css.map": "/About/static/css/main.bfdf15ac.css.map",
-    "main.35524a91.js.map": "/About/static/js/main.35524a91.js.map"
+    "main.3bd90056.css.map": "/About/static/css/main.3bd90056.css.map",
+    "main.699b4cec.js.map": "/About/static/js/main.699b4cec.js.map"
   },
   "entrypoints": [
-    "static/css/main.bfdf15ac.css",
-    "static/js/main.35524a91.js"
+    "static/css/main.3bd90056.css",
+    "static/js/main.699b4cec.js"
   ]
 }
