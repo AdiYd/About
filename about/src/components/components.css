@@ -10,7 +10,7 @@ span.pdf { @apply cursor-pointer rounded-box mx-8 py-2 px-4 text-primary hover:o
 /* ── Sticky top nav ────────────────────────────────────────────────── */
 .sticky-nav {
     @apply fixed top-3 left-1/2 -translate-x-1/2 z-50 flex items-center gap-1;
-    @apply bg-base-200/70 backdrop-blur-xl border border-base-content/10 rounded-2xl px-2 py-1.5 shadow-lg;
+    @apply bg-base-200/20 backdrop-blur-xl border border-base-content/10 rounded-2xl px-2 py-1.5 shadow-lg;
     max-width: calc(100% - 2rem);
     width: fit-content;
     overflow-x: auto;
