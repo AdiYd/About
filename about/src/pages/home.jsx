@@ -30,10 +30,10 @@ import {
   faGraduationCap,
   faBriefcase,
   faAddressCard,
-  faChevronDown,
   faArrowUpRightFromSquare,
   faUserShield,
-  faMessage,
+  faPhone,
+  faImage,
 } from "@fortawesome/free-solid-svg-icons";
 import selfie from '../img/AdiYd2.jpeg';
 import sedg from '../img/sedg.svg';
@@ -41,6 +41,20 @@ import taskomatic from "../img/taskomatic.svg";
 import tau2 from '../img/TAU_Logo.png';
 import { AnimatePresence, motion, useInView } from "framer-motion";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import { Carousel3DImages } from "../components/Carousel3D";
+
+// Import showcase images
+import dash1 from "../img/showcase/dash1.png";
+import dash2 from "../img/showcase/dash2.png";
+import dash3Dark from "../img/showcase/dash3_dark.png";
+// import dash4 from "../img/showcase/dash4.png";
+import mobileApp from "../img/showcase/mobileApp.jpeg";
+import mobileApp2 from "../img/showcase/mobileApp2.jpeg";
+import mobileApp3 from "../img/showcase/mobileApp3.jpeg";
+import pivot1 from "../img/showcase/pivot1.png";
+import pivot2 from "../img/showcase/pivot2.png";
+import pivot3 from "../img/showcase/pivot3.png";
+import pivot5 from "../img/showcase/pivot5.png";
 
 export const themeIconify = {
     light: 'ph:sun-bold',
@@ -138,82 +152,95 @@ function SkillPill({ label, icon, color = "", index = 0, iconClassName = "" }) {
 }
 
 // ─── Timeline entry ────────────────────────────────────────────────────────────
-function TimelineEntry({ title, place, period, children, logo, icon, isLast = false }) {
-    const ref = useRef(null);
-    const isInView = useInView(ref, { once: false, margin: '0px 0px -60px 0px', amount: 0.3 });
-    return (
-      <motion.div
-        ref={ref}
-        initial={{
-          opacity: 0,
-          scale: 0.9,
-        }}
-        animate={
-          isInView
-            ? {
-                opacity: 1,
+function TimelineEntry({
+  title,
+  place,
+  period,
+  children,
+  logo,
+  icon,
+  isLast = false,
+  imagesClassName = "",
+}) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, {
+    once: false,
+    margin: "0px 0px -60px 0px",
+    amount: 0.3,
+  });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{
+        opacity: 0,
+        scale: 0.9,
+      }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
 
-                scale: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 15,
-                  mass: 0.8,
-                },
-              }
-            : {
-                opacity: 0,
-                scale: 0.9,
-              }
-        }
-        whileHover={{
-          scale: 1.02,
-          y: 5,
-          transition: { duration: 0.2 },
-        }}
-        className="relative"
-        style={{ transformPerspective: 1200 }}
-      >
-        {/* Timeline line */}
-        {/* {!isLast && <div className="absolute left-[11px] top-6 bottom-0 w-px bg-base-content/10" />} */}
-        {/* Dot */}
-        {/* <div className="absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center">
+              scale: 1,
+              transition: {
+                type: "spring",
+                stiffness: 100,
+                damping: 15,
+                mass: 0.8,
+              },
+            }
+          : {
+              opacity: 0,
+              scale: 0.9,
+            }
+      }
+      whileHover={{
+        scale: 1.02,
+        y: 5,
+        transition: { duration: 0.2 },
+      }}
+      className="relative"
+      style={{ transformPerspective: 1200 }}
+    >
+      {/* Timeline line */}
+      {/* {!isLast && <div className="absolute left-[11px] top-6 bottom-0 w-px bg-base-content/10" />} */}
+      {/* Dot */}
+      {/* <div className="absolute left-0 top-1.5 w-[22px] h-[22px] rounded-full bg-primary/15 border-2 border-primary flex items-center justify-center">
                 <div className="w-2 h-2 rounded-full bg-primary" />
             </div> */}
 
-        <div className="card text-start mb-6 p-5">
-          <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
-            <div className="flex flex-col items-start gap-3">
-              {logo && (
-                <img
-                  src={logo}
-                  alt={place}
-                  className="h-10 w-auto min-w-10 object-cover opacity-80"
-                />
-              )}
-              {icon && (
-                <FontAwesomeIcon
-                  icon={icon}
-                  className="text-2xl text-primary/80"
-                />
-              )}
-              <div>
-                <p className="font-semibold !text-base-content text-base leading-tight">
-                  {title}
-                </p>
-                <p className="text-xs text-primary mt-0.5">{place}</p>
-              </div>
+      <div className="card text-start mb-6 p-5">
+        <div className="flex flex-wrap items-start justify-between gap-2 mb-2">
+          <div className="flex flex-col items-start gap-3">
+            {logo && (
+              <img
+                src={logo}
+                alt={place}
+                className={`h-10 w-auto min-w-10 object-cover opacity-80 ${imagesClassName}`}
+              />
+            )}
+            {icon && (
+              <FontAwesomeIcon
+                icon={icon}
+                className="text-2xl text-primary/80"
+              />
+            )}
+            <div>
+              <p className="font-semibold !text-base-content text-base leading-tight">
+                {title}
+              </p>
+              <p className="text-xs text-primary mt-0.5">{place}</p>
             </div>
-            <span className="badge badge-sm badge-outline text-primary border-primary/40 whitespace-nowrap">
-              {period}
-            </span>
           </div>
-          <div className="flex flex-col text-sm text-base-content/70 leading-relaxed">
-            {children}
-          </div>
+          <span className="badge badge-sm badge-outline text-primary border-primary/40 whitespace-nowrap">
+            {period}
+          </span>
         </div>
-      </motion.div>
-    );
+        <div className="flex flex-col text-sm text-base-content/70 leading-relaxed">
+          {children}
+        </div>
+      </div>
+    </motion.div>
+  );
 }
 
 // ─── Product card ──────────────────────────────────────────────────────────────
@@ -472,14 +499,108 @@ export default function Home({ showPdf = false }) {
     },
   ];
 
+  //   Randomize showcase images order on each visit to keep it fresh
+  const showcaseImages = useMemo(
+    () =>
+      [
+        {
+          id: 1,
+          src: dash1,
+          alt: "Dashboard Light Theme",
+          width: 220,
+          height: 190,
+        },
+        {
+          id: 2,
+          src: dash2,
+          alt: "Dashboard Settings",
+          width: 220,
+          height: 190,
+        },
+        {
+          id: 3,
+          src: dash3Dark,
+          alt: "Dashboard Dark Theme",
+          width: 220,
+          height: 190,
+        },
+        // {
+        //   id: 4,
+        //   src: dash4,
+        //   alt: "Dashboard Overview",
+        //   width: 220,
+        //   height: 160,
+        // },
+        {
+          id: 5,
+          src: mobileApp,
+          isMobileApp: true,
+          alt: "Mobile App Stock View",
+          width: 180,
+          height: 220,
+        },
+        {
+          id: 6,
+          src: mobileApp2,
+          isMobileApp: true,
+          alt: "Mobile App Details",
+          width: 180,
+          height: 220,
+        },
+        {
+          id: 7,
+          src: mobileApp3,
+          isMobileApp: true,
+          alt: "Mobile App Search",
+          width: 180,
+          height: 220,
+        },
+        {
+          id: 8,
+          src: pivot1,
+          alt: "Pivot Orders View",
+          width: 220,
+          height: 190,
+        },
+        {
+          id: 9,
+          src: pivot2,
+          alt: "Pivot Management",
+          width: 220,
+          height: 190,
+        },
+        {
+          id: 10,
+          src: pivot3,
+          alt: "Pivot Chat Interface",
+          width: 220,
+          height: 190,
+        },
+        {
+          id: 11,
+          src: pivot5,
+          alt: "Pivot Dark Mode",
+          width: 220,
+          height: 190,
+        },
+      ].sort(() => Math.random() - 0.5),
+    [],
+  );
+
   const navItems = useMemo(
     () => [
       { id: "about", label: "About", icon: faAddressCard },
       { id: "products", label: "Products", icon: faRocket },
       { id: "experience", label: "Experience", icon: faBriefcase },
+      {
+        id: "projects-gallery",
+        label: "Gallery",
+        icon: faImage,
+        hideMobile: true,
+      },
       { id: "skills", label: "Skills", icon: faLayerGroup },
       { id: "education", label: "Education", icon: faGraduationCap },
-      { id: "contact", label: "Contact", icon: faMessage }, // Add this line
+      { id: "contact", label: "Contact", icon: faPhone }, // Add this line
     ],
     [],
   );
@@ -516,19 +637,21 @@ export default function Home({ showPdf = false }) {
     <div className="home-page z-10 py-16 px-2 sm:px-6 max-w-7xl mx-auto">
       {/* ── Sticky nav ─────────────────────────────────────────────────── */}
       <nav className="sticky-nav">
-        {navItems.map(({ id, label, icon }) => (
+        {navItems.map(({ id, label, icon, hideMobile }) => (
           <button
             key={id}
             onClick={() => scrollTo(id)}
-            className={`nav-btn ${activeNav === id ? "nav-btn-active" : ""}`}
+            className={`nav-btn ${activeNav === id ? "nav-btn-active" : ""} ${hideMobile ? "max-sm:!hidden" : ""}`}
           >
             <FontAwesomeIcon icon={icon} className="text-xs" />
             <span className="hidden sm:inline">{label}</span>
           </button>
         ))}
+        {/* Divider */}
+        <div className="border-l h-5 rounded-full border-primary/60" />
         {/* Theme roller */}
         <button
-          className="nav-btn ml-auto"
+          className="nav-btn w-[50px] flex justify-center"
           onClick={changeRandomTheme}
           onMouseEnter={() => setShowDice(true)}
           onMouseLeave={() => setShowDice(false)}
@@ -660,16 +783,17 @@ export default function Home({ showPdf = false }) {
         <div>
           <p className="text-sm* text-base-content/75 leading-relaxed mb-3">
             I build applications from zero to production - full-stack web and
-            native apps, AI-powered platforms and scalable SaaS tools.
-            Background in SW & HW R&D sharpened my systems thinking and
-            architecture skills, turning my applications into clean, fast,
-            scalable and maintainable solutions.
+            mobile apps, AI-powered platforms and scalable SaaS tools. My strong
+            technical background in R&D, software and hardware development
+            upgraded my systems thinking and architecture skills, turning my
+            applications into clean, fast, scalable and maintainable products.
           </p>
           <p className="text-sm* text-base-content/70 leading-relaxed">
             Currently running{" "}
             <strong className="text-base-content">Taskomatic</strong>, an AI
-            marketing agent for SMB and agencies, while developing more products
-            as a founder and tech lead.
+            marketing agent for SMB and agencies. As well as consulting on AI
+            applications, data pipeline, cloud architecture and implementation
+            for startups and enterprises.
           </p>
 
           {/* Contact badges */}
@@ -743,10 +867,10 @@ export default function Home({ showPdf = false }) {
 
         {/* Scroll cue */}
         <motion.div
-          className="flex justify-center mt-6 text-base-content/25"
+          className="flex justify-center mt-6 text-base-content/80"
           initial={{ opacity: 0, y: -20 }}
           animate={{
-            opacity: [0.3, 1, 0.3],
+            opacity: [0.6, 1, 0.6],
             y: [0, 12, 0],
             transition: {
               repeat: Infinity,
@@ -755,7 +879,7 @@ export default function Home({ showPdf = false }) {
             },
           }}
         >
-          <FontAwesomeIcon icon={faChevronDown} className="text-xs" />
+          <Icon icon={"mynaui:chevrons-down"} className="text-lg" />
         </motion.div>
       </motion.div>
 
@@ -864,6 +988,7 @@ export default function Home({ showPdf = false }) {
             title="Hardware & Product Engineer"
             place="SolarEdge R&D"
             period="2019 – 2023"
+            imagesClassName="bg-white rounded-sm"
             logo={sedg}
           >
             Led multidisciplinary development of advanced analog/digital
@@ -928,6 +1053,25 @@ export default function Home({ showPdf = false }) {
             Group and private sessions for high-school students. Bagrut
             preparation marathons.
           </TimelineEntry>
+        </Section>
+
+        {/* ── Projects Gallery ────────────────────────────────────────────── */}
+        <Section
+          id="projects-gallery"
+          className="section-class max-sm:pb-8 max-sm:hidden"
+        >
+          <SectionHeading icon={faImage} label="Gallery" />
+          <div className="">
+            <Carousel3DImages
+              images={showcaseImages}
+              cardWidth={280}
+              cardHeight={220}
+              translateZ={480}
+              rotateX={-6}
+              perspective={1000}
+              animationDuration={42}
+            />
+          </div>
         </Section>
 
         {/* ── Skills ──────────────────────────────────────────────────────── */}
@@ -1108,7 +1252,7 @@ export default function Home({ showPdf = false }) {
                 visible: {
                   transition: {
                     staggerChildren: 0.1,
-                    delayChildren: 0.2,
+                    delayChildren: 0.1,
                   },
                 },
               }}
