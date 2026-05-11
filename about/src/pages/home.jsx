@@ -1247,14 +1247,6 @@ export default function Home({ showPdf = false }) {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, margin: "-30px" }}
-              variants={{
-                visible: {
-                  transition: {
-                    staggerChildren: 0.1,
-                    delayChildren: 0.1,
-                  },
-                },
-              }}
             >
               {[
                 {
@@ -1294,17 +1286,12 @@ export default function Home({ showPdf = false }) {
                       opacity: 1,
                       scale: 1,
                       y: 0,
-                      transition: {
-                        type: "spring",
-                        stiffness: 200,
-                        damping: 15,
-                      },
                     },
                   }}
                   whileHover={{
                     scale: 1.05,
                     y: -5,
-                    transition: { duration: 0.2 },
+                    transition: { duration: 0.1 },
                   }}
                   whileTap={{ scale: 0.95 }}
                 >
